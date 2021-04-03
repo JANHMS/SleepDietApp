@@ -1,7 +1,6 @@
 import { IonContent, IonLoading, IonInput, IonIcon, IonButton, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonItem, IonLabel, IonText } from '@ionic/react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SignIn } from './GoogleSignInButton';
 import HeaderImage from './HeaderImage';
 
 interface Props {
