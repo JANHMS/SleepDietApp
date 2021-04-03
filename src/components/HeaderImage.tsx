@@ -1,4 +1,4 @@
-import rommmeimage from'../images/roomme.png';
+import image from'../images/sleepimg.png';
 
 const HeaderImage = () => { 
   return(
@@ -8,7 +8,7 @@ const HeaderImage = () => {
       whiteSpace: "nowrap",
       overflow: "hidden",
       width: "100px"}}>
-      <img src={rommmeimage} />
+      <img src={image} />
     </div>
   )
 }
