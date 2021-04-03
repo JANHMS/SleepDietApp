@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
 import RegisterForm from '../components/RegisterForm';
-import { useToasts } from 'react-toast-notifications'
 import { toast } from '../toast';
 import { register } from '../actions'
 
@@ -23,8 +22,8 @@ const RegisterPage: React.FC = () => {
       setStatus({ loading: true, error: false });
         register({email, password, fullName, avatar})
         .then(
-          _ => () => {},
-          errorMessage => toast(errorMessage))
+          (          _: any) => () => {},
+          (          errorMessage: string) => toast(errorMessage))
     } catch (error) {
       setStatus({ loading: false, error: true });
       console.log('error:', error);
