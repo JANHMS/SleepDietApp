@@ -10,10 +10,10 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import {analyticsSharp, ellipse, home, moonSharp, pizzaSharp, square, triangle} from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-import Tab4 from "./pages/Tab4";
+import HomeTab from './pages/HomeTab';
+import AddFoodTab from './pages/AddFoodTab';
+import AnalyticsTab from './pages/AnalyticsTab';
+import MySleepDataTab from "./pages/MySleepDataTab";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -40,16 +40,16 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route exact path="/home">
-            <Tab1 />
+            <HomeTab />
           </Route>
           <Route exact path="/food">
-            <Tab2 />
+            <AddFoodTab />
           </Route>
           <Route path="/analytics">
-            <Tab3 />
+            <AnalyticsTab />
           </Route>
           <Route path="/my_sleep_data">
-            <Tab4 />
+            <MySleepDataTab />
           </Route>
           <Route exact path="/">
             <Redirect to="/home" />
