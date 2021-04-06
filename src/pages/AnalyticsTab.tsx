@@ -1,6 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
 import './AnalyticsTab.css';
+import AnalyticsContainer from "../components/AnalyticsContainer";
 
 const AnalyticsTab: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const AnalyticsTab: React.FC = () => {
             <IonTitle size="large">Analytics</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Analytics page" />
+        <AnalyticsContainer name="Analytics page" />
       </IonContent>
     </IonPage>
   );
