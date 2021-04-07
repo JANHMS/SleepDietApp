@@ -1,11 +1,10 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonLoading, IonPage, IonText, IonTitle, IonToolbar } from "@ionic/react";
 import React, { MouseEventHandler } from "react";
-import { Link } from "react-router-dom";
 import HeaderImage from "./HeaderImage";
 
 interface Props {
   email: string;
-  setEmail: (password: string) => void;
+  setEmail: (email: string) => void;
   password: string;
   setPassword: (password: string) => void;
   cpassword: string;
@@ -45,33 +44,39 @@ const RegisterForm: React.FC<Props> = ({
        <IonList>
          <IonItem>
            <IonLabel position="stacked">Full Name</IonLabel>
+           {/*Fix error: Argument of type 'string | null | undefined' is not assignable to parameter of type 'string'. Type 'undefined' is not assignable to type 'string'*/}
+           {/*Add "!" and convince TS that the value won't be null or undefined*/}
            <IonInput value={fullName}
-             onIonChange={(event) => setFullName(event.detail.value)}
+             onIonChange={(event) => setFullName(event.detail.value!)}
            />
          </IonItem>
          <IonItem>
            <IonLabel position="stacked">Email</IonLabel>
+           {/*Same as above*/}
            <IonInput type="email" value={email}
-             onIonChange={(event) => setEmail(event.detail.value)}
+             onIonChange={(event) => setEmail(event.detail.value!)}
            />
          </IonItem>
          <IonItem>
            <IonLabel position="stacked">Password</IonLabel>
+           {/*Same as above*/}
            <IonInput type="password" value={password}
-             onIonChange={(event) => setPassword(event.detail.value)}
+             onIonChange={(event) => setPassword(event.detail.value!)}
            />
          </IonItem>
          <IonItem>
            <IonLabel position="stacked">Confirm Password</IonLabel>
+           {/*Same as above*/}
            <IonInput type="password" value={cpassword}
-             onIonChange={(event) => setCPassword(event.detail.value)}
+             onIonChange={(event) => setCPassword(event.detail.value!)}
            />
          </IonItem>
          
          <IonItem>
            <IonLabel position="stacked">Avatar</IonLabel>
+           {/*Same as above*/}
            <IonInput value={avatar}
-             onIonChange={(event) => setAvatar(event.detail.value)}
+             onIonChange={(event) => setAvatar(event.detail.value!)}
            />
          </IonItem> 
 
