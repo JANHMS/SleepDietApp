@@ -1,17 +1,3 @@
-import {
-  IonButton,
-  IonContent,
-  IonHeader,
-  IonInput,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonLoading,
-  IonPage,
-  IonText,
-  IonTitle,
-  IonToolbar,
-} from '@ionic/react';
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';

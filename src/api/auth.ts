@@ -12,7 +12,8 @@ export const register = async ({email, password, fullName, avatar}: any) => {
   try {
     const res = await firebase.auth().createUserWithEmailAndPassword(email, password)
     const { user } = res
-    const userProfile = { uid: user.uid, fullName, email, avatar, services: [], description: ''}
+    // Added "?" to only get uid when user is not null
+    const userProfile = { uid: user?.uid, fullName, email, avatar, services: [], description: ''}
     await createUserProfile(userProfile)
     return userProfile
   } catch(error) {

@@ -3,7 +3,7 @@ import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
 import RegisterForm from '../components/RegisterForm';
 import { toast } from '../toast';
-import { register } from '../actions'
+import { register } from "../api/auth";
 
 const RegisterPage: React.FC = () => {
 
