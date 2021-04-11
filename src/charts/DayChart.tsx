@@ -1,15 +1,24 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import DataFrame from 'dataframe-js';
 
-const WeekdayChart = (props) => {
-  // set data
+const DayChart = (props) => {
+
+  // Sorted the columns needed
+  const getxy = (data) => {
+    const df = new DataFrame(data, Object.keys(data[0]));
+    const sortedDF = df.select('End', 'Time_asleep_seconds').sortBy('End');
+    // sortedDF.show()
+    return sortedDF.toDict();
+  };
+
   const [barData, setBarData] = useState({
-      labels: props.labels,
+      labels: getxy(props.data)['End'],
       datasets: [
         {
           label: props.name,
-          data: props.data.mean,
+          data: getxy(props.data)['Time_asleep_seconds'],
           backgroundColor: 'rgba(54, 162, 235, 0.6)',
           borderColor: 'rgba(54, 162, 235, 0.6)',
           borderWidth: 1,
@@ -44,14 +53,30 @@ const WeekdayChart = (props) => {
                options={
                  {
                      scales: {
+                         xAxes: [
+                           {
+                             display: true,
+                             offset: true,
+                             type: 'time',
+                             time: {
+                               parser: false,
+                               tooltipFormat: 'll',
+                               unit: 'day',
+                               unitStepSize: 1,
+                               displayFormats: {
+                                 day: 'MMM DD'   // DD/MM
+                               }
+                             }
+                           }
+                         ],
                          yAxes: [
                              {
-                               ticks: {
-                                   beginAtZero: true,
-                                   callback: function(data, index, datasets) {
-                                     return formatTime(data, false);
-                                    }
-                               }
+                                 ticks: {
+                                     beginAtZero: true,
+                                     callback: function(data, index, datasets) {
+                                       return formatTime(data, false);
+                                      }
+                                 }
                              }
                          ]
                      },
@@ -66,7 +91,7 @@ const WeekdayChart = (props) => {
                			 },
                      title: {
                          display: true,
-                         text: 'Average sleep by weekday',
+                         text: 'Sleeping time by day',
                          fontSize: 20
                      }
                  }
@@ -75,4 +100,4 @@ const WeekdayChart = (props) => {
     )
 }
 
-export default WeekdayChart;
+export default DayChart;
