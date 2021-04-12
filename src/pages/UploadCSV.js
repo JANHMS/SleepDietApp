@@ -16,20 +16,20 @@ class UploadCSV extends Component {
       csv.parse(reader.result, (err, data) => {
 
         var userList = [];
-
         for (var i = 0; i < data.length; i++) {
-          data = data.slplit(";")
-          const start = data[i][0];
-          const end = data[i][1];
-          const sleepQuality = data[i][2];
-          const Regularity = data[i][3];
-          const Movements = data[i][11];
-          const TimeInBed = data[i][12];
-          const TimeAsleep = data[i][13];
-          const TimeBeforeSleep = data[i][14];
-          const DidSnore = data[i][15];
-          const SnoreTime = data[i][16];
-
+          const SingleData = data[i][0].split(";")
+          
+          const start = SingleData[0];
+          const end = SingleData[1];
+          const sleepQuality = SingleData[2];
+          const Regularity = SingleData[3];
+          const Movements = SingleData[11];
+          const TimeInBed = SingleData[12];
+          const TimeAsleep = SingleData[13];
+          const TimeBeforeSleep = SingleData[14];
+          const DidSnore = SingleData[15];
+          const SnoreTime = SingleData[16];
+        
           const newUser = { 
             start:  start,
             end:  end,
@@ -43,8 +43,6 @@ class UploadCSV extends Component {
             SnoreTime:  SnoreTime ,
           };
           userList.push(newUser);
-          console.log(userList)
-
           // fetch('https://[FIREBASE_URL]/users.json', {
           //   method: 'POST',
           //   headers: {
@@ -54,6 +52,7 @@ class UploadCSV extends Component {
           //   body: JSON.stringify(newUser)
           // })
         };
+        console.log(userList)
       });
     };
 
