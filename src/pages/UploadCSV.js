@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { IonContent, IonPage } from "@ionic/react"
 import Dropzone from 'react-dropzone';
+import { firestore, storage } from '../firebase'
 import csv from 'csv';
+
+async function saveUserSleep(userSleep) {
+  const sleepRef = storage.ref(`/sleep/${Date.now()}`);
+  const snapshot = await sleepRef.put(userSleep);
+  console.log('saved csv:', snapshot);
+}
+
 
 class UploadCSV extends Component {
 
@@ -15,7 +23,7 @@ class UploadCSV extends Component {
     reader.onload = () => {
       csv.parse(reader.result, (err, data) => {
 
-        var userList = [];
+        var sleepList = [];
         for (var i = 0; i < data.length; i++) {
           const SingleData = data[i][0].split(";")
           
@@ -30,7 +38,7 @@ class UploadCSV extends Component {
           const DidSnore = SingleData[15];
           const SnoreTime = SingleData[16];
         
-          const newUser = { 
+          const newSleep = { 
             start:  start,
             end:  end,
             sleepQuality:  sleepQuality,
@@ -42,17 +50,10 @@ class UploadCSV extends Component {
             DidSnore:  DidSnore ,
             SnoreTime:  SnoreTime ,
           };
-          userList.push(newUser);
-          // fetch('https://[FIREBASE_URL]/users.json', {
-          //   method: 'POST',
-          //   headers: {
-          //     'Accept': 'application/json',
-          //     'Content-Type': 'application/json',
-          //   },
-          //   body: JSON.stringify(newUser)
-          // })
+          sleepList.push(newSleep);
         };
-        console.log(userList)
+        console.log(sleepList)
+        saveUserSleep(sleepList)
       });
     };
 
