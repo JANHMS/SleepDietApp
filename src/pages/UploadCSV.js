@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { IonContent, IonPage } from "@ionic/react"
 import Dropzone from 'react-dropzone';
 import csv from 'csv';
 
@@ -17,6 +18,7 @@ class UploadCSV extends Component {
         var userList = [];
 
         for (var i = 0; i < data.length; i++) {
+          data = data.slplit(";")
           const start = data[i][0];
           const end = data[i][1];
           const sleepQuality = data[i][2];
@@ -29,7 +31,6 @@ class UploadCSV extends Component {
           const SnoreTime = data[i][16];
 
           const newUser = { 
-            
             start:  start,
             end:  end,
             sleepQuality:  sleepQuality,
@@ -65,6 +66,8 @@ class UploadCSV extends Component {
     const fontSize = 5;
 
     return (
+      <IonPage>
+        <IonContent>
       <div align="center" oncontextmenu="return false">
         <br /><br /><br />
         <div className="dropzone">
@@ -74,6 +77,8 @@ class UploadCSV extends Component {
         </div>
         <h2>Upload or drop your <font size={fontSize} color="#00A4FF">CSV</font><br /> file here.</h2>
       </div>
+    </IonContent>
+  </IonPage>
     )
   }
 }
