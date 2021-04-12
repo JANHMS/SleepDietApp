@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { IonContent, IonPage } from "@ionic/react"
 import Dropzone from 'react-dropzone';
 import { firestore, storage } from '../firebase'
+import { toast } from "../toast"
 import csv from 'csv';
 
 async function saveUserSleep(userSleep) {
@@ -56,7 +57,7 @@ class UploadCSV extends Component {
         console.log(sleepList)
       });          
     };
-    saveUserSleep(file)
+    saveUserSleep(file).then( () => toast("file saved"))
     reader.readAsBinaryString(file);
   }
 
