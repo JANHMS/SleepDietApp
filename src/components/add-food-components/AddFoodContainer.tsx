@@ -1,4 +1,5 @@
 import './AddFoodContainer.css';
+import {DateTimePicker} from "./DateTimePicker";
 
 interface ContainerProps {
     name: string;
@@ -7,8 +8,7 @@ interface ContainerProps {
 const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
     return (
         <div className="container">
-            <strong>{name}</strong>
-            <p>Add food container</p>
+            <DateTimePicker/>
         </div>
     );
 };
