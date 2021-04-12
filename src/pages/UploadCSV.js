@@ -6,8 +6,8 @@ import csv from 'csv';
 
 async function saveUserSleep(userSleep) {
   const sleepRef = storage.ref(`/sleep/${Date.now()}`);
-  const snapshot = await sleepRef.put(userSleep);
-  console.log('saved csv:', snapshot);
+  await sleepRef.put(userSleep);
+  console.log('saved csv:', userSleep);
 }
 
 
@@ -52,11 +52,11 @@ class UploadCSV extends Component {
           };
           sleepList.push(newSleep);
         };
+        
         console.log(sleepList)
-        saveUserSleep(sleepList)
-      });
+      });          
     };
-
+    saveUserSleep(file)
     reader.readAsBinaryString(file);
   }
 
