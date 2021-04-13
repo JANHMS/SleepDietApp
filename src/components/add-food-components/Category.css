@@ -9,6 +9,10 @@ ion-card {
     background-size: cover;
 }
 
+ion-card.selected {
+    border: white 2px solid;
+}
+
 .fruit {
     background-image: url('./../../images/fruits.jpg');
 }
