@@ -1,7 +1,6 @@
 import './AddFoodContainer.css';
 import {DateTimePicker} from "./DateTimePicker";
 import {FoodCategoriesComponent} from "./FoodCategoriesComponent";
-import {Category} from "./Category";
 
 interface ContainerProps {
     name: string;

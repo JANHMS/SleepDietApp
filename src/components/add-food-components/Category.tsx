@@ -9,15 +9,19 @@ import clsx from "clsx";
 interface CategoryProps {
     name: string;
     cssClassName: string;
+    onSelect: (name: string) => void;
 }
 
-export const Category: React.FC<CategoryProps> = ({name, cssClassName}) => {
+export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect}) => {
     const [isSelected, setSelected] = useState<boolean>(false);
 
     return (
         <div>
             <IonCard button type="button" className={clsx(isSelected && "selected", cssClassName)}
-                     onClick={e => setSelected(!isSelected)}/>
+                     onClick={e => {
+                         setSelected(!isSelected)
+                         onSelect(name);
+                     }}/>
             <IonCardTitle>{name}</IonCardTitle>
         </div>
     );
