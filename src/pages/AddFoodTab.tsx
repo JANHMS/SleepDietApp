@@ -4,10 +4,7 @@ import AddFoodContainer from "../components/AddFoodContainer";
 import { useHistory } from 'react-router-dom';
 
 const AddFoodTab: React.FC = () => {
-  const history = useHistory();
-  const handleAddDataClick  = () => {
-        history.push("/food/upload")
-  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -23,7 +20,6 @@ const AddFoodTab: React.FC = () => {
         </IonHeader>
         <AddFoodContainer 
           name="Add food page" 
-          handleAddDataClick={handleAddDataClick}
         />
       </IonContent>
     </IonPage>
