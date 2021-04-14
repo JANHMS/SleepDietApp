@@ -5,25 +5,25 @@ import DataFrame from 'dataframe-js';
 
 const DayChart = (props) => {
 
-  // Sorted the columns needed
-  const getxy = (data) => {
-    const df = new DataFrame(data, Object.keys(data[0]));
-    const sortedDF = df.select('End', 'Time_asleep_seconds').sortBy('End');
-    // sortedDF.show()
-    return sortedDF.toDict();
-  };
+    // Sorted the columns needed
+    const getxy = (data) => {
+      const df = new DataFrame(data, Object.keys(data[0]));
+      const sortedDF = df.select('End', 'Time_asleep_seconds').sortBy('End');
+      // sortedDF.show()
+      return sortedDF.toDict();
+    };
 
-  const [barData, setBarData] = useState({
-      labels: getxy(props.data)['End'],
-      datasets: [
-        {
-          label: props.name,
-          data: getxy(props.data)['Time_asleep_seconds'],
-          backgroundColor: 'rgba(54, 162, 235, 0.6)',
-          borderColor: 'rgba(54, 162, 235, 0.6)',
-          borderWidth: 1,
-        },
-      ],
+    const [barData, setBarData] = useState({
+        labels: getxy(props.data)['End'],
+        datasets: [
+          {
+            label: props.name,
+            data: getxy(props.data)['Time_asleep_seconds'],
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 0.6)',
+            borderWidth: 1,
+          },
+        ],
     });
 
     const formatTime = (secs, longerFormat) => {
@@ -44,7 +44,7 @@ const DayChart = (props) => {
             hour_minutes =  hours + ":" + minutes
           }
         }
-        return hour_minutes;
+        return hour_minutes + "h";
     };
 
     return (

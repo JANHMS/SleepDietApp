@@ -1,4 +1,6 @@
 import './AnalyticsContainer.css';
+import CreateSleepBarCharts from "../charts/CreateSleepBarCharts";
+import CreateFoodCharts from "../charts/CreateFoodCharts";
 
 interface ContainerProps {
     name: string;
@@ -7,8 +9,8 @@ interface ContainerProps {
 const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
     return (
         <div className="container">
-            <strong>{name}</strong>
-            <p>Analytics Container</p>
+            <CreateSleepBarCharts />
+            <CreateFoodCharts />
         </div>
     );
 };

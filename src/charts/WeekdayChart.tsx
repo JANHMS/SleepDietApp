@@ -3,18 +3,18 @@ import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const WeekdayChart = (props) => {
-  // set data
-  const [barData, setBarData] = useState({
-      labels: props.labels,
-      datasets: [
-        {
-          label: props.name,
-          data: props.data.mean,
-          backgroundColor: 'rgba(54, 162, 235, 0.6)',
-          borderColor: 'rgba(54, 162, 235, 0.6)',
-          borderWidth: 1,
-        },
-      ],
+    // set data
+    const [barData, setBarData] = useState({
+        labels: props.labels,
+        datasets: [
+          {
+            label: props.name,
+            data: props.data.mean,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 0.6)',
+            borderWidth: 1,
+          },
+        ],
     });
 
     const formatTime = (secs, longerFormat) => {
@@ -35,7 +35,7 @@ const WeekdayChart = (props) => {
             hour_minutes =  hours + ":" + minutes
           }
         }
-        return hour_minutes;
+        return hour_minutes + "h";
     };
 
     return (

@@ -1,7 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './AnalyticsTab.css';
 import AnalyticsContainer from "../components/AnalyticsContainer";
-import CreateSleepBarCharts from "../charts/CreateSleepBarCharts";
 
 const AnalyticsTab: React.FC = () => {
   return (
@@ -18,7 +17,6 @@ const AnalyticsTab: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <AnalyticsContainer name="Analytics page" />
-        <CreateSleepBarCharts />
       </IonContent>
     </IonPage>
   );
