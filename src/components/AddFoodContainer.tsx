@@ -4,7 +4,9 @@ interface ContainerProps {
     name: string;
 }
 
-const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
+const AddFoodContainer: React.FC<ContainerProps> = ({ 
+  name,
+}) => {
     return (
         <div className="container">
             <strong>{name}</strong>
