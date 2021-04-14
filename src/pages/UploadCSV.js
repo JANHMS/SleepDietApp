@@ -44,12 +44,13 @@ class UploadCSV extends Component {
           const end = SingleData[1];
           const sleepQuality = SingleData[2];
           const Regularity = SingleData[3];
-          const Movements = SingleData[11];
-          const TimeInBed = SingleData[12];
-          const TimeAsleep = SingleData[13];
-          const TimeBeforeSleep = SingleData[14];
-          const DidSnore = SingleData[15];
-          const SnoreTime = SingleData[16];
+          const AlarmMode = SingleData[7]
+          const Movements = SingleData[10];
+          const TimeInBed = SingleData[11];
+          const TimeAsleep = SingleData[12];
+          const TimeBeforeSleep = SingleData[13];
+          const DidSnore = SingleData[16];
+          const SnoreTime = SingleData[17];
         
           const newSleep = { 
             start:  start,
