@@ -6,7 +6,7 @@ import MySleepDataContainer from "../components/MySleepDataContainer";
 const MySleepDataTab: React.FC = () => {
     const history = useHistory();
     const handleAddDataClick  = () => {
-          history.push("/food/upload")
+          history.push("/sleep/upload")
     }
 
     return (

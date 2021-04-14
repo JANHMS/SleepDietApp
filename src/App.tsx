@@ -43,7 +43,7 @@ const App: React.FC = () => (
           <Route exact path="/home">
             <HomeTab />
           </Route>
-          <Route exact path="/food/upload">
+          <Route exact path="/sleep/upload">
             <UploadCSV />
           </Route>
           <Route exact path="/food">
