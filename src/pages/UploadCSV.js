@@ -5,10 +5,22 @@ import { firestore, storage } from '../firebase'
 import { toast } from "../toast"
 import csv from 'csv';
 
-async function saveUserSleep(userSleep) {
-  const sleepRef = storage.ref(`/sleep/${Date.now()}`);
-  await sleepRef.put(userSleep);
-  console.log('saved csv:', userSleep);
+async function saveUserSleep(sleepList) {
+  // other possibility to write it to firestorage as a csv file
+  // const sleepRef = storage.ref(`/sleep/${Date.now()}`);
+  // await sleepRef.put(userSleep);
+  
+  //userId is hardcoded but can be retrieved with authentication
+  const userId = "1"
+  var i;
+  for (i = 0; i < sleepList.length; i++) {
+    firestore.collection("users")
+    .doc(userId)
+    .collection("sleep")
+    .doc(sleepList[i].start)
+    .set(sleepList[i])
+    console.log('saved csv:', sleepList[i]);
+  }
 }
 
 
@@ -53,7 +65,8 @@ class UploadCSV extends Component {
           };
           sleepList.push(newSleep);
         };
-        
+        saveUserSleep(sleepList).then( () => toast("file saved"))
+
         console.log(sleepList)
       });          
     };
