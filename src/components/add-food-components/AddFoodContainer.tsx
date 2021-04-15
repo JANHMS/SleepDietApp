@@ -1,7 +1,7 @@
 import './AddFoodContainer.css';
 import {DateTimePicker} from "./datepicker/DateTimePicker";
 import {FoodCategoriesComponent} from "./categories/FoodCategoriesComponent";
-import {IonItemDivider} from "@ionic/react";
+import {IonButton, IonItemDivider} from "@ionic/react";
 import React from "react";
 import FoodDetailsComponent from "./details/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
@@ -20,6 +20,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
             <FoodDetailsComponent/>
             <IonItemDivider color="tertiary">Notes</IonItemDivider>
             <NotesComponent/>
+            <IonButton color="tertiary" size="small">Save</IonButton>
         </div>
     );
 };
