@@ -4,11 +4,11 @@ import 'firebase/auth'
 import { firestore } from '../firebase'
 
 export const getUserSleep = (uid: string) =>
-  firestore.collection('profiles')
+  firestore.collection('users')
     .doc(uid)
-    .collection('getUserSleep')
+    .collection('sleep')
     .get()
     .then(snapshot => {
-      const services = snapshot.docs.map(doc => ({date: doc.id, ...doc.data()}))
-      return services
+      const sleepData = snapshot.docs.map(doc => ({date: doc.id, ...doc.data()}))
+      return sleepData
     })
