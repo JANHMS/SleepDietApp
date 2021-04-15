@@ -1,14 +1,21 @@
+import { IonButton } from '@ionic/react';
+import React from 'react';
 import './MySleepDataContainer.css';
 
 interface ContainerProps {
     name: string;
+    handleAddDataClick: () => void;
 }
 
-const MySleepDataContainer: React.FC<ContainerProps> = ({ name }) => {
+const MySleepDataContainer: React.FC<ContainerProps> = ({ 
+  name,
+  handleAddDataClick
+ }) => {
     return (
         <div className="container">
             <strong>{name}</strong>
             <p>My Sleep Data Container</p>
+            <IonButton onClick={handleAddDataClick}>Add Data</IonButton>
         </div>
     );
 };
