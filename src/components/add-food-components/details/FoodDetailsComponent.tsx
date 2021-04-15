@@ -1,4 +1,4 @@
-import './AddFoodContainer.css';
+import '../AddFoodContainer.css';
 import {RangeSlider} from "./RangeSlider";
 import React from "react";
 
