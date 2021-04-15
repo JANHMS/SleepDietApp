@@ -10,12 +10,7 @@ const AddFoodTab: React.FC = () => {
           <IonTitle>Add food</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Add food</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent overflow-scroll="false">
         <AddFoodContainer name="Add food page" />
       </IonContent>
     </IonPage>

@@ -5,6 +5,7 @@ import {
     IonDatetime,
 } from '@ionic/react';
 import moment from "moment/moment";
+import "./DateTimePicker.css";
 
 export const DateTimePicker: React.FC = () => {
     // use format() to convert Moment object to string
