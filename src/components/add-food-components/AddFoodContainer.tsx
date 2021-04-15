@@ -1,7 +1,7 @@
 import './AddFoodContainer.css';
 import {DateTimePicker} from "./datepicker/DateTimePicker";
 import {FoodCategoriesComponent} from "./categories/FoodCategoriesComponent";
-import {IonButton, IonItemDivider} from "@ionic/react";
+import {IonButton, IonItemDivider, useIonToast} from "@ionic/react";
 import React from "react";
 import FoodDetailsComponent from "./details/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
@@ -11,6 +11,8 @@ interface ContainerProps {
 }
 
 const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
+    const [present, dismiss] = useIonToast();
+
     return (
         <div className="foodContainer">
             <DateTimePicker/>
@@ -20,7 +22,18 @@ const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
             <FoodDetailsComponent/>
             <IonItemDivider color="tertiary">Notes</IonItemDivider>
             <NotesComponent/>
-            <IonButton color="tertiary" size="small">Save</IonButton>
+            <IonButton
+                color="tertiary"
+                size="small"
+                onClick={() =>
+                    present({
+                        buttons: [{text: 'ok', handler: () => dismiss()}],
+                        message: 'Your food data is saved successfully!',
+                        duration: 2500,
+                        color: "success",
+                    })
+                }
+            >Save</IonButton>
         </div>
     );
 };
