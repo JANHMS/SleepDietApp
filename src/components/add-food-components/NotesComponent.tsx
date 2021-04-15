@@ -11,7 +11,6 @@ export const NotesComponent: React.FC = () => {
 
     return (
         <IonItem>
-            {console.log(text)}
             <IonInput
                 placeholder="Add your notes here..."
                 value={text}

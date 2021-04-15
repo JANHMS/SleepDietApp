@@ -15,7 +15,6 @@ export const FoodCategoriesComponent: React.FC = () => {
             selectedCategories.add(category);
         }
         setSelectedCategories(selectedCategories);
-        console.log(selectedCategories);
     }
 
     return (
