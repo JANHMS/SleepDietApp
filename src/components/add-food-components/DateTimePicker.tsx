@@ -23,11 +23,6 @@ export const DateTimePicker: React.FC = () => {
                 <IonDatetime displayFormat="H:mm" value={selectedDate}
                              onIonChange={e => setSelectedDate(e.detail.value!)}/>
             </IonItem>
-    {/*<IonFooter>*/}
-    {/*    <IonToolbar>*/}
-    {/*        Selected Date: {selectedDate ?? '(none)'}*/}
-    {/*    </IonToolbar>*/}
-    {/*</IonFooter>*/}
-</div>
-);
+        </div>
+    );
 };

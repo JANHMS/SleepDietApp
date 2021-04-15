@@ -4,6 +4,7 @@ import {FoodCategoriesComponent} from "./FoodCategoriesComponent";
 import {IonItemDivider} from "@ionic/react";
 import React from "react";
 import FoodDetailsComponent from "./FoodDetailsComponent";
+import {NotesComponent} from "./NotesComponent";
 
 interface ContainerProps {
     name: string;
@@ -18,6 +19,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({ name }) => {
             <IonItemDivider color="tertiary">Dinner details</IonItemDivider>
             <FoodDetailsComponent/>
             <IonItemDivider color="tertiary">Notes</IonItemDivider>
+            <NotesComponent/>
         </div>
     );
 };
