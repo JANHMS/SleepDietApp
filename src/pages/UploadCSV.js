@@ -39,23 +39,23 @@ class UploadCSV extends Component {
         var sleepList = [];
         for (var i = 0; i < data.length; i++) {
           const SingleData = data[i][0].split(";")
-
-          const Start = SingleData[0];
-          const End = SingleData[1];
-          const Sleep_quality = SingleData[2];
-          const Regularity = SingleData[3];
-          const Movements_per_hour = SingleData[4];
-          const Time_in_bed_seconds = SingleData[5];
-          const Time_asleep_seconds = SingleData[6];
-          const Time_before_sleep_seconds = SingleData[7];
-          const Did_snore = SingleData[8];
-          const Snore_time = SingleData[9];
-          const Time_in_bed = SingleData[10];
-          const Time_asleep = SingleData[11];
-          const Weekday = SingleData[12];
-          const Month = SingleData[13];
-          const To_bed_hour = SingleData[14];
-          const Wake_up_hour = SingleData[15];
+          const Key = SingleData[0]
+          const Start = SingleData[1];
+          const End = SingleData[2];
+          const Sleep_quality = SingleData[3];
+          const Regularity = SingleData[4];
+          const Movements_per_hour = SingleData[5];
+          const Time_in_bed_seconds = SingleData[6];
+          const Time_asleep_seconds = SingleData[7];
+          const Time_before_sleep_seconds = SingleData[8];
+          const Did_snore = SingleData[9];
+          const Snore_time = SingleData[10];
+          const Time_in_bed = SingleData[11];
+          const Time_asleep = SingleData[12];
+          const Weekday = SingleData[13];
+          const Month = SingleData[14];
+          const To_bed_hour = SingleData[15];
+          const Wake_up_hour = SingleData[16];
         
           const newSleep =  { 
             Start:  Start,
