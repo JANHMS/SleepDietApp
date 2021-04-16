@@ -1,8 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './AddFoodTab.css';
 import AddFoodContainer from "../components/AddFoodContainer";
+import { useHistory } from 'react-router-dom';
 
 const AddFoodTab: React.FC = () => {
+
   return (
     <IonPage>
       <IonHeader>
@@ -16,7 +18,9 @@ const AddFoodTab: React.FC = () => {
             <IonTitle size="large">Add food</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <AddFoodContainer name="Add food page" />
+        <AddFoodContainer 
+          name="Add food page" 
+        />
       </IonContent>
     </IonPage>
   );
