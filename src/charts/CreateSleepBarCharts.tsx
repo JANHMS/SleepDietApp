@@ -65,8 +65,8 @@ function CreateSleepBarCharts() {
             var aux_dict = {}
 
             setData(sleepData);
-            aux_dict[x_labels[0]] = getMeanData(data, 'Weekday', 'Time_asleep_seconds');
-            aux_dict[x_labels[1]] = getMeanData(data, 'Month', 'Time_asleep_seconds');
+            aux_dict[x_labels[0]] = getMeanData(sleepData, 'Weekday', 'Time_asleep_seconds');
+            aux_dict[x_labels[1]] = getMeanData(sleepData, 'Month', 'Time_asleep_seconds');
 
             setDictData(aux_dict)
             setSmallData(aux_dict[x_labels[0]])
