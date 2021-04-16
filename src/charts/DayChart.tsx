@@ -4,12 +4,13 @@ import { Bar } from 'react-chartjs-2';
 import DataFrame from 'dataframe-js';
 
 const DayChart = (props) => {
-
+    console.log(props)
     // Sorted the columns needed
     const getxy = (data) => {
       const df = new DataFrame(data, Object.keys(data[0]));
+      console.log(df.End)
       const sortedDF = df.select('End', 'Time_asleep_seconds').sortBy('End');
-      // sortedDF.show()
+      sortedDF.show()
       return sortedDF.toDict();
     };
 

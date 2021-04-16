@@ -13,7 +13,7 @@ import { firestore } from "../firebase";
 function CreateSleepBarCharts() {
     // get the userd
     const userId = "1"
-    // To store the original data reestructured for the graphs
+    // To store data reestructured for the graphs
     const [data, setData] = React.useState([]);
 
     // To store all the grouped dataframes in a dict
@@ -61,12 +61,14 @@ function CreateSleepBarCharts() {
         .then(snapshot => {
           const sleepData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
           if (sleepData) {
+            console.log(sleepData)
             setSleepData(sleepData)
             var aux_dict = {}
-
-            setData(sleepData);
-            aux_dict[x_labels[0]] = getMeanData(sleepData, 'Weekday', 'Time_asleep_seconds');
-            aux_dict[x_labels[1]] = getMeanData(sleepData, 'Month', 'Time_asleep_seconds');
+            var reestructured_data = []
+            sleepData.map( d => reestructure(d, reestructured_data))
+            setData(reestructured_data);
+            aux_dict[x_labels[0]] = getMeanData(reestructured_data, 'Weekday', 'Time_asleep_seconds');
+            aux_dict[x_labels[1]] = getMeanData(reestructured_data, 'Month', 'Time_asleep_seconds');
 
             setDictData(aux_dict)
             setSmallData(aux_dict[x_labels[0]])
@@ -76,13 +78,6 @@ function CreateSleepBarCharts() {
           } else console.log("no sleepData")
         })
       },[])
-
-      // d3.csv("./sleep_cleaned.csv").then((original_data) => {
-      useEffect(() => {
-        // var reestructured_data = []
-        // original_data.map( d => reestructure(d, reestructured_data))
-        console.log(data)
-      },[sleepData])
 
     const buttonClickSetGraph = (name) => {
       setSmallData(dict_data[name])
