@@ -7,9 +7,12 @@ import * as d3 from 'd3';
 import DataFrame from 'dataframe-js';
 import { IonButton } from '@ionic/react'
 import { IonGrid, IonRow, IonCol, IonContent } from '@ionic/react';
+import { firestore } from "../firebase";
 
 // To change the csv path so as to get it from firebase/json
 function CreateSleepBarCharts() {
+    // get the userd
+    const userId = "1"
     // To store the original data reestructured for the graphs
     const [data, setData] = React.useState([]);
 
@@ -27,7 +30,7 @@ function CreateSleepBarCharts() {
 
     // To control the graphs are shown when reloading the page
     const [loading, setLoading] = React.useState(true);
-
+    const [sleepData, setSleepData] = useState<any>()
     // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
     const x_labels = ['Weekdays', 'Months', 'Day']
     const labels = { Weekdays: ['Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.'] ,
@@ -51,23 +54,34 @@ function CreateSleepBarCharts() {
 
     // Load the data
     useEffect(() => {
-      d3.csv("./sleep_cleaned.csv").then((original_data) => {
+      firestore.collection('users')
+        .doc(userId)
+        .collection('sleep')
+        .get()
+        .then(snapshot => {
+          const sleepData = snapshot.docs.map(doc => ({date: doc.id, ...doc.data()}))
+          if (sleepData) {
+            setUserSleepData(sleepData)
+          } else console.log("no sleepData")
+        })
+      },[])
+
+      // d3.csv("./sleep_cleaned.csv").then((original_data) => {
+      useEffect(() => {
         // var reestructured_data = []
         // original_data.map( d => reestructure(d, reestructured_data))
         var aux_dict = {}
 
-        setData(original_data);
-        aux_dict[x_labels[0]] = getMeanData(original_data, 'Weekday', 'Time_asleep_seconds');
-        aux_dict[x_labels[1]] = getMeanData(original_data, 'Month', 'Time_asleep_seconds');
+        setData(sleepData);
+        aux_dict[x_labels[0]] = getMeanData(sleepData, 'Weekday', 'Time_asleep_seconds');
+        aux_dict[x_labels[1]] = getMeanData(sleepData, 'Month', 'Time_asleep_seconds');
 
         setDictData(aux_dict)
         setSmallData(aux_dict[x_labels[0]])
         setSmallLabels(labels[x_labels[0]])
         setLoading(false);
-      })
-      .catch(error => console.error(error));;
-      return () => undefined;
-    }, []);
+
+      },[sleepData])
 
     const buttonClickSetGraph = (name) => {
       setSmallData(dict_data[name])
