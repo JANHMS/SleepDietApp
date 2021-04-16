@@ -14,6 +14,7 @@ import HomeTab from './pages/HomeTab';
 import AddFoodTab from './pages/AddFoodTab';
 import AnalyticsTab from './pages/AnalyticsTab';
 import MySleepDataTab from "./pages/MySleepDataTab";
+import UploadCSV from './pages/UploadCSV';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,6 +42,9 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route exact path="/home">
             <HomeTab />
+          </Route>
+          <Route exact path="/sleep/upload">
+            <UploadCSV />
           </Route>
           <Route exact path="/food">
             <AddFoodTab />
