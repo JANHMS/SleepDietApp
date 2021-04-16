@@ -59,9 +59,20 @@ function CreateSleepBarCharts() {
         .collection('sleep')
         .get()
         .then(snapshot => {
-          const sleepData = snapshot.docs.map(doc => ({date: doc.id, ...doc.data()}))
+          const sleepData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
           if (sleepData) {
-            setUserSleepData(sleepData)
+            setSleepData(sleepData)
+            var aux_dict = {}
+
+            setData(sleepData);
+            aux_dict[x_labels[0]] = getMeanData(data, 'Weekday', 'Time_asleep_seconds');
+            aux_dict[x_labels[1]] = getMeanData(data, 'Month', 'Time_asleep_seconds');
+
+            setDictData(aux_dict)
+            setSmallData(aux_dict[x_labels[0]])
+            setSmallLabels(labels[x_labels[0]])
+            setLoading(false);
+
           } else console.log("no sleepData")
         })
       },[])
@@ -70,17 +81,7 @@ function CreateSleepBarCharts() {
       useEffect(() => {
         // var reestructured_data = []
         // original_data.map( d => reestructure(d, reestructured_data))
-        var aux_dict = {}
-
-        setData(sleepData);
-        aux_dict[x_labels[0]] = getMeanData(sleepData, 'Weekday', 'Time_asleep_seconds');
-        aux_dict[x_labels[1]] = getMeanData(sleepData, 'Month', 'Time_asleep_seconds');
-
-        setDictData(aux_dict)
-        setSmallData(aux_dict[x_labels[0]])
-        setSmallLabels(labels[x_labels[0]])
-        setLoading(false);
-
+        console.log(data)
       },[sleepData])
 
     const buttonClickSetGraph = (name) => {
