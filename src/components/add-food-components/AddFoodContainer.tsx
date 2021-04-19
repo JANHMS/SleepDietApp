@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import FoodDetailsComponent from "./details/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
 import moment from "moment/moment";
+import {firestore} from "../../firebase";
 
 interface ContainerProps {
     name: string;
@@ -26,6 +27,54 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
     // Notes added by the user
     const [notes, setNotes] = useState<string>("");
 
+    //userId is hardcoded but can be retrieved with authentication
+    const userId = "1";
+
+    const handlePostData = () => {
+        firestore.collection("users")
+            .doc(userId)
+            .collection("food")
+            .doc()
+            .set({
+                Date: selectedDate,
+                Category: selectedCategories,
+                Unwell_Well: wellness.toString(),
+                Hungry_Overate: fullness.toString(),
+                NonFatty_Fatty: fatness.toString(),
+                Notes: notes
+            })
+            .then(function () {
+                // success
+                present({
+                    buttons: [{text: 'ok', handler: () => dismiss()}],
+                    message: 'Your food data is saved successfully!',
+                    duration: 2500,
+                    color: "success",
+                })
+            }, function (err) {
+                // error
+                present({
+                    buttons: [{
+                        text: 'try again', handler: () => {
+                            dismiss();
+                            handlePostData();
+                        }
+                    }],
+                    message: 'Oops.. Something went wrong :(',
+                    duration: 2500,
+                    color: "error",
+                })
+            });
+        console.log('sent data', {
+            Date: selectedDate,
+            Category: selectedCategories,
+            Unwell_Well: wellness.toString(),
+            Hungry_Overate: fullness.toString(),
+            NonFatty_Fatty: fatness.toString(),
+            Notes: notes
+        });
+    }
+
     return (
         <div className="foodContainer">
             <DateTimePicker updateParent={date => setSelectedDate(date)}/>
@@ -42,21 +91,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
             <IonButton
                 color="tertiary"
                 size="small"
-                onClick={() => {
-                    present({
-                        buttons: [{text: 'ok', handler: () => dismiss()}],
-                        message: 'Your food data is saved successfully!',
-                        duration: 2500,
-                        color: "success",
-                    })
-                    console.log(selectedDate)
-                    console.log(selectedCategories)
-                    console.log(wellness)
-                    console.log(fullness)
-                    console.log(fatness)
-                    console.log(notes)
-                }
-                }
+                onClick={handlePostData}
             >Save</IonButton>
         </div>
     );
