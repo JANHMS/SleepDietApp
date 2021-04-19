@@ -4,7 +4,11 @@ import {Category} from "./Category";
 import "./FoodCategoriesComponent.css"
 import {CategoryType} from "./CategoryType";
 
-export const FoodCategoriesComponent: React.FC = () => {
+interface FoodCategoriesProps {
+    updateParent: (categories: string[]) => void
+}
+
+export const FoodCategoriesComponent: React.FC<FoodCategoriesProps> = ({updateParent}) => {
     const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
 
     const updateSelectedCategories = (category: string) => {
@@ -15,6 +19,7 @@ export const FoodCategoriesComponent: React.FC = () => {
             selectedCategories.add(category);
         }
         setSelectedCategories(selectedCategories);
+        updateParent(Array.from(selectedCategories.values()));
     }
 
     return (

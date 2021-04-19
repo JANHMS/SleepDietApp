@@ -1,23 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IonItem,
     IonRange,
     IonLabel,
-    IonText,
 } from '@ionic/react';
 import "./RangeSlider.css"
 
 interface RangeSliderProps {
-    title: string;
-    labels: Array<string>;
+    title: string,
+    labels: Array<string>,
+    onChange: (value: number) => void,
 }
 
-export const RangeSlider: React.FC<RangeSliderProps> = ({title, labels}) => {
+export const RangeSlider: React.FC<RangeSliderProps> = ({title, labels, onChange}) => {
     const [value, setValue] = useState(5);
+
+    useEffect(() => {
+        onChange(value);
+    }, [value])
 
     return (
         <IonItem>
-            <IonLabel className="ion-text-wrap">{title}</IonLabel> <br/>
+            <IonLabel position="floating">{title}</IonLabel> <br/>
             <IonRange
                 // pin={true}
                 min={1}

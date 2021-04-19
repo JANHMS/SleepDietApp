@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IonInput,
     IonItem,
 } from '@ionic/react';
 import "./NotesComponent.css";
 
-export const NotesComponent: React.FC = () => {
+interface NotesProps {
+    updateParent: (notes: string) => void
+}
 
+export const NotesComponent: React.FC<NotesProps> = ({updateParent}) => {
     const [text, setText] = useState<string>("");
+
+    useEffect(() => {
+        updateParent(text)
+    }, [text])
 
     return (
         <IonItem>
@@ -20,3 +27,4 @@ export const NotesComponent: React.FC = () => {
         </IonItem>
     );
 };
+
