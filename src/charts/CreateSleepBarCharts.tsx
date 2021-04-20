@@ -67,12 +67,14 @@ function CreateSleepBarCharts() {
             var reestructured_data = []
             sleepData.map( d => reestructure(d, reestructured_data))
             setData(reestructured_data);
-            aux_dict[x_labels[0]] = getMeanData(reestructured_data, 'Weekday', 'Time_asleep_seconds');
-            aux_dict[x_labels[1]] = getMeanData(reestructured_data, 'Month', 'Time_asleep_seconds');
+              if (reestructured_data != undefined || reestructured_data != null){
+              aux_dict[x_labels[0]] = getMeanData(reestructured_data, 'Weekday', 'Time_asleep_seconds');
+              aux_dict[x_labels[1]] = getMeanData(reestructured_data, 'Month', 'Time_asleep_seconds');
 
-            setDictData(aux_dict)
-            setSmallData(aux_dict[x_labels[0]])
-            setSmallLabels(labels[x_labels[0]])
+              setDictData(aux_dict)
+              setSmallData(aux_dict[x_labels[0]])
+              setSmallLabels(labels[x_labels[0]])
+            }
             setLoading(false);
 
           } else console.log("no sleepData")

@@ -2,15 +2,14 @@
 import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import DataFrame from 'dataframe-js';
+import * as moment from "moment";
 
 const DayChart = (props) => {
-    console.log(props)
     // Sorted the columns needed
     const getxy = (data) => {
       const df = new DataFrame(data, Object.keys(data[0]));
-      console.log(df.End)
       const sortedDF = df.select('End', 'Time_asleep_seconds').sortBy('End');
-      sortedDF.show()
+      // sortedDF.show()
       return sortedDF.toDict();
     };
 
@@ -58,31 +57,33 @@ const DayChart = (props) => {
                            {
                              display: true,
                              offset: true,
-                             type: 'time',
-                             time: {
-                               parser: false,
-                               tooltipFormat: 'll',
-                               unit: 'day',
-                               unitStepSize: 1,
-                               displayFormats: {
-                                 day: 'MMM DD'   // DD/MM
-                               }
-                             }
+                             ticks: {
+                             beginAtZero: true,
+                             callback: function(data, index, datasets) {
+                                return moment(data).format('MMM DD');
+                              }
+                             },
+                             afterFit: function(scale) {
+                              scale.height = 40 
+                            }                             
                            }
                          ],
                          yAxes: [
-                             {
-                                 ticks: {
-                                     beginAtZero: true,
-                                     callback: function(data, index, datasets) {
-                                       return formatTime(data, false);
-                                      }
-                                 }
-                             }
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+                                    callback: function(data, index, datasets) {
+                                      return formatTime(data, false);
+                                    }
+                                }
+                            }
                          ]
                      },
                      tooltips: {
                			  callbacks: {
+                        title: function(tooltipItems, data) {
+                          return moment(tooltipItems[0].label).format('YYYY-MM-DD');
+                        },                          
                					label: function(tooltipItem, data) {
                						var value = data.datasets[0].data[tooltipItem.index];
                						value = formatTime(value, true)

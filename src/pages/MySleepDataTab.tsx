@@ -26,7 +26,6 @@ const MySleepDataTab: React.FC = () => {
             setUserSleepData(sleepData)
           } else console.log("no sleepData")
         })
-        console.log(userSleepData)
     },[])
 
     return (

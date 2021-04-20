@@ -12,7 +12,7 @@ const CategoriesCountChart = (props) => {
             }
             reLabels.push( separated );
         });
-        console.log(reLabels)
+        // console.log(reLabels)
         return reLabels;
     }
 
