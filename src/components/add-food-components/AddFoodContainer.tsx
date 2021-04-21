@@ -7,7 +7,7 @@ import {
     useIonToast,
     IonLabel,
     IonSegment,
-    IonSegmentButton
+    IonSegmentButton, IonIcon
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
 import FoodDetailsComponent from "./details/FoodDetailsComponent";
@@ -15,6 +15,10 @@ import {NotesComponent} from "./notes/NotesComponent";
 import moment from "moment/moment";
 import {firestore} from "../../firebase";
 import {Constant} from "../../consts";
+import {helpCircleOutline, home} from "ionicons/icons";
+import ModalExample from "./experiment/ModalExample";
+import CustomDivider from "./divider/CustomDivider";
+import CategoryPopup from "./popup/CategoryPopup";
 
 interface ContainerProps {
     name: string;
@@ -203,12 +207,16 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 setSelectedDate(date.split(" ")[0])
                 setSelectedTime(date.split(" ")[1])
             }} defaultValue={selectedDate + " " + selectedTime}/>
-            <IonItemDivider color="tertiary">Dinner</IonItemDivider>
+            <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
             {!experiment ? (
                 <div>
                     <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
                                              defaultValue={selectedCategories}/>
-                    <IonItemDivider color="tertiary">Dinner details</IonItemDivider>
+                    <IonItemDivider color="tertiary">
+                        Dinner details
+                        <IonIcon className="divider" slot="end" icon={helpCircleOutline}
+                                 onClick={() => console.log("Show dinner details hint")}/>
+                    </IonItemDivider>
                     <FoodDetailsComponent
                         updateWellness={value => setWellness(value.toString())}
                         updateFullness={value => setFullness(value.toString())}
@@ -245,7 +253,11 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                     )}
                 </div>
             )}
-            <IonItemDivider color="tertiary">Notes</IonItemDivider>
+            <IonItemDivider color="tertiary">
+                Notes
+                <IonIcon className="divider" slot="end" icon={helpCircleOutline}
+                         onClick={() => console.log("Show notes hint")}/>
+            </IonItemDivider>
             <NotesComponent updateParent={notes => setNotes(notes)} defaultValue={notes}/>
             <IonButton
                 className="save"
