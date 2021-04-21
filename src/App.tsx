@@ -41,50 +41,29 @@ import RegisterPage from './pages/RegisterPage';
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-            <Route path="/screen" component={Homescreen} exact/>
-            <Route path="/login" component={LoginPage} exact/>
-            <Route path="/register" component={RegisterPage} exact/>
-
-          <Route exact path="/home">
-            <HomeTab />
-          </Route>
-          <Route exact path="/sleep/upload">
-            <UploadCSV />
-          </Route>
-          <Route exact path="/food">
-            <AddFoodTab />
-          </Route>
-          <Route path="/analytics">
-            <AnalyticsTab />
-          </Route>
-          <Route path="/my_sleep_data">
-            <MySleepDataTab />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="food" href="/food">
-            <IonIcon icon={pizzaSharp} />
-            <IonLabel>Add food</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="analytics" href="/analytics">
-            <IonIcon icon={analyticsSharp} />
-            <IonLabel>Analytics</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="my_sleep_data" href="/my_sleep_data">
-            <IonIcon icon={moonSharp} />
-            <IonLabel>My sleep data</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+      <IonRouterOutlet>
+        <Route path="/screen" component={Homescreen} exact/>
+        <Route path="/login" component={LoginPage} exact/>
+        <Route path="/register" component={RegisterPage} exact/>
+        <Route exact path="/home">
+          <HomeTab />
+        </Route>
+        <Route exact path="/sleep/upload">
+          <UploadCSV />
+        </Route>
+        <Route exact path="/food">
+          <AddFoodTab />
+        </Route>
+        <Route path="/analytics">
+          <AnalyticsTab />
+        </Route>
+        <Route path="/my_sleep_data">
+          <MySleepDataTab />
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );
