@@ -23,36 +23,41 @@ const Homescreen: React.FC = () => {
       </IonHeader>
       <br/>
       <IonContent className="icon-padding">
-        <IonTitle>   
-        <h5>Find your your impact on your sleep. <br />  <br />  How is that for a change?</h5>
-      </IonTitle>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
     
-        <h5 style={{
-        top:"30%",
+      <IonTitle style={{
+        position: "absolute",
+        marginTop: "-300px"
+      }}>   
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h5>Find your your impact <br /> on your sleep. <br /> <br />How is that for change?</h5>
+    </IonTitle>
+    
+    <h5 style={{
+      position:"fixed",
+      marginTop: "250px",
       marginLeft:"80px",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Sleep the night through</h5>
       <br/>
       <br/>
-        <h5 style={{
-        top:"30%",
+      <h5 style={{
+      position:"fixed",
+      marginTop: "270px",
       marginLeft:"80px",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Wake up more energized</h5>
       <br/>
       <br/>
-        <h5 style={{
-        top:"30%",
+    <h5 style={{
+      position:"fixed",
+      marginTop: "290px",
       marginLeft:"80px",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Create positive habits</h5>
       
-      <br/>
-      <br/>
       </IonContent>
 
       <IonFooter>
