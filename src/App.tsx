@@ -35,6 +35,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Homescreen from './components/HomeScreen';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 const App: React.FC = () => (
   <IonApp>
@@ -42,6 +44,9 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
             <Route path="/screen" component={Homescreen} exact/>
+            <Route path="/login" component={LoginPage} exact/>
+            <Route path="/register" component={RegisterPage} exact/>
+
           <Route exact path="/home">
             <HomeTab />
           </Route>

@@ -24,22 +24,35 @@ const Homescreen: React.FC = () => {
       <br/>
       <IonContent className="icon-padding">
         <IonTitle>   
-          <h2>You're about to <br/> find Sleepathy</h2>
-        <br/>
-        <h5>Find your your diets impact on your sleep. How is that <br /> for a change?</h5>
+        <h5>Find your your impact on your sleep. <br />  <br />  How is that for a change?</h5>
       </IonTitle>
     <br/>
     <br/>
     <br/>
     <br/>
-    <div style={{left: "70px", top:"50%"}}>
-        <div><IonIcon icon={shieldCheckmarkOutline}/>Sleep the night through</div>
+    
+        <h5 style={{
+        top:"30%",
+      marginLeft:"80px",
+      color:"darkblue"
+    }}><IonIcon icon={shieldCheckmarkOutline}/>  Sleep the night through</h5>
       <br/>
-        <div><IonIcon icon={shieldCheckmarkOutline}/>Wake up more energized</div>
       <br/>
-        <div><IonIcon icon={shieldCheckmarkOutline}/>Create positive habits</div>
+        <h5 style={{
+        top:"30%",
+      marginLeft:"80px",
+      color:"darkblue"
+    }}><IonIcon icon={shieldCheckmarkOutline}/>  Wake up more energized</h5>
       <br/>
-    </div>
+      <br/>
+        <h5 style={{
+        top:"30%",
+      marginLeft:"80px",
+      color:"darkblue"
+    }}><IonIcon icon={shieldCheckmarkOutline}/>  Create positive habits</h5>
+      
+      <br/>
+      <br/>
       </IonContent>
 
       <IonFooter>
@@ -49,7 +62,7 @@ const Homescreen: React.FC = () => {
             <IonRow class="ion-align-items-center">
               <IonCol size="12" class="ion-text-center">
                 <IonButton routerLink="/register">
-                  Want to improve your sleep? Join Sleepathy 
+                  Join Sleepathy 
                 </IonButton>
               </IonCol>
             </IonRow>
