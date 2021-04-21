@@ -20,7 +20,7 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
       );
 
     return (
-        <div className="container">
+        <div className="analyticsContainer">
             <CreateSleepBarCharts />
             <ColoredLine color="none" />
             <CreateFoodCharts />

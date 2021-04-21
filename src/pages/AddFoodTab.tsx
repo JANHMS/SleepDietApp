@@ -1,7 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './AddFoodTab.css';
-import AddFoodContainer from "../components/AddFoodContainer";
-import { useHistory } from 'react-router-dom';
+import AddFoodContainer from "../components/add-food-components/AddFoodContainer";
 
 const AddFoodTab: React.FC = () => {
 
@@ -12,15 +11,8 @@ const AddFoodTab: React.FC = () => {
           <IonTitle>Add food</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Add food</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <AddFoodContainer 
-          name="Add food page" 
-        />
+      <IonContent overflow-scroll="false">
+        <AddFoodContainer name="Add food page"/>
       </IonContent>
     </IonPage>
   );

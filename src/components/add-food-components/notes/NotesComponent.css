@@ -1,0 +1,7 @@
+ion-input.customInput {
+    font-size: small;
+}
+
+ion-item {
+    --highlight-color-focused: none;
+}

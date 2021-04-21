@@ -1,0 +1,7 @@
+ion-label .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+    font-size: small;
+}
+
+ion-datetime {
+    font-size: small;
+}
