@@ -7,6 +7,7 @@ import FoodDetailsComponent from "./details/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
 import moment from "moment/moment";
 import {firestore} from "../../firebase";
+import {Constant} from "../../consts";
 
 interface ContainerProps {
     name: string;
@@ -25,14 +26,13 @@ interface FoodData {
 const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
     const [present, dismiss] = useIonToast();
     const defaultFoodData: FoodData = {
-        Date: moment().format('DD.MM.YY HH:mm'),
+        Date: moment().format(Constant.fullDateFormatDB),
         Category: [],
         Unwell_Well: "5",
         Hungry_Overate: "5",
         NonFatty_Fatty: "5",
         Notes: ""
     }
-    // Stores the selected date in the following format: 'DD.MM.YY HH:mm'
     const [selectedDate, setSelectedDate] = useState<string>(defaultFoodData.Date.split(" ")[0]);
     const [selectedTime, setSelectedTime] = useState<string>(defaultFoodData.Date.split(" ")[1]);
     // Array of selected food categories
@@ -76,10 +76,10 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
             }
             // The user selected a date where no food is entered yet
             else {
-                const currentTime = moment().format("HH:mm");
+                const currentTime = moment().format(Constant.timeFormatDB);
                 const dateSelected = selectedDate.split(" ")[0];
-                const momentToSelect = moment(dateSelected + " " + currentTime, "DD.MM.YY HH:mm")
-                    .format('DD.MM.YY HH:mm')
+                const momentToSelect = moment(dateSelected + " " + currentTime, Constant.fullDateFormatDB)
+                    .format(Constant.fullDateFormatDB)
                 setProps({
                     Date: momentToSelect,
                     Category: defaultFoodData.Category,
