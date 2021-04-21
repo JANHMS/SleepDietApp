@@ -7,6 +7,6 @@
     transform: translateY(-50%);
 }
 
-ion-button {
+ion-button.save {
     margin: 12px;
 }

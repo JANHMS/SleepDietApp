@@ -205,6 +205,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
             <IonItemDivider color="tertiary">Notes</IonItemDivider>
             <NotesComponent updateParent={notes => setNotes(notes)} defaultValue={notes}/>
             <IonButton
+                className="save"
                 color="tertiary"
                 size="small"
                 disabled={selectedCategories.length < 1 || !isEdited}

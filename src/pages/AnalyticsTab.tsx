@@ -10,12 +10,7 @@ const AnalyticsTab: React.FC = () => {
           <IonTitle>Analytics</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Analytics</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent overflow-scroll="false">
         <AnalyticsContainer name="Analytics page" />
       </IonContent>
     </IonPage>
