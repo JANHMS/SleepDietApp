@@ -1,6 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import './HomeTab.css';
 import HomeContainer from "../components/HomeContainer";
+import React from 'react';
+import ToggleBar from '../components/ToggleBar';
 
 const HomeTab: React.FC = () => {
   return (
@@ -18,6 +20,7 @@ const HomeTab: React.FC = () => {
         </IonHeader>
         <HomeContainer name="Home page" />
       </IonContent>
+      <ToggleBar/>
     </IonPage>
   );
 };

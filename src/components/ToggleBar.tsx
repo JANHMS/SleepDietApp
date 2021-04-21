@@ -6,19 +6,19 @@ import React from "react"
 const ToggleBar = () => {
   return(
   <IonTabBar slot="bottom">
-    <IonTabButton tab="home" href="/home">
+    <IonTabButton tab="home" href="/my/home">
       <IonIcon icon={home} />
       <IonLabel>Home</IonLabel>
     </IonTabButton>
-    <IonTabButton tab="food" href="/food">
+    <IonTabButton tab="food" href="/my/food">
       <IonIcon icon={pizzaSharp} />
       <IonLabel>Add food</IonLabel>
     </IonTabButton>
-    <IonTabButton tab="analytics" href="/analytics">
+    <IonTabButton tab="analytics" href="/my/analytics">
       <IonIcon icon={analyticsSharp} />
       <IonLabel>Analytics</IonLabel>
     </IonTabButton>
-    <IonTabButton tab="my_sleep_data" href="/my_sleep_data">
+    <IonTabButton tab="my_sleep_data" href="/my/my_sleep_data">
       <IonIcon icon={moonSharp} />
       <IonLabel>My sleep data</IonLabel>
     </IonTabButton>

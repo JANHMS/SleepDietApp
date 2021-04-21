@@ -1,8 +1,10 @@
-import { Redirect, Route } from 'react-router-dom';
+import {Route, Switch, Redirect } from "react-router-dom";
+
 import {
   IonApp,
   IonIcon,
   IonLabel,
+  IonLoading,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -11,6 +13,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import {analyticsSharp, ellipse, home, moonSharp, pizzaSharp, square, triangle} from 'ionicons/icons';
 import HomeTab from './pages/HomeTab';
+import { AuthContext, useAuth, useAuthInit } from './auth';
 import AddFoodTab from './pages/AddFoodTab';
 import AnalyticsTab from './pages/AnalyticsTab';
 import MySleepDataTab from "./pages/MySleepDataTab";
@@ -37,35 +40,46 @@ import './theme/variables.css';
 import Homescreen from './components/HomeScreen';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import React from 'react';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/screen" component={Homescreen} exact/>
-        <Route path="/login" component={LoginPage} exact/>
-        <Route path="/register" component={RegisterPage} exact/>
-        <Route exact path="/my/home">
-          <HomeTab />
-        </Route>
-        <Route exact path="/my/sleep/upload">
-          <UploadCSV />
-        </Route>
-        <Route exact path="/my/food">
-          <AddFoodTab />
-        </Route>
-        <Route path="/my/analytics">
-          <AnalyticsTab />
-        </Route>
-        <Route path="/my/my_sleep_data">
-          <MySleepDataTab />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/my/home" />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const AppTabs: React.FC = () => {
+  const { userId } = useAuth()
+  const { loggedIn } = useAuth();
+  const { loading, auth } =  useAuthInit(); 
 
-export default App;
+if (!loggedIn) {
+  return <Redirect to="/" />;
+}
+
+console.log(`rendering App with auth:`, auth);
+  return(
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <Route path="/screen" component={Homescreen} exact/>
+          <Route path="/login" component={LoginPage} exact/>
+          <Route path="/register" component={RegisterPage} exact/>
+          <Route exact path="my/home">
+            <HomeTab />
+          </Route>
+          <Route exact path="my/sleep/upload">
+            <UploadCSV />
+          </Route>
+          <Route exact path="my/food">
+            <AddFoodTab />
+          </Route>
+          <Route path="my/analytics">
+            <AnalyticsTab />
+          </Route>
+          <Route path="my/my_sleep_data">
+            <MySleepDataTab />
+          </Route>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+
+
+        </IonRouterOutlet>
+      </IonReactRouter>
+  );
+}
+export default AppTabs;

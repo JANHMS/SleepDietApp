@@ -2,9 +2,10 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import { useHistory } from 'react-router-dom';
 import './MySleepDataTab.css';
 import MySleepDataContainer from "../components/MySleepDataContainer";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getUserSleep } from '../api/sleep';
 import { firestore } from '../firebase';
+import ToggleBar from '../components/ToggleBar';
 
 const MySleepDataTab: React.FC = () => {
     const history = useHistory();
@@ -45,6 +46,7 @@ const MySleepDataTab: React.FC = () => {
                   name="My sleep data page"           
                   handleAddDataClick={handleAddDataClick}/>
             </IonContent>
+            <ToggleBar/>
         </IonPage>
     );
 };

@@ -2,12 +2,14 @@
 import './AnalyticsContainer.css';
 import CreateSleepBarCharts from "../charts/CreateSleepBarCharts";
 import CreateFoodCharts from "../charts/CreateFoodCharts";
+import ToggleBar from './ToggleBar';
+import { IonContent,IonPage  } from "@ionic/react";
 
 interface ContainerProps {
     name: string;
 }
 
-const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
+const AnalyticsContainer: React.FC<ContainerProps> = ({ name }): JSX.Element => {
 
     const ColoredLine = ({ color }) => (
         <hr
@@ -20,12 +22,12 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
       );
 
     return (
-        <div className="container">
-            <CreateSleepBarCharts />
-            <ColoredLine color="none" />
-            <CreateFoodCharts />
-            <ToggleBar/>
-        </div>
+      <div className="container">
+          <CreateSleepBarCharts />
+          <ColoredLine color="none" />
+          <CreateFoodCharts />
+      </div>
+      
     );
 };
 

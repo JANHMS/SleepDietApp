@@ -2,6 +2,8 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import './AddFoodTab.css';
 import AddFoodContainer from "../components/AddFoodContainer";
 import { useHistory } from 'react-router-dom';
+import React from 'react';
+import ToggleBar from '../components/ToggleBar';
 
 const AddFoodTab: React.FC = () => {
 
@@ -22,6 +24,7 @@ const AddFoodTab: React.FC = () => {
           name="Add food page" 
         />
       </IonContent>
+      <ToggleBar/>
     </IonPage>
   );
 };
