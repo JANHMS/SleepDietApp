@@ -26,8 +26,7 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }): JSX.Element => 
           <CreateSleepBarCharts />
           <ColoredLine color="none" />
           <CreateFoodCharts />
-      </div>
-      
+      </div>  
     );
 };
 
