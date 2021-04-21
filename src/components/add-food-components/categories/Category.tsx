@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IonCard,
     IonCardTitle,
@@ -7,13 +7,20 @@ import "./Category.css"
 import clsx from "clsx";
 
 interface CategoryProps {
-    name: string;
-    cssClassName: string;
-    onSelect: (name: string) => void;
+    name: string,
+    cssClassName: string,
+    onSelect: (name: string) => void,
+    selected: boolean,
 }
 
-export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect}) => {
-    const [isSelected, setSelected] = useState<boolean>(false);
+export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect, selected}) => {
+    // Too early to set default state, at this point "selected" hasn't arrived yet
+    const [isSelected, setSelected] = useState<boolean>(selected);
+
+    useEffect(() => {
+        // Set selected state at the time when component receives the props
+        setSelected(selected)
+    }, [selected])
 
     return (
         <div>

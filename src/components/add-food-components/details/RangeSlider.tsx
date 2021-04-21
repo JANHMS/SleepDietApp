@@ -10,10 +10,16 @@ interface RangeSliderProps {
     title: string,
     labels: Array<string>,
     onChange: (value: number) => void,
+    defaultValue: number,
 }
 
-export const RangeSlider: React.FC<RangeSliderProps> = ({title, labels, onChange}) => {
-    const [value, setValue] = useState(5);
+export const RangeSlider: React.FC<RangeSliderProps> = ({title, labels, onChange, defaultValue}) => {
+    const [value, setValue] = useState(defaultValue);
+
+    useEffect(() => {
+        // Set selected state at the time when component receives the props
+        setValue(defaultValue);
+    }, [defaultValue])
 
     useEffect(() => {
         onChange(value);

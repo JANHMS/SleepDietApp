@@ -6,11 +6,17 @@ import {
 import "./NotesComponent.css";
 
 interface NotesProps {
-    updateParent: (notes: string) => void
+    updateParent: (notes: string) => void,
+    defaultValue: string,
 }
 
-export const NotesComponent: React.FC<NotesProps> = ({updateParent}) => {
-    const [text, setText] = useState<string>("");
+export const NotesComponent: React.FC<NotesProps> = ({updateParent, defaultValue}) => {
+    const [text, setText] = useState<string>(defaultValue);
+
+    useEffect(() => {
+        // Set selected state at the time when component receives the props
+        setText(defaultValue);
+    }, [defaultValue])
 
     useEffect(() => {
         updateParent(text)

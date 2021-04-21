@@ -8,12 +8,18 @@ import moment from "moment/moment";
 import "./DateTimePicker.css";
 
 interface DateTimeProps {
-    updateParent: (selectedDate: string) => void
+    updateParent: (selectedDate: string) => void,
+    defaultValue: string
 }
 
-export const DateTimePicker: React.FC<DateTimeProps> = ({updateParent}) => {
+export const DateTimePicker: React.FC<DateTimeProps> = ({updateParent, defaultValue}) => {
     // use format() to convert Moment object to string
-    const [selectedDate, setSelectedDate] = useState<string>(moment().format());
+    const [selectedDate, setSelectedDate] = useState<string>(moment(defaultValue, 'DD.MM.YY HH:mm').format());
+
+    useEffect(() => {
+        // Set selected state at the time when component receives the props
+        setSelectedDate(moment(defaultValue, 'DD.MM.YY HH:mm').format())
+    }, [defaultValue])
 
     return (
         <div>
