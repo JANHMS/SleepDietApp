@@ -22,7 +22,6 @@ const RegisterPage: React.FC = () => {
       setStatus({ loading: true, error: false });
         register({email, password, fullName, avatar})
         .then(
-          () => {setStatus({ loading: false, error: false });},
           () => history.push('/my/home')
         )
     } catch (error) {
@@ -32,6 +31,7 @@ const RegisterPage: React.FC = () => {
   } else {
     return toast("Passwords do not match")
   }
+  setStatus({ loading: false, error: false })
   };
 
   if (loggedIn) {
