@@ -39,30 +39,40 @@ class UploadCSV extends Component {
         var sleepList = [];
         for (var i = 0; i < data.length; i++) {
           const SingleData = data[i][0].split(";")
-          
-          const start = SingleData[0];
-          const end = SingleData[1];
-          const sleepQuality = SingleData[2];
-          const Regularity = SingleData[3];
-          const AlarmMode = SingleData[7]
-          const Movements = SingleData[10];
-          const TimeInBed = SingleData[11];
-          const TimeAsleep = SingleData[12];
-          const TimeBeforeSleep = SingleData[13];
-          const DidSnore = SingleData[16];
-          const SnoreTime = SingleData[17];
+          const Key = SingleData[0]
+          const Start = SingleData[1];
+          const End = SingleData[2];
+          const Sleep_quality = SingleData[3];
+          const Regularity = SingleData[4];
+          const Movements_per_hour = SingleData[5];
+          const Time_in_bed_seconds = SingleData[6];
+          const Time_asleep_seconds = SingleData[7];
+          const Time_before_sleep_seconds = SingleData[8];
+          const Did_snore = SingleData[9];
+          const Snore_time = SingleData[10];
+          const Time_in_bed = SingleData[11];
+          const Time_asleep = SingleData[12];
+          const Weekday = SingleData[13];
+          const Month = SingleData[14];
+          const To_bed_hour = SingleData[15];
+          const Wake_up_hour = SingleData[16];
         
-          const newSleep = { 
-            start:  start,
-            end:  end,
-            sleepQuality:  sleepQuality,
+          const newSleep =  { 
+            Start:  Start,
+            End:  End,
+            Sleep_quality:  Sleep_quality,
             Regularity:  Regularity,
-            Movements:  Movements ,
-            TimeInBed:  TimeInBed ,
-            TimeAsleep:  TimeAsleep ,
-            TimeBeforeSleep:  TimeBeforeSleep ,
-            DidSnore:  DidSnore ,
-            SnoreTime:  SnoreTime ,
+            Movements_per_hour:  Movements_per_hour ,
+            Time_in_bed_seconds:  Time_in_bed_seconds ,
+            Time_asleep_seconds:  Time_asleep_seconds ,
+            Did_snore: Did_snore,
+            Snore_time: Snore_time,
+            Time_in_bed:  Time_in_bed ,
+            Time_asleep:  Time_asleep ,
+            Weekday:  Weekday ,
+            Month:  Month ,
+            To_bed_hour:  To_bed_hour ,
+            Wake_up_hour:  Wake_up_hour ,
           };
           sleepList.push(newSleep);
         };
