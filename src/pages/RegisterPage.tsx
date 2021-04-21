@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router';
+import { Redirect,useHistory } from 'react-router';
 import { useAuth } from '../auth';
 import RegisterForm from '../components/RegisterForm';
 import { toast } from '../toast';
 import { register } from "../api/auth";
 
 const RegisterPage: React.FC = () => {
-
+  const history = useHistory();
   const { loggedIn } = useAuth();
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
@@ -22,8 +22,9 @@ const RegisterPage: React.FC = () => {
       setStatus({ loading: true, error: false });
         register({email, password, fullName, avatar})
         .then(
-          (          _: any) => () => {},
-          (          errorMessage: string) => toast(errorMessage))
+          () => {setStatus({ loading: false, error: false });},
+          () => history.push('/my/home')
+        )
     } catch (error) {
       setStatus({ loading: false, error: true });
       console.log('error:', error);
@@ -34,7 +35,7 @@ const RegisterPage: React.FC = () => {
   };
 
   if (loggedIn) {
-    return <Redirect to="/my" />;
+    return <Redirect to="/my/home" />;
   }
   return (
     <RegisterForm 
