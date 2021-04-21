@@ -34,12 +34,14 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Homescreen from './components/HomeScreen';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+            <Route path="/screen" component={Homescreen} exact/>
           <Route exact path="/home">
             <HomeTab />
           </Route>
