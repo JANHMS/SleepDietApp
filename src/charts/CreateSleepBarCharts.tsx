@@ -5,14 +5,13 @@ import MonthChart from "../charts/MonthChart";
 import DayChart from "../charts/DayChart";
 import * as d3 from 'd3';
 import DataFrame from 'dataframe-js';
-import { IonButton } from '@ionic/react'
+import { IonButton } from '@ionic/react';
 import { IonGrid, IonRow, IonCol, IonContent } from '@ionic/react';
-import { firestore } from "../firebase";
+import {IonItem} from '@ionic/react';
 
-// To change the csv path so as to get it from firebase/json
-function CreateSleepBarCharts() {
-    // get the userd
-    const userId = "1"
+const CreateSleepBarCharts = (props) => {
+
+    console.log(props)
     // To store data reestructured for the graphs
     const [data, setData] = React.useState([]);
 
@@ -20,20 +19,17 @@ function CreateSleepBarCharts() {
     const [dict_data, setDictData] = React.useState([]);
 
     // To store the data to show in the graph selected by the user
-    const [small_data, setSmallData] = React.useState();
-    const [small_labels, setSmallLabels] = React.useState();
+    const [small_data, setSmallData] = React.useState([]);
+    const [small_labels, setSmallLabels] = React.useState([]);
 
     // To control which graph to show
-    const [weekday_chart, setWeekdayChart] = React.useState(true);
+    const [weekday_chart, setWeekdayChart] = React.useState(false);
     const [month_chart, setMonthChart] = React.useState(false);
     const [day_chart, setDayChart] = React.useState(false);
 
-    // To control the graphs are shown when reloading the page
-    const [loading, setLoading] = React.useState(true);
-    const [sleepData, setSleepData] = useState<any>()
     // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
     const x_labels = ['Weekdays', 'Months', 'Day']
-    const labels = { Weekdays: ['Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.'] ,
+    const labels = { Weekdays: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] ,
                      Months: ['January', 'February', 'March', 'April']}
 
     // Function to reestructure the original data if needed
@@ -52,20 +48,11 @@ function CreateSleepBarCharts() {
       return groupedDF.toDict();
     };
 
-    // Load the data
     useEffect(() => {
-      firestore.collection('users')
-        .doc(userId)
-        .collection('sleep')
-        .get()
-        .then(snapshot => {
-          const sleepData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
-          if (sleepData) {
-            console.log(sleepData)
-            setSleepData(sleepData)
+          if(!props.loading_sleep) {
             var aux_dict = {}
             var reestructured_data = []
-            sleepData.map( d => reestructure(d, reestructured_data))
+            props.sleepData.map( d => reestructure(d, reestructured_data))
             setData(reestructured_data);
               if (reestructured_data != undefined || reestructured_data != null){
               aux_dict[x_labels[0]] = getMeanData(reestructured_data, 'Weekday', 'Time_asleep_seconds');
@@ -75,10 +62,8 @@ function CreateSleepBarCharts() {
               setSmallData(aux_dict[x_labels[0]])
               setSmallLabels(labels[x_labels[0]])
             }
-            setLoading(false);
 
           } else console.log("no sleepData")
-        })
       },[])
 
     const buttonClickSetGraph = (name) => {
@@ -103,7 +88,6 @@ function CreateSleepBarCharts() {
 
     return (
       <div>
-        <header>
           <IonGrid>
             <IonRow>
               <IonButton
@@ -132,11 +116,12 @@ function CreateSleepBarCharts() {
               </IonButton>
             </IonRow>
           </IonGrid>
-          {loading && <div>loading</div>}
-          {!loading && weekday_chart && <WeekdayChart labels={small_labels} data={small_data} name="Sleep average" />}
-          {!loading && month_chart && <MonthChart labels={small_labels} data={small_data} name="Sleep average" />}
-          {!loading && day_chart && <DayChart data={data} name="Time asleep" />}
-        </header>
+          <IonItem>
+            {props.loading_sleep && <div>loading</div>}
+            {!props.loading_sleep && weekday_chart && <WeekdayChart labels={small_labels} data={small_data} name="Sleep average"/>}
+            {!props.loading_sleep && month_chart && <MonthChart labels={small_labels} data={small_data} name="Sleep average"/>}
+            {!props.loading_sleep && day_chart && <DayChart data={data} name="Time asleep"/>}
+          </IonItem>
       </div>
     );
 }

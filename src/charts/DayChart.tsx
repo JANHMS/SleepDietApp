@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import DataFrame from 'dataframe-js';
 import * as moment from "moment";
@@ -47,6 +47,28 @@ const DayChart = (props) => {
         return hour_minutes + "h";
     };
 
+    // set data
+    useEffect(() => {
+      if (props.data) {
+          setBarData(
+            {
+              labels: getxy(props.data)['End'],
+              datasets: [
+                {
+                  label: props.name,
+                  data: getxy(props.data)['Time_asleep_seconds'],
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  borderColor: 'rgba(54, 162, 235, 0.6)',
+                  borderWidth: 1,
+                },
+              ],
+            }          
+          )             
+      } else {
+          console.log("no foodData")
+      }
+    }, []);     
+
     return (
         <div>
           <Bar data={barData}
@@ -92,7 +114,7 @@ const DayChart = (props) => {
                			  }
                			 },
                      title: {
-                         display: true,
+                         display: false,
                          text: 'Sleeping time by day',
                          fontSize: 20
                      }

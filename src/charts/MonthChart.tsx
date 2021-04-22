@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const MonthChart = (props) => {
@@ -38,6 +38,28 @@ const MonthChart = (props) => {
         return hour_minutes+"h";
     };
 
+    // set data
+    useEffect(() => {
+      if (props.data) {
+          setBarData(
+            {
+              labels: props.labels,
+              datasets: [
+                {
+                  label: props.name,
+                  data: props.data.mean,
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  borderColor: 'rgba(54, 162, 235, 0.6)',
+                  borderWidth: 1,
+                },
+              ],
+            }          
+          )             
+      } else {
+          console.log("no foodData")
+      }
+    }, []);     
+
     return (
         <div>
           <Bar data={barData}
@@ -65,7 +87,7 @@ const MonthChart = (props) => {
                			  }
                			 },
                      title: {
-                         display: true,
+                         display: false,
                          text: 'Average sleep by month',
                          fontSize: 20
                      }
