@@ -38,18 +38,20 @@ const DayChart = (props) => {
         if(longerFormat) {
           hour_minutes = hours + "h y " + minutes + "min"
         } else{
+          if(minutes>=0 && minutes<10 ){
+            minutes = '0' + minutes
+          }       
+          hour_minutes =  hours + ":" + minutes    
           if(hours == 0){
             hour_minutes = 0
-          } else{
-            hour_minutes =  hours + ":" + minutes
-          }
+          } 
         }
-        return hour_minutes + "h";
+        return hour_minutes;
     };
 
     // set data
     useEffect(() => {
-      if (props.data) {
+      if(!props.loading) {
           setBarData(
             {
               labels: getxy(props.data)['End'],
@@ -93,9 +95,9 @@ const DayChart = (props) => {
                          yAxes: [
                             {
                                 ticks: {
-                                    beginAtZero: true,
+                                    beginAtZero: false,
                                     callback: function(data, index, datasets) {
-                                      return formatTime(data, false);
+                                      return formatTime(data, false) + "h";
                                     }
                                 }
                             }

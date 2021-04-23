@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const WeekdayChart = (props) => {
-    console.log(props)
     var style = getComputedStyle(document.body);
     var primCol = style.getPropertyValue('--ion-color-primary');
     var secCol = style.getPropertyValue('--ion-color-secondary');
@@ -13,7 +12,6 @@ const WeekdayChart = (props) => {
       labels.forEach(function(key){
           reLabels.push( key.substring(0, 3) + '.' );
       });
-      // console.log(reLabels)
       return reLabels;
   }
 
@@ -42,18 +40,20 @@ const WeekdayChart = (props) => {
         if(longerFormat) {
           hour_minutes = hours + "h y " + minutes + "min"
         } else{
+          if(minutes>=0 && minutes<10 ){
+            minutes = '0' + minutes
+          }       
+          hour_minutes =  hours + ":" + minutes    
           if(hours == 0){
             hour_minutes = 0
-          } else{
-            hour_minutes =  hours + ":" + minutes
-          }
+          } 
         }
-        return hour_minutes + "h";
+        return hour_minutes;
     };
 
     // set data
     useEffect(() => {
-      if (props.data) {
+      if(!props.loading) {
           setBarData(
             {
               labels: getLabels(props.labels),
@@ -82,9 +82,9 @@ const WeekdayChart = (props) => {
                          yAxes: [
                              {
                                ticks: {
-                                   beginAtZero: true,
+                                   beginAtZero: false,
                                    callback: function(data, index, datasets) {
-                                     return formatTime(data, false);
+                                     return formatTime(data, false) + "h";
                                     }
                                }
                              }

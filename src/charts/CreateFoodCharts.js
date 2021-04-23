@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import CategoriesCountChart from "../charts/CategoriesCountChart";
-import {IonItem} from '@ionic/react';
 import { IonGrid, IonRow } from '@ionic/react';
 import { IonButton } from '@ionic/react';
 
@@ -11,11 +10,17 @@ const CreateFoodCharts = (props) => {
     // To store count data
     const [categoriesCount, setCategoriesCount] = useState([]);
 
-    const [show_count, setShowCountChart] = React.useState(false);
+    const [show_count, setShowCountChart] = React.useState(true);
 
     // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
     const x_labels = ['Count']
     const shortLabels = ["Caff. drink", "Dai.", "Fru.", "Gra.", "Prot. food", "Sna.", "Soft drink", "Veg."]
+
+    // Control button colors
+    const [colorCountButton, setColorCountButton] = React.useState("primary");        
+    
+    // State the loading variable for the graph, necessary to show the first graph
+    const [loading, setLoading] = useState(true);    
 
     const getCount = (data) => {
         var categoryCount = {
@@ -45,7 +50,8 @@ const CreateFoodCharts = (props) => {
 
     useEffect(() => {
         if(!props.loading_food) {
-            setCategoriesCount(getCount(props.foodData))           
+            setCategoriesCount(getCount(props.foodData))        
+            setLoading(false)   
         } else {
             console.log("no foodData")
         }
@@ -54,6 +60,7 @@ const CreateFoodCharts = (props) => {
     const buttonClickSetGraph = (name) => {
       if(name == x_labels[0]) {
         setShowCountChart(true)
+        setColorCountButton("primary")
       }
     }    
 
@@ -62,7 +69,7 @@ const CreateFoodCharts = (props) => {
           <IonGrid>
             <IonRow>
               <IonButton
-                color="primary"
+                color={colorCountButton}
                 onClick={ () => buttonClickSetGraph(x_labels[0])}
                 size="small"
                 shape="round" fill="outline"
@@ -70,11 +77,9 @@ const CreateFoodCharts = (props) => {
                 { x_labels[0] }
               </IonButton>
             </IonRow>
-          </IonGrid>        
-          <IonItem>
-            {props.loading_food && <div>loading</div>}
-            {!props.loading_food && show_count && <CategoriesCountChart labels={shortLabels} data={categoriesCount} name="Category Count"/>}
-          </IonItem>
+          </IonGrid>
+          {loading && <div>Drawing graph...</div>}
+          {!loading && show_count && <CategoriesCountChart labels={shortLabels} data={categoriesCount} name="Category Count"/>}
       </div>
     );
 }

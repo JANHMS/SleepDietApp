@@ -1,7 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import RadarChart from "../charts/RadarChart";
-import {IonItem} from '@ionic/react';
 import { IonGrid, IonRow } from '@ionic/react';
 import { IonButton } from '@ionic/react';
 import * as moment from "moment";
@@ -11,13 +10,16 @@ const CreateFoodCharts = (props) => {
     // To store count data
     const [joinedData, setJoinedData] = useState([]);
 
-    const [loading, setLoading] = useState(true);
-
-    const [showRadar, setShowRadarChart] = React.useState(false);
+    const [showRadar, setShowRadarChart] = React.useState(true);
 
     // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
     const x_labels = ['Weekdays']
-    const shortLabels = ["Caff. drink", "Dai.", "Fru.", "Gra.", "Prot. food", "Sna.", "Soft drink", "Veg."]
+
+    // Control button colors
+    const [colorWeekdayButton, setColorWeekdayButton] = React.useState("primary");    
+
+    // State the loading variable for the graph, necessary to show the first graph
+    const [loading, setLoading] = useState(true);        
 
     const reestructure_sleep = (d,arra) => {
         return arra.push( { Time_asleep_seconds: d.Time_asleep_seconds,
@@ -71,7 +73,6 @@ const CreateFoodCharts = (props) => {
             });
             setJoinedData(result)   
             setLoading(false)        
-            
         } else {
             console.log("no data to join")
         }
@@ -80,6 +81,7 @@ const CreateFoodCharts = (props) => {
     const buttonClickSetGraph = (name) => {
       if(name == x_labels[0]) {
         setShowRadarChart(true)
+        setColorWeekdayButton("primary")
       }
     }    
 
@@ -88,7 +90,7 @@ const CreateFoodCharts = (props) => {
         <IonGrid>
             <IonRow>
                 <IonButton
-                color="primary"
+                color={colorWeekdayButton}
                 onClick={ () => buttonClickSetGraph(x_labels[0])}
                 size="small"
                 shape="round" fill="outline"
@@ -97,7 +99,7 @@ const CreateFoodCharts = (props) => {
                 </IonButton>
             </IonRow>
         </IonGrid>  
-        {props.loading_food && <div>loading</div>}
+        {loading && <div>Drawing graph...</div>}
         {!loading && showRadar && <RadarChart labels={['1', '2', '3']} data={joinedData} name="Radar Graph" loading={loading}/>}
       </div>
     );

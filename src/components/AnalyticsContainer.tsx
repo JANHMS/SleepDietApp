@@ -32,7 +32,6 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
             .then(snapshot => {
                 const sleepData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
                 if (sleepData) {
-                    //console.log(sleepData)
                     setAllSleepData(sleepData)
                     setSleepLoading(false); 
                 } else {
@@ -49,7 +48,6 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
             .then(snapshot => {
                 const foodData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
                 if (foodData) {
-                    //console.log(foodData)
                     setAllFoodData(foodData)
                     setFoodLoading(false);                 
                 } else {
@@ -67,13 +65,13 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
     return (
         <div className="analyticsContainer">
             <IonItemDivider color="tertiary">Sleep time</IonItemDivider>
-            {loading_sleep && <div>loading</div>}
+            {loading_sleep && <div>Loading...</div>}
             {!loading_sleep && <CreateSleepBarCharts sleepData={allSleepData} loading_sleep={loading_sleep}/>}
             <IonItemDivider color="tertiary">Food consumed by category</IonItemDivider>
-            {loading_food && <div>loading</div>}
+            {loading_food && <div>Loading...</div>}
             {!loading_food && <CreateFoodCharts foodData={allFoodData} loading_food={loading_food}/>}
             <IonItemDivider color="tertiary">Sleep vs food</IonItemDivider>
-            {loading_food && <div>loading</div>}
+            {loading_food && <div>Loading..</div>}
             {!loading_food && <CreateMixCharts sleepData={allSleepData} loading_sleep={loading_sleep} foodData={allFoodData} loading_food={loading_food}/>}
             
         </div>
