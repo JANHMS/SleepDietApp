@@ -1,59 +1,96 @@
 import React, { useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
+import DataFrame from 'dataframe-js';
 
 const RadarChart = (props) => {
-    console.log(props)
 
-    const [barData, setBarData] = useState({
-        labels: [
-            'Eating',
-            'Drinking',
-            'Sleeping',
-            'Designing',
-            'Coding',
-            'Cycling',
-            'Running'
-          ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [65, 59, 90, 81, 56, 55, 40],
-            fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgb(255, 99, 132)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 99, 132)'
-          }, {
-            label: 'My Second Dataset',
-            data: [28, 48, 40, 19, 96, 27, 100],
-            fill: true,
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgb(54, 162, 235)',
-            pointBackgroundColor: 'rgb(54, 162, 235)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(54, 162, 235)'
-          }]
+    console.log(props) 
+
+    // Function to get the average data over the column_to_groupby variable
+    const getMeanCol = (data_all, column_to_groupby, column_to_mean, nameMeanCol) => {
+        const df = new DataFrame(data_all, Object.keys(data_all[0]));
+        const groupedDF = df.groupBy(column_to_groupby).aggregate(group => group.stat.mean(column_to_mean)).rename('aggregation', nameMeanCol).sortBy(column_to_groupby);
+        return groupedDF.filter(row => !(row.get("Weekday") === null)).toDict();
+      };             
+
+    const getWeekdayMeanData = (data, groupbyColumn) => {
+        var sleep_mean = getMeanCol(data, groupbyColumn, 'Sleep_quality', 'QualityMean')
+        var amount_mean = getMeanCol(data, groupbyColumn, 'Amount', 'AmountMean')
+        var wellness_mean = getMeanCol(data, groupbyColumn, 'Wellness' ,'WellnessMean')
+        var fatness_mean = getMeanCol(data, groupbyColumn, 'Fatness' ,'FatnessMean')
+
+        var result = []
+        const id_weekday = Object.keys(sleep_mean[groupbyColumn])
+        id_weekday.forEach(function(weekday){
+            var dayData = []
+            // dayData.push(weekday)
+            dayData.push(sleep_mean['QualityMean'][weekday])
+            dayData.push(amount_mean['AmountMean'][weekday])
+            dayData.push(wellness_mean['WellnessMean'][weekday])
+            dayData.push(fatness_mean['FatnessMean'][weekday])
+            result.push( dayData );
         });
+        return result;
+    };         
 
-    // set data
+    // Inital state is empty, required for the component, if not an an error is launched
+    const [barData, setBarData] = useState(                
+        {
+            labels: [
+                'Sleep',
+                'Amount',
+                'Wellness',
+                'Fatness'
+            ],
+            datasets: [
+                {
+                    label: 'Mon.',
+                    data: []
+                }, {
+                    label: 'Tue.',
+                    data: []
+                },
+                {
+                    label: 'Wed.',
+                    data: []
+                },
+                {
+                    label: 'Thu.',
+                    data: []
+                },
+                {
+                    label: 'Fri.',
+                    data: []
+                },
+                {
+                    label: 'Sat.',
+                    data: []
+                },
+                {
+                    label: 'Sun.',
+                    data: []
+                }
+            ]
+        }
+    );
+
+    // Set data
     useEffect(() => {
-        if (props.data) { 
+        if (!props.loading) { 
+            var dataToShow = getWeekdayMeanData(props.data, 'Weekday');
+            console.log(dataToShow)
             setBarData(
                 {
                     labels: [
-                        'Eating',
-                        'Drinking',
-                        'Sleeping',
-                        'Designing',
-                        'Coding',
-                        'Cycling',
-                        'Running'
+                        'Sleep',
+                        'Amount',
+                        'Wellness',
+                        'Fatness'
                       ],
                     datasets: [{
-                        label: 'My First D',
-                        data: [65, 59, 90, 81, 56, 55, 40],
+                        label: 'Mon.',
+                        hidden: false,
+                        data: dataToShow[0],
                         fill: true,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgb(255, 99, 132)',
@@ -62,8 +99,9 @@ const RadarChart = (props) => {
                         pointHoverBackgroundColor: '#fff',
                         pointHoverBorderColor: 'rgb(255, 99, 132)'
                       }, {
-                        label: 'My Second D',
-                        data: [28, 48, 40, 19, 96, 27, 100],
+                        label: 'Tue.',
+                        hidden: false,
+                        data: dataToShow[1],
                         fill: true,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgb(54, 162, 235)',
@@ -71,11 +109,72 @@ const RadarChart = (props) => {
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
                         pointHoverBorderColor: 'rgb(54, 162, 235)'
-                      }]
-                    }            
+                      },
+                      {
+                        label: 'Wed.',
+                        hidden: true,
+                        data: dataToShow[2],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgb(255, 159, 64)',
+                        pointBackgroundColor: 'rgba(255, 159, 64)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(255, 159, 64)'
+                      },
+                      {
+                        label: 'Thu.',
+                        hidden: true,
+                        data: dataToShow[3],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                        borderColor: 'rgb(255, 205, 86)',
+                        pointBackgroundColor: 'rgba(255, 205, 86)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(255, 205, 86)'
+                      },
+                      {
+                        label: 'Fri.',
+                        hidden: true,
+                        data: dataToShow[4],
+                        fill: true,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgb(75, 192, 192)',
+                        pointBackgroundColor: 'rgba(75, 192, 192)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(75, 192, 192)'
+                      },
+                      {
+                        label: 'Sat.',
+                        hidden: true,
+                        data: dataToShow[5],
+                        fill: true,
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgb(153, 102, 255)',
+                        pointBackgroundColor: 'rgb(153, 102, 255)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(153, 102, 255)'
+                      },
+                      {
+                        label: 'Sun.',
+                        hidden: true,
+                        data: dataToShow[6],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 153, 255, 0.2)',
+                        borderColor: 'rgba(255, 153, 255)',
+                        pointBackgroundColor: 'rgba(255, 153, 255)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(255, 153, 255)'
+                      }
+                    ]
+                }            
             )             
         } else {
-            console.log("no foodData")
+            console.log("no data")
         }
     }, []);            
 

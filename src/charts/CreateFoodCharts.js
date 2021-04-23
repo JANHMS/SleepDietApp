@@ -7,7 +7,7 @@ import { IonButton } from '@ionic/react';
 
 // To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
-    console.log(props.foodData)
+    // console.log(props.foodData)
     // To store count data
     const [categoriesCount, setCategoriesCount] = useState([]);
 
@@ -45,7 +45,6 @@ const CreateFoodCharts = (props) => {
 
     useEffect(() => {
         if(!props.loading_food) {
-            console.log(props.loading_food)
             setCategoriesCount(getCount(props.foodData))           
         } else {
             console.log("no foodData")

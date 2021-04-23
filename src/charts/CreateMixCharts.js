@@ -8,7 +8,6 @@ import * as moment from "moment";
 
 // To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
-    // console.log(props.foodData)
     // To store count data
     const [joinedData, setJoinedData] = useState([]);
 
@@ -17,21 +16,22 @@ const CreateFoodCharts = (props) => {
     const [showRadar, setShowRadarChart] = React.useState(false);
 
     // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
-    const x_labels = ['Count']
+    const x_labels = ['Weekdays']
     const shortLabels = ["Caff. drink", "Dai.", "Fru.", "Gra.", "Prot. food", "Sna.", "Soft drink", "Veg."]
 
     const reestructure_sleep = (d,arra) => {
         return arra.push( { Time_asleep_seconds: d.Time_asleep_seconds,
                             End: moment(d.End).format('YYYY-MM-DD'),
-                            Sleep_quality: d.Sleep_quality } );
+                            Sleep_quality: d.Sleep_quality.slice(0, d.Sleep_quality.indexOf('%')),
+                            Weekday: d.Weekday } );
     };
 
     const reestructure_food = (d,arra) => {
         return arra.push( { Category: d.Category,
                             Date: moment(d.Date).format('YYYY-MM-DD'),
-                            Hungry_Overate: d.Hungry_Overate,
-                            NonFatty_Fatty: d.NonFatty_Fatty,
-                            Unwell_Well: d.Unwell_Well } );
+                            Hungry_Overate: d.Hungry_Overate * 100/10,
+                            NonFatty_Fatty: d.NonFatty_Fatty * 100/10,
+                            Unwell_Well: d.Unwell_Well * 100/10 });
     };      
 
     const join = (lookupTable, mainTable, lookupKey, mainKey, select) => {
@@ -61,14 +61,14 @@ const CreateFoodCharts = (props) => {
                 return {
                     Sleep_quality: (sleep !== undefined) ? sleep.Sleep_quality : null,
                     Time_asleep: (sleep !== undefined) ? sleep.Time_asleep_seconds : null,
+                    Weekday: (sleep !== undefined) ? sleep.Weekday : null,
                     Category: food.Category,
                     Date_only: food.Date,
                     Amount: food.Hungry_Overate,
                     Fatness: food.NonFatty_Fatty,
-                    Wellness: food.Unwell_Well       
+                    Wellness: food.Unwell_Well
                 };
             });
-            console.log(result); 
             setJoinedData(result)   
             setLoading(false)        
             
@@ -98,7 +98,7 @@ const CreateFoodCharts = (props) => {
             </IonRow>
         </IonGrid>  
         {props.loading_food && <div>loading</div>}
-        {!loading && showRadar && <RadarChart labels={['1', '2', '3']} data={joinedData} name="Radar Graph"/>}
+        {!loading && showRadar && <RadarChart labels={['1', '2', '3']} data={joinedData} name="Radar Graph" loading={loading}/>}
       </div>
     );
 }
