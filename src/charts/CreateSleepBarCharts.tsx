@@ -3,13 +3,11 @@ import React, { useEffect, useState } from 'react';
 import WeekdayChart from "../charts/WeekdayChart";
 import MonthChart from "../charts/MonthChart";
 import DayChart from "../charts/DayChart";
-import * as d3 from 'd3';
 import DataFrame from 'dataframe-js';
 import { IonButton } from '@ionic/react';
-import { IonGrid, IonRow, IonCol, IonContent } from '@ionic/react';
+import { IonGrid, IonRow } from '@ionic/react';
 
 const CreateSleepBarCharts = (props) => {
-
     // To store data reestructured for the graphs
     const [data, setData] = React.useState([]);
 

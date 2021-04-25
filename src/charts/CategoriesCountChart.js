@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const CategoriesCountChart = (props) => {
-    console.log(props)
 
     const getLabels = (labels) => { 
         var reLabels = [];
@@ -14,7 +13,6 @@ const CategoriesCountChart = (props) => {
             }
             reLabels.push( separated );
         });
-        // console.log(reLabels)
         return reLabels;
     }
 
@@ -88,7 +86,7 @@ const CategoriesCountChart = (props) => {
                             },                            
                             label: function(tooltipItem, data) {
                                 var value = data.datasets[0].data[tooltipItem.index];
-                                return value.toFixed(2) + "%";
+                                return value.toFixed(0) + "%";
                             }
                         }
                     },
@@ -97,14 +95,23 @@ const CategoriesCountChart = (props) => {
                          text: 'Type of food eaten',
                          fontSize: 20
                      },
-                     plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: 'rgb(255, 99, 132)'
-                            }
+                    legend: {
+                        display: true,
+                        align: 'end',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 10
+                        },
+                        onClick: (e) => e.stopPropagation()
+                    },  
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
                         }
-                    }
+                    }                                      
                  }
                } />
         </div>

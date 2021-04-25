@@ -4,8 +4,6 @@ import DataFrame from 'dataframe-js';
 
 const RadarChart = (props) => {
 
-    console.log(props) 
-
     // Function to get the average data over the column_to_groupby variable
     const getMeanCol = (data_all, column_to_groupby, column_to_mean, nameMeanCol) => {
         const df = new DataFrame(data_all, Object.keys(data_all[0]));
@@ -24,10 +22,10 @@ const RadarChart = (props) => {
         id_weekday.forEach(function(weekday){
             var dayData = []
             // dayData.push(weekday)
-            dayData.push(sleep_mean['QualityMean'][weekday])
-            dayData.push(amount_mean['AmountMean'][weekday])
-            dayData.push(wellness_mean['WellnessMean'][weekday])
-            dayData.push(fatness_mean['FatnessMean'][weekday])
+            dayData.push(sleep_mean['QualityMean'][weekday]/10)
+            dayData.push(amount_mean['AmountMean'][weekday]/10)
+            dayData.push(wellness_mean['WellnessMean'][weekday]/10)
+            dayData.push(fatness_mean['FatnessMean'][weekday]/10)
             result.push( dayData );
         });
         return result;
@@ -78,7 +76,6 @@ const RadarChart = (props) => {
     useEffect(() => {
         if (!props.loading) { 
             var dataToShow = getWeekdayMeanData(props.data, 'Weekday');
-            console.log(dataToShow)
             setBarData(
                 {
                     labels: [
@@ -117,10 +114,10 @@ const RadarChart = (props) => {
                         fill: true,
                         backgroundColor: 'rgba(255, 159, 64, 0.2)',
                         borderColor: 'rgb(255, 159, 64)',
-                        pointBackgroundColor: 'rgba(255, 159, 64)',
+                        pointBackgroundColor: 'rgb(255, 159, 64)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(255, 159, 64)'
+                        pointHoverBorderColor: 'rgb(255, 159, 64)'
                       },
                       {
                         label: 'Thu.',
@@ -129,10 +126,10 @@ const RadarChart = (props) => {
                         fill: true,
                         backgroundColor: 'rgba(255, 205, 86, 0.2)',
                         borderColor: 'rgb(255, 205, 86)',
-                        pointBackgroundColor: 'rgba(255, 205, 86)',
+                        pointBackgroundColor: 'rgb(255, 205, 86)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(255, 205, 86)'
+                        pointHoverBorderColor: 'rgb(255, 205, 86)'
                       },
                       {
                         label: 'Fri.',
@@ -141,10 +138,10 @@ const RadarChart = (props) => {
                         fill: true,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgb(75, 192, 192)',
-                        pointBackgroundColor: 'rgba(75, 192, 192)',
+                        pointBackgroundColor: 'rgb(75, 192, 192)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(75, 192, 192)'
+                        pointHoverBorderColor: 'rgb(75, 192, 192)'
                       },
                       {
                         label: 'Sat.',
@@ -164,11 +161,11 @@ const RadarChart = (props) => {
                         data: dataToShow[6],
                         fill: true,
                         backgroundColor: 'rgba(255, 153, 255, 0.2)',
-                        borderColor: 'rgba(255, 153, 255)',
-                        pointBackgroundColor: 'rgba(255, 153, 255)',
+                        borderColor: 'rgb(255, 153, 255)',
+                        pointBackgroundColor: 'rgb(255, 153, 255)',
                         pointBorderColor: '#fff',
                         pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(255, 153, 255)'
+                        pointHoverBorderColor: 'rgb(255, 153, 255)'
                       }
                     ]
                 }            
@@ -180,12 +177,13 @@ const RadarChart = (props) => {
 
     return (
         <div>
-          <Radar data={barData}
-               options={
+          <Radar 
+            data={barData}
+            options={
                  {
                     title: {
                         display: false,
-                        text: 'Type of food eaten',
+                        text: 'Sleep quality and dinner details',
                         fontSize: 20
                     },
                     legend: {
@@ -196,8 +194,23 @@ const RadarChart = (props) => {
                             boxWidth: 10,
                             padding: 10
                         }
-                    }
-
+                    },
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+                            title: function(tooltipItems, data) {
+                                return data[tooltipItems[0].value];
+                              },                             
+                        }
+               	     }                                      
                  }
                } />
         </div>

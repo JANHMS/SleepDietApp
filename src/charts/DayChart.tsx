@@ -119,7 +119,24 @@ const DayChart = (props) => {
                          display: false,
                          text: 'Sleeping time by day',
                          fontSize: 20
-                     }
+                     },
+                     legend: {
+                      display: true,
+                      align: 'end',
+                      labels: {
+                          boxWidth: 20,
+                          padding: 10
+                      },
+                      onClick: (e) => e.stopPropagation()
+                    },  
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }                      
                  }
                } />
         </div>

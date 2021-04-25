@@ -1,19 +1,15 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import CategoriesCountChart from "../charts/CategoriesCountChart";
-import { IonGrid, IonRow } from '@ionic/react';
-import { IonButton } from '@ionic/react';
 
 // To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
-    // console.log(props.foodData)
+
     // To store count data
     const [categoriesCount, setCategoriesCount] = useState([]);
 
     const [show_count, setShowCountChart] = React.useState(true);
 
-    // X-axis for the different graphs. FYI: Monday=0, Sunday=6; January=1, December=12
-    const x_labels = ['Count']
     const shortLabels = ["Caff. drink", "Dai.", "Fru.", "Gra.", "Prot. food", "Sna.", "Soft drink", "Veg."]
 
     // Control button colors
@@ -42,9 +38,8 @@ const CreateFoodCharts = (props) => {
                 if( db_categories.includes(category) ){
                     categoryCount[category] = categoryCount[category] + 1
                 }
-              }
+            }
         } );
-
         return categoryCount;
       };    
 
@@ -57,29 +52,17 @@ const CreateFoodCharts = (props) => {
         }
     }, []);
 
-    const buttonClickSetGraph = (name) => {
-      if(name == x_labels[0]) {
-        setShowCountChart(true)
-        setColorCountButton("primary")
-      }
-    }    
+    // const buttonClickSetGraph = (name) => {
+    //   if(name == x_labels[0]) {
+    //     setShowCountChart(true)
+    //     setColorCountButton("primary")
+    //   }
+    // }    
 
     return (
       <div>
-          <IonGrid>
-            <IonRow>
-              <IonButton
-                color={colorCountButton}
-                onClick={ () => buttonClickSetGraph(x_labels[0])}
-                size="small"
-                shape="round" fill="outline"
-              >
-                { x_labels[0] }
-              </IonButton>
-            </IonRow>
-          </IonGrid>
           {loading && <div>Drawing graph...</div>}
-          {!loading && show_count && <CategoriesCountChart labels={shortLabels} data={categoriesCount} name="Category Count"/>}
+          {!loading && show_count && <CategoriesCountChart labels={shortLabels} data={categoriesCount} name="Overall category count in %"/>}
       </div>
     );
 }

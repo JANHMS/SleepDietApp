@@ -78,7 +78,7 @@ const WeekdayChart = (props) => {
           <Bar data={barData}
                options={
                  {
-                     scales: {
+                    scales: {
                          yAxes: [
                              {
                                ticks: {
@@ -90,7 +90,7 @@ const WeekdayChart = (props) => {
                              }
                          ]
                      },
-                     tooltips: {
+                    tooltips: {
                			  callbacks: {
                         title: function(tooltipItems, data) {
                           return props.labels[tooltipItems[0].index];
@@ -102,11 +102,28 @@ const WeekdayChart = (props) => {
                					}
                			  }
                			 },
-                     title: {
+                    title: {
                          display: false,
                          text: 'Average sleep by weekday',
                          fontSize: 20
-                     }
+                     },
+                    legend: {
+                      display: true,
+                      align: 'end',
+                      labels: {
+                          boxWidth: 20,
+                          padding: 10
+                      },
+                      onClick: (e) => e.stopPropagation()
+                    },  
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }                      
                  }
                } />
         </div>
