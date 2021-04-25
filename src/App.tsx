@@ -61,7 +61,7 @@ const App: React.FC = () => (
           <MySleepDataTab />
         </Route>
         <Route exact path="/">
-          <Redirect to="/my/home" />
+          <Redirect to="/screen" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

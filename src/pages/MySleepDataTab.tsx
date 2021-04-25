@@ -10,7 +10,7 @@ import ToggleBar from '../components/ToggleBar';
 const MySleepDataTab: React.FC = () => {
     const history = useHistory();
     const handleAddDataClick  = () => {
-          history.push("/sleep/upload")
+          history.push("/my/sleep/upload")
     }
     
     const [userSleepData, setUserSleepData] = useState<any>()

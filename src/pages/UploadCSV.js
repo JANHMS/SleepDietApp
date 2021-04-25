@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import { firestore, storage } from '../firebase'
 import { toast } from "../toast"
 import csv from 'csv';
+import ToggleBar from "../components/ToggleBar";
 
 async function saveUserSleep(sleepList) {
   // other possibility to write it to firestorage as a csv file
@@ -17,7 +18,7 @@ async function saveUserSleep(sleepList) {
     firestore.collection("users")
     .doc(userId)
     .collection("sleep")
-    .doc(sleepList[i].start)
+    .doc(sleepList[i].Start)
     .set(sleepList[i])
     console.log('saved csv:', sleepList[i]);
   }
@@ -103,6 +104,7 @@ class UploadCSV extends Component {
         <h2>Upload or drop your <font size={fontSize} color="#00A4FF">CSV</font><br /> file here.</h2>
       </div>
     </IonContent>
+    <ToggleBar />
   </IonPage>
     )
   }
