@@ -9,7 +9,7 @@ interface Props {
   logout: any;
   // loadingLogout: boolean;
   // user: any;
-  // sleep: any;
+  sleep: any;
 }
 
 
@@ -17,7 +17,7 @@ const HomeContainer: React.FC<Props> = ({
   logout,
   // loadingLogout,
   // user,
-  // sleep
+  sleep
  }) => {
     return (
       <IonPage>
@@ -39,6 +39,12 @@ const HomeContainer: React.FC<Props> = ({
             style={{fontSize: "10px", color: "darkblue", postion: "absolue", marginLeft: "2%" }}
             > Hi user here is your data. 
           </IonText>
+          <div style={{
+            position: "relative",
+            marginTop: "300px",
+          }}>
+            <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
+          </div>
         </IonContent>
         <ToggleBar/>
       </IonPage>     

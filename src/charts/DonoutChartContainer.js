@@ -28,7 +28,7 @@ const DonoutChartContainer = ({
       {
         label: "none",
         tooltip: false,
-        data: [score/10, score/10 - TOTALSCORE],
+        data: [score/100, score/100 - TOTALSCORE],
         backgroundColor: chartColors,
         hoverBackgroundColor: chartColors
       }
@@ -39,10 +39,11 @@ const DonoutChartContainer = ({
     <div className='wrapper'>
       <div className='chart-number' style={{
         position: "absolute",
-        marginLeft: "20px",
-        marginTop: "23px",
-        color: "limegreen"
-      }}>{score}</div>
+        fontSize:"25px",
+        marginLeft: "160px",
+        marginTop: "75px",
+        color: "black"
+      }}>{score}%</div>
       <Doughnut options={options} data={data} score={score}/>
   </div>
   );
