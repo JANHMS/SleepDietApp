@@ -1,7 +1,14 @@
 import './AddFoodContainer.css';
 import {DateTimePicker} from "./datepicker/DateTimePicker";
 import {FoodCategoriesComponent} from "./categories/FoodCategoriesComponent";
-import {IonButton, IonItemDivider, useIonToast} from "@ionic/react";
+import {
+    IonButton,
+    IonItemDivider,
+    useIonToast,
+    IonLabel,
+    IonSegment,
+    IonSegmentButton
+} from "@ionic/react";
 import React, {useEffect, useState} from "react";
 import FoodDetailsComponent from "./details/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
@@ -24,6 +31,11 @@ interface FoodData {
 }
 
 const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
+    /*------------------Experiment props------------------*/
+    // Set to true before you do the experiment
+    const experiment = false;
+    const [activeSegment, setActiveSegment] = useState<string>("category");
+    /*----------------------------------------------------*/
     const [present, dismiss] = useIonToast();
     const defaultFoodData: FoodData = {
         Date: moment().format(Constant.fullDateFormatDB),
@@ -149,7 +161,9 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 // success
                 present({
                     buttons: [{
-                        text: 'ok', handler: () => {dismiss()}
+                        text: 'ok', handler: () => {
+                            dismiss()
+                        }
                     }],
                     message: 'Your food data is saved successfully!',
                     duration: 2500,
@@ -190,18 +204,47 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 setSelectedTime(date.split(" ")[1])
             }} defaultValue={selectedDate + " " + selectedTime}/>
             <IonItemDivider color="tertiary">Dinner</IonItemDivider>
-            <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
-                                     defaultValue={selectedCategories}/>
-            <IonItemDivider color="tertiary">Dinner details</IonItemDivider>
-            <FoodDetailsComponent
-                updateWellness={value => setWellness(value.toString())}
-                updateFullness={value => setFullness(value.toString())}
-                updateFatness={value => setFatness(value.toString())}
-                // Convert string to number with "+"
-                defaultWellness={+wellness}
-                defaultFullness={+fullness}
-                defaultFatness={+fatness}
-            />
+            {!experiment ? (
+                <div>
+                    <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
+                                             defaultValue={selectedCategories}/>
+                    <IonItemDivider color="tertiary">Dinner details</IonItemDivider>
+                    <FoodDetailsComponent
+                        updateWellness={value => setWellness(value.toString())}
+                        updateFullness={value => setFullness(value.toString())}
+                        updateFatness={value => setFatness(value.toString())}
+                        // Convert string to number with "+"
+                        defaultWellness={+wellness}
+                        defaultFullness={+fullness}
+                        defaultFatness={+fatness}
+                    />
+                </div>
+            ) : (
+                <div>
+                    <IonSegment onIonChange={e => setActiveSegment(e.detail.value!)} value={activeSegment}>
+                        <IonSegmentButton value="category">
+                            <IonLabel>Category</IonLabel>
+                        </IonSegmentButton>
+                        <IonSegmentButton value="details">
+                            <IonLabel>Details</IonLabel>
+                        </IonSegmentButton>
+                    </IonSegment>
+                    {activeSegment === "category" ? (
+                        <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
+                                                 defaultValue={selectedCategories}/>
+                    ) : (
+                        <FoodDetailsComponent
+                            updateWellness={value => setWellness(value.toString())}
+                            updateFullness={value => setFullness(value.toString())}
+                            updateFatness={value => setFatness(value.toString())}
+                            // Convert string to number with "+"
+                            defaultWellness={+wellness}
+                            defaultFullness={+fullness}
+                            defaultFatness={+fatness}
+                        />
+                    )}
+                </div>
+            )}
             <IonItemDivider color="tertiary">Notes</IonItemDivider>
             <NotesComponent updateParent={notes => setNotes(notes)} defaultValue={notes}/>
             <IonButton
