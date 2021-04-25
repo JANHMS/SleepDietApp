@@ -20,6 +20,7 @@
     "csv-parse": "^4.15.3",
     "d3": "^6.6.2",
     "dataframe-js": "^1.4.4",
+    "eslint": "^7.25.0",
     "firebase": "^8.3.2",
     "ionicons": "^5.4.0",
     "moment": "^2.29.1",

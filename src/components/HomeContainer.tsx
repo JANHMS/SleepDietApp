@@ -4,6 +4,7 @@ import './HomeContainer.css';
 import ToggleBar from './ToggleBar';
 import DonoutChartContainer from '../charts/DonoutChartContainer';
 import HeaderBar from "./HeaderImage";
+import cat from'../images/cat.png';
 
 interface Props {
   logout: any;
@@ -11,7 +12,6 @@ interface Props {
   // user: any;
   sleep: any;
 }
-
 
 const HomeContainer: React.FC<Props> = ({ 
   logout,
@@ -21,30 +21,128 @@ const HomeContainer: React.FC<Props> = ({
  }) => {
     return (
       <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Home</IonTitle>
-            <IonButton 
-              onClick={logout}
-            >Logout</IonButton>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent fullscreen>
+        <IonContent fullscreen color="dark">
           <IonHeader collapse="condense">
-            <IonToolbar>
+            <IonToolbar color="light">
               <IonTitle size="large">Home</IonTitle>
+              <IonButton
+                style={{ marginLeft:"250px"}}
+                onClick={logout}
+              >Logout</IonButton>
             </IonToolbar>
           </IonHeader>
           <IonText 
-            style={{fontSize: "10px", color: "darkblue", postion: "absolue", marginLeft: "2%" }}
+            style={{fontSize: "10px", color: "white", postion: "absolue", marginLeft: "2%" }}
             > Hi user here is your data. 
           </IonText>
           <div style={{
-            position: "relative",
-            marginTop: "300px",
+            position: "absolute",
+            marginTop: "20px",
+            fontWeight: "bold",
+            marginLeft: "20px",
           }}>
-            <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
+            {sleep.Start.split(' ')[1]}
+          <br/>
+            Sleep Started
+        </div>
+
+        <div style={{
+          position: "absolute",
+          marginTop: "20px",
+          marginLeft: "250px",
+          fontWeight: "bold",
+        }}>
+          {sleep.Wake_up_hour}
+        <br/>
+          Wake up hour
+      </div>
+      
+      
+      <div style={{
+        position: "absolute",
+        marginTop: "20px",
+        marginLeft: "145px",
+        textAlign: "center",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        width: "80px"
+      }}>
+        <img src={cat}/>
+    </div>
+    
+      <div style={{
+        position: "absolute",
+        marginTop: "20px",
+        marginLeft: "250px",
+        fontWeight: "bold",
+      }}>
+        {sleep.Wake_up_hour}
+      <br/>
+        Wake up hour
+    </div>
+      
+          <div style={{
+              position: "relative",
+              marginTop: "200px",
+            }}>
+              <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
+            </div>
+            
+            <div style={{
+              position: "absolute",
+              marginTop: "50px",
+              marginLeft: "250px",
+              fontWeight: "bold",
+            }}>
+              {sleep.Time_asleep}
+            <br/>
+              Sleep Duration
           </div>
+          
+          
+          <div style={{
+            position: "absolute",
+            marginTop: "50px",
+            marginLeft: "20px",
+            fontWeight: "bold",
+          }}>
+            {sleep.Movements_per_hour}
+          <br/>
+            Movements per hour
+        </div>
+        
+        <div style={{
+          position: "absolute",
+          marginTop: "125px",
+          marginLeft: "20px",
+          fontWeight: "bold",
+        }}>
+          {sleep.Regularity}
+        <br/>
+          Regularity
+      </div>
+      
+      <div style={{
+        position: "absolute",
+        marginTop: "125px",
+        marginLeft: "250px",
+        fontWeight: "bold",
+      }}>
+        {sleep.Time_in_bed}
+      <br/>
+        Time in bed
+    </div>
+    
+    <div style={{
+      position: "absolute",
+      marginTop: "190px",
+      marginLeft: "130px",
+      fontWeight: "bold",
+    }}>
+    <IonButton href="/my/food">Add Food</IonButton>
+  </div>
+  
         </IonContent>
         <ToggleBar/>
       </IonPage>     

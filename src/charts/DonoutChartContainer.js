@@ -42,7 +42,7 @@ const DonoutChartContainer = ({
         fontSize:"25px",
         marginLeft: "160px",
         marginTop: "75px",
-        color: "black"
+        color: "white"
       }}>{score}%</div>
       <Doughnut options={options} data={data} score={score}/>
   </div>
