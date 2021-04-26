@@ -1,5 +1,12 @@
 .categoryHint .modal-wrapper {
-    width: 80%;
-    height: 80%;
+    width: 84%;
+    height: 90%;
     border-radius: 8px;
+}
+
+ion-icon.popupClose {
+    margin-right: 18px;
+    margin-top: 4px;
+    width: 24px;
+    height: 24px;
 }

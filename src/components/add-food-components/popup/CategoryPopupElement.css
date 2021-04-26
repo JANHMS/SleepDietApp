@@ -1,3 +1,13 @@
+ion-card.popupCategory {
+    width: 56px;
+    height: 56px;
+    background-size: cover;
+}
+
+ion-label.popupElementLabel > p {
+    font-size: 12px;
+}
+
 .fruit {
     background-image: url('../../../images/fruits.jpg');
 }

@@ -24,7 +24,7 @@ export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect,
 
     return (
         <div>
-            <IonCard button type="button" className={clsx(isSelected && "selected", cssClassName)}
+            <IonCard button type="button" className={clsx(isSelected && "selected", cssClassName, "categoryCard")}
                      onClick={e => {
                          setSelected(!isSelected)
                          onSelect(name);

@@ -1,26 +1,33 @@
 import React from "react";
-import {IonButton, IonList, IonContent} from "@ionic/react";
+import {IonList, IonContent, IonTitle, IonToolbar, IonIcon} from "@ionic/react";
 import "./CategoryPopup.css";
 import CategoryPopupElement from "./CategoryPopupElement";
 import {CategoryType} from "../categories/CategoryType";
+import {closeCircleOutline} from "ionicons/icons";
+import {Constant} from "../../../consts";
 
 const CategoryPopup: React.FC<{
     onDismiss: () => void;
 }> = ({onDismiss}) => (
     <IonContent>
+        <IonToolbar>
+            <IonTitle>
+                <h3><b>Categories</b></h3>
+            </IonTitle>
+            <IonIcon className="popupClose" slot="end" icon={closeCircleOutline} onClick={() => onDismiss()}/>
+        </IonToolbar>
+
         <IonList>
-            <CategoryPopupElement name={CategoryType.Fruits} description="asd" cssClassName="fruit"/>
-            <CategoryPopupElement name={CategoryType.Vegetables} description="asd" cssClassName="veg"/>
-            <CategoryPopupElement name={CategoryType.Grains} description="asd" cssClassName="grains"/>
-            <CategoryPopupElement name={CategoryType.Dairy} description="asd" cssClassName="dairy"/>
-            <CategoryPopupElement name={CategoryType.ProteinFood} description="asd" cssClassName="protein"/>
-            <CategoryPopupElement name={CategoryType.Snacks} description="asd" cssClassName="snacks"/>
-            <CategoryPopupElement name={CategoryType.CaffeinatedDrinks} description="asd" cssClassName="coffee"/>
-            <CategoryPopupElement name={CategoryType.SoftDrinks} description="asd" cssClassName="softDrinks"/>
+            <CategoryPopupElement name={CategoryType.Fruits} description={Constant.fruitExamples} cssClassName="fruit"/>
+            <CategoryPopupElement name={CategoryType.Vegetables} description={Constant.vegetablesExamples} cssClassName="veg"/>
+            <CategoryPopupElement name={CategoryType.Grains} description={Constant.grainsExamples} cssClassName="grains"/>
+            <CategoryPopupElement name={CategoryType.Dairy} description={Constant.dairyExamples} cssClassName="dairy"/>
+            <CategoryPopupElement name={CategoryType.ProteinFood} description={Constant.proteinExamples} cssClassName="protein"/>
+            <CategoryPopupElement name={CategoryType.Snacks} description={Constant.snacksExamples} cssClassName="snacks"/>
+            <CategoryPopupElement name={CategoryType.CaffeinatedDrinks} description={Constant.caffeinatedExamples} cssClassName="coffee"/>
+            <CategoryPopupElement name={CategoryType.SoftDrinks} description={Constant.softDrinkExamples} cssClassName="softDrinks"/>
         </IonList>
-        <IonButton expand="block" onClick={() => onDismiss()}>
-            Close
-        </IonButton>
+
     </IonContent>
 );
 
