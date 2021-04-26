@@ -20,6 +20,7 @@ import ModalExample from "./experiment/ModalExample";
 import CustomDivider from "./divider/CustomDivider";
 import CategoryPopup from "./popup/categories/CategoryPopup";
 import DinnerDetailsPopup from "./popup/dinnerDetails/DinnerDetailsPopup";
+import NotesPopup from "./popup/notes/NotesPopup";
 
 interface ContainerProps {
     name: string;
@@ -208,9 +209,9 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 setSelectedDate(date.split(" ")[0])
                 setSelectedTime(date.split(" ")[1])
             }} defaultValue={selectedDate + " " + selectedTime}/>
-            <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
             {!experiment ? (
                 <div>
+                    <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
                     <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
                                              defaultValue={selectedCategories}/>
                     <CustomDivider label="Dinner details" content={DinnerDetailsPopup} cssClass="detailsHint"/>
@@ -226,6 +227,11 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 </div>
             ) : (
                 <div>
+                    {activeSegment === "category" ? (
+                        <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
+                    ) : (
+                        <CustomDivider label="Dinner details" content={DinnerDetailsPopup} cssClass="detailsHint"/>
+                    )}
                     <IonSegment onIonChange={e => setActiveSegment(e.detail.value!)} value={activeSegment}>
                         <IonSegmentButton value="category">
                             <IonLabel>Category</IonLabel>
@@ -250,11 +256,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                     )}
                 </div>
             )}
-            <IonItemDivider color="tertiary">
-                Notes
-                <IonIcon className="divider" slot="end" icon={helpCircleOutline}
-                         onClick={() => console.log("Show notes hint")}/>
-            </IonItemDivider>
+            <CustomDivider label="Notes" content={NotesPopup} cssClass="notesHint"/>
             <NotesComponent updateParent={notes => setNotes(notes)} defaultValue={notes}/>
             <IonButton
                 className="save"
