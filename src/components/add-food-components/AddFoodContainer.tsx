@@ -10,7 +10,7 @@ import {
     IonSegmentButton, IonIcon
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
-import FoodDetailsComponent from "./details/FoodDetailsComponent";
+import FoodDetailsComponent from "./dinnerDetails/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
 import moment from "moment/moment";
 import {firestore} from "../../firebase";
@@ -18,7 +18,8 @@ import {Constant} from "../../consts";
 import {helpCircleOutline, home} from "ionicons/icons";
 import ModalExample from "./experiment/ModalExample";
 import CustomDivider from "./divider/CustomDivider";
-import CategoryPopup from "./popup/CategoryPopup";
+import CategoryPopup from "./popup/categories/CategoryPopup";
+import DinnerDetailsPopup from "./popup/dinnerDetails/DinnerDetailsPopup";
 
 interface ContainerProps {
     name: string;
@@ -212,11 +213,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 <div>
                     <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
                                              defaultValue={selectedCategories}/>
-                    <IonItemDivider color="tertiary">
-                        Dinner details
-                        <IonIcon className="divider" slot="end" icon={helpCircleOutline}
-                                 onClick={() => console.log("Show dinner details hint")}/>
-                    </IonItemDivider>
+                    <CustomDivider label="Dinner details" content={DinnerDetailsPopup} cssClass="detailsHint"/>
                     <FoodDetailsComponent
                         updateWellness={value => setWellness(value.toString())}
                         updateFullness={value => setFullness(value.toString())}

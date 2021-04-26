@@ -2,9 +2,9 @@ import React from "react";
 import {IonList, IonContent, IonTitle, IonToolbar, IonIcon} from "@ionic/react";
 import "./CategoryPopup.css";
 import CategoryPopupElement from "./CategoryPopupElement";
-import {CategoryType} from "../categories/CategoryType";
+import {CategoryType} from "../../categories/CategoryType";
 import {closeCircleOutline} from "ionicons/icons";
-import {Constant} from "../../../consts";
+import {Constant} from "../../../../consts";
 
 const CategoryPopup: React.FC<{
     onDismiss: () => void;
