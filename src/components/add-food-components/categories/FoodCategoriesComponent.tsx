@@ -31,8 +31,8 @@ export const FoodCategoriesComponent: React.FC<FoodCategoriesProps> = ({updatePa
         <div>
             <IonGrid>
                 <IonRow>
-                    <IonCol><Category name={CategoryType.Fruit} onSelect={updateSelectedCategories}
-                                      cssClassName="fruit" selected={selectedCategories.has(CategoryType.Fruit)}/></IonCol>
+                    <IonCol><Category name={CategoryType.Fruits} onSelect={updateSelectedCategories}
+                                      cssClassName="fruit" selected={selectedCategories.has(CategoryType.Fruits)}/></IonCol>
                     <IonCol><Category name={CategoryType.Vegetables} onSelect={updateSelectedCategories}
                                       cssClassName="veg" selected={selectedCategories.has(CategoryType.Vegetables)}/></IonCol>
                     <IonCol><Category name={CategoryType.Grains} onSelect={updateSelectedCategories}

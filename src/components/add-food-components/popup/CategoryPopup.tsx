@@ -9,7 +9,7 @@ const CategoryPopup: React.FC<{
 }> = ({onDismiss}) => (
     <IonContent>
         <IonList>
-            <CategoryPopupElement name={CategoryType.Fruit} description="asd" cssClassName="fruit"/>
+            <CategoryPopupElement name={CategoryType.Fruits} description="asd" cssClassName="fruit"/>
             <CategoryPopupElement name={CategoryType.Vegetables} description="asd" cssClassName="veg"/>
             <CategoryPopupElement name={CategoryType.Grains} description="asd" cssClassName="grains"/>
             <CategoryPopupElement name={CategoryType.Dairy} description="asd" cssClassName="dairy"/>
