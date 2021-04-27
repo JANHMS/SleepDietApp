@@ -12,6 +12,7 @@ const options = {
     display: false
   },
   tooltip: false,
+  cutoutPercentage: 85
 };
 
 const DonoutChartContainer = ({
@@ -40,10 +41,19 @@ const DonoutChartContainer = ({
       <div className='chart-number' style={{
         position: "absolute",
         fontSize:"25px",
-        marginLeft: "160px",
-        marginTop: "75px",
+        marginLeft: "165px",
+        marginTop: "70px",
         color: "white"
-      }}>{score}%</div>
+      }}>{score}%<br/>
+        <div  style={{
+          marginLeft: "-25px",
+          color: "white",
+          fontSize:"17px",
+
+        }}>
+        Sleep Quality
+        </div>
+      </div>
       <Doughnut options={options} data={data} score={score}/>
   </div>
   );
