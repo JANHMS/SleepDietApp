@@ -13,10 +13,10 @@ const Homescreen: React.FC = () => {
           <IonButton routerLink="/login" style={{
             position: "absolute",
             width: "30vw", 
-            fontSize:"15", 
-            height:"40px",
-            top: "2.5px",
-            right: "20px"
+            fontSize:"15px", 
+            height:"30%",
+            top: "1%",
+            right: "10%"
           }}>Sign in</IonButton>
           <HeaderImage />
         </IonToolbar>
@@ -26,7 +26,7 @@ const Homescreen: React.FC = () => {
     
       <IonTitle style={{
         position: "absolute",
-        marginTop: "-300px"
+        marginTop: "-50%"
       }}>   
         <br/>
         <br/>
@@ -37,24 +37,24 @@ const Homescreen: React.FC = () => {
     
     <h5 style={{
       position:"fixed",
-      marginTop: "250px",
-      marginLeft:"80px",
+      marginTop: "65%",
+      marginLeft:"20%",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Sleep the night through</h5>
       <br/>
       <br/>
       <h5 style={{
       position:"fixed",
-      marginTop: "270px",
-      marginLeft:"80px",
+      marginTop: "70%",
+      marginLeft:"20%",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Wake up more energized</h5>
       <br/>
       <br/>
     <h5 style={{
       position:"fixed",
-      marginTop: "290px",
-      marginLeft:"80px",
+      marginTop: "75%",
+      marginLeft:"20%",
       color:"darkblue"
     }}><IonIcon icon={shieldCheckmarkOutline}/>  Create positive habits</h5>
       

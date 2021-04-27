@@ -35,7 +35,7 @@ useEffect(() => {
   const sleepPromise = new Promise((resolve, reject) => {
     resolve(
       firestore.collection("users").doc(userId).collection('sleep')
-      .orderBy("Start", "desc")
+      .orderBy("End", "desc")
       .get()
       .then(doc => {
         const sleepData = doc.docs.map(doc => ({id: doc.id, ...doc.data()}))
@@ -47,11 +47,8 @@ useEffect(() => {
         .then(doc => {
           const foodData = doc.docs.map(doc => ({id: doc.id, ...doc.data()}))
           setFood(foodData[1])
-          console.log("This is sleep", sleep)
-          console.log("This is food", food)
-
-          // const dinnerTime = food.Date.split(' ')[1]
-          setDinnerTime("2")
+          // console.log("This is sleep", sleep)
+          // console.log("This is food", food)
           })
         })  
       )
