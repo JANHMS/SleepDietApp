@@ -19,6 +19,9 @@ const userId = "1";
 const [loadingLogout, setLoadingLogout] = useState(false)
 const [loading, setLoading] = useState(true)
 const [sleep, setSleep] = useState<any>();
+const [food, setFood] = useState<any>();
+const [DinnerTime, setDinnerTime] = useState<any>();
+
 const [user, setUser] = useState<any>();
 
 useEffect(() => {
@@ -38,15 +41,24 @@ useEffect(() => {
         const sleepData = doc.docs.map(doc => ({id: doc.id, ...doc.data()}))
         setSleep(sleepData[1])
         console.log(userId)
-        })
+        firestore.collection("users").doc(userId).collection('food')
+        .orderBy("Date", "desc")
+        .get()
+        .then(doc => {
+          const foodData = doc.docs.map(doc => ({id: doc.id, ...doc.data()}))
+          setFood(foodData[1])
+          console.log(food)
+          })
+        })  
       )
     }
   )
   sleepPromise.then(() => {
     setLoading(false)
     console.log(sleep)
+    const dinnerTime = food.Date.split(' ')[1]
+    setDinnerTime(dinnerTime)
   })
-  
 },[])
 
   async function logout() {
@@ -60,8 +72,8 @@ useEffect(() => {
 
 
   return (
-    sleep && !loading ? 
-    <HomeContainer logout={logout} sleep={sleep}/>
+    sleep && !loading && food && DinnerTime? 
+    <HomeContainer logout={logout} sleep={sleep} food={food} DinnerTime={DinnerTime}/>
     : <IonLoading isOpen={loading}/>
   );
 };

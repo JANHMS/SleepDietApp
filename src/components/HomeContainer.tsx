@@ -11,13 +11,17 @@ interface Props {
   // loadingLogout: boolean;
   // user: any;
   sleep: any;
+  food: any;
+  DinnerTime: string;
 }
 
 const HomeContainer: React.FC<Props> = ({ 
   logout,
   // loadingLogout,
   // user,
-  sleep
+  food,
+  sleep,
+  DinnerTime
  }) => {
     return (
       <IonPage>
@@ -44,44 +48,70 @@ const HomeContainer: React.FC<Props> = ({
             {sleep.Start.split(' ')[1]}
           <br/>
             Sleep Started
+          </div>
+
+          <div style={{
+            position: "absolute",
+            marginTop: "20px",
+            marginLeft: "250px",
+            fontWeight: "bold",
+          }}>
+            {sleep.Wake_up_hour}
+          <br/>
+            Wake up hour
+          </div>
+        
+        
+          <div style={{
+            position: "absolute",
+            marginTop: "20px",
+            marginLeft: "145px",
+            textAlign: "center",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            width: "80px"
+          }}>
+            <img src={cat}/>
+            </div>
+          
+            <div style={{
+              position: "absolute",
+              marginTop: "20px",
+              marginLeft: "250px",
+              fontWeight: "bold",
+            }}>
+              {sleep.Wake_up_hour}
+            <br/>
+              Wake up hour
+          </div>
+  
+          <div style={{
+            position: "absolute",
+            marginTop: "100px",
+            marginLeft: "250px",
+          }}>
+          <div style={{fontWeight: "bold"}}>
+            {food.Category[0]} <br/>
+            {food.Category[1]}
+          </div>
+          <br/>
+            Food Category
+        </div>
+          
+          <div style={{
+            position: "absolute",
+            marginTop: "100px",
+            marginLeft: "20px",
+          }}>
+          <div style={{fontWeight: "bold"}}>
+            {DinnerTime}<br/>
+          </div>
+          <br/>
+          <br/>
+            Dinner Time
         </div>
 
-        <div style={{
-          position: "absolute",
-          marginTop: "20px",
-          marginLeft: "250px",
-          fontWeight: "bold",
-        }}>
-          {sleep.Wake_up_hour}
-        <br/>
-          Wake up hour
-      </div>
-      
-      
-      <div style={{
-        position: "absolute",
-        marginTop: "20px",
-        marginLeft: "145px",
-        textAlign: "center",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        width: "80px"
-      }}>
-        <img src={cat}/>
-    </div>
-    
-      <div style={{
-        position: "absolute",
-        marginTop: "20px",
-        marginLeft: "250px",
-        fontWeight: "bold",
-      }}>
-        {sleep.Wake_up_hour}
-      <br/>
-        Wake up hour
-    </div>
-      
           <div style={{
               position: "relative",
               marginTop: "200px",
@@ -93,9 +123,11 @@ const HomeContainer: React.FC<Props> = ({
               position: "absolute",
               marginTop: "50px",
               marginLeft: "250px",
-              fontWeight: "bold",
             }}>
+            <div style={{fontWeight: "bold"}}>
+
               {sleep.Time_asleep}
+            </div>
             <br/>
               Sleep Duration
           </div>
@@ -105,48 +137,51 @@ const HomeContainer: React.FC<Props> = ({
             position: "absolute",
             marginTop: "50px",
             marginLeft: "20px",
-            fontWeight: "bold",
-          }}>
+          }}>  <div style={{fontWeight: "bold"}}>
+            
             {sleep.Movements_per_hour}
+          </div>
           <br/>
             Movements per hour
         </div>
         
+            <div style={{
+              position: "absolute",
+              marginTop: "125px",
+              marginLeft: "20px",
+            }}>
+            <div style={{fontWeight: "bold"}}>
+                {sleep.Regularity}
+              </div>
+            <br/>
+              Regularity
+          </div>
+      
+          <div style={{
+            position: "absolute",
+            marginTop: "125px",
+            marginLeft: "250px",
+          }}>
+          <div style={{fontWeight: "bold"}}>
+            {sleep.Time_in_bed}
+          </div>
+          
+          <br/>
+            Time in bed
+        </div>
+    
         <div style={{
           position: "absolute",
-          marginTop: "125px",
-          marginLeft: "20px",
-          fontWeight: "bold",
+          marginTop: "190px",
+          marginLeft: "130px",
         }}>
-          {sleep.Regularity}
-        <br/>
-          Regularity
+          <IonButton href="/my/food">Add Food</IonButton>
       </div>
-      
-      <div style={{
-        position: "absolute",
-        marginTop: "125px",
-        marginLeft: "250px",
-        fontWeight: "bold",
-      }}>
-        {sleep.Time_in_bed}
-      <br/>
-        Time in bed
-    </div>
     
-    <div style={{
-      position: "absolute",
-      marginTop: "190px",
-      marginLeft: "130px",
-      fontWeight: "bold",
-    }}>
-    <IonButton href="/my/food">Add Food</IonButton>
-  </div>
-  
-        </IonContent>
-        <ToggleBar/>
-      </IonPage>     
-    );
+      </IonContent>
+      <ToggleBar/>
+    </IonPage>     
+  );
 };
 
 export default HomeContainer;
