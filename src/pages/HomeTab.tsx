@@ -47,19 +47,33 @@ useEffect(() => {
         .then(doc => {
           const foodData = doc.docs.map(doc => ({id: doc.id, ...doc.data()}))
           setFood(foodData[1])
-          console.log(food)
+          console.log("This is sleep", sleep)
+          console.log("This is food", food)
+
+          // const dinnerTime = food.Date.split(' ')[1]
+          setDinnerTime("2")
           })
         })  
       )
     }
   )
+
   sleepPromise.then(() => {
     setLoading(false)
-    console.log(sleep)
-    const dinnerTime = food.Date.split(' ')[1]
-    setDinnerTime(dinnerTime)
   })
 },[])
+
+useEffect(() => {
+  console.log("This is sleep", sleep)
+},[sleep])
+
+useEffect(() => {
+  console.log("This is food", food)
+  if (food !== undefined) {
+    const dinnerTime = food.Date.split(' ')[1]
+    setDinnerTime(dinnerTime)
+  } else return;
+},[food])
 
   async function logout() {
   history.push('/')
@@ -72,7 +86,7 @@ useEffect(() => {
 
 
   return (
-    sleep && !loading && food && DinnerTime? 
+    sleep && !loading && food && DinnerTime ? 
     <HomeContainer logout={logout} sleep={sleep} food={food} DinnerTime={DinnerTime}/>
     : <IonLoading isOpen={loading}/>
   );
