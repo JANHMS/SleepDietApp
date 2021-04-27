@@ -41,12 +41,12 @@ const DonoutChartContainer = ({
       <div className='chart-number' style={{
         position: "absolute",
         fontSize:"25px",
-        marginLeft: "165px",
-        marginTop: "70px",
+        marginLeft: "43%",
+        marginTop: "18%",
         color: "white"
       }}>{score}%<br/>
         <div  style={{
-          marginLeft: "-25px",
+          marginLeft: "-25%",
           color: "white",
           fontSize:"17px",
 
