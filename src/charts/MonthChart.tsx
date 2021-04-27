@@ -71,7 +71,7 @@ const MonthChart = (props) => {
                          yAxes: [
                              {
                                ticks: {
-                                   beginAtZero: false,
+                                   beginAtZero: true,
                                    callback: function(data, index, datasets) {
                                      return formatTime(data, false) + "h";
                                     }
