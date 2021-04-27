@@ -30,7 +30,7 @@ const HomeContainer: React.FC<Props> = ({
             <IonToolbar color="light">
               <IonTitle size="large">Home</IonTitle>
               <IonButton
-                style={{ marginLeft:"250px"}}
+                style={{ marginLeft:"65%"}}
                 onClick={logout}
               >Logout</IonButton>
             </IonToolbar>
@@ -41,9 +41,9 @@ const HomeContainer: React.FC<Props> = ({
           </IonText>
           <div style={{
             position: "absolute",
-            marginTop: "20px",
+            marginTop: "5%",
             fontWeight: "bold",
-            marginLeft: "20px",
+            marginLeft: "5%",
           }}>
             {sleep.Start.split(' ')[1]}
           <br/>
@@ -52,8 +52,8 @@ const HomeContainer: React.FC<Props> = ({
 
           <div style={{
             position: "absolute",
-            marginTop: "20px",
-            marginLeft: "250px",
+            marginTop: "5%",
+            marginLeft: "65%",
             fontWeight: "bold",
           }}>
             {sleep.Wake_up_hour}
@@ -64,8 +64,8 @@ const HomeContainer: React.FC<Props> = ({
         
           <div style={{
             position: "absolute",
-            marginTop: "20px",
-            marginLeft: "145px",
+            marginTop: "10%",
+            marginLeft: "39%",
             textAlign: "center",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
@@ -75,21 +75,11 @@ const HomeContainer: React.FC<Props> = ({
             <img src={cat}/>
             </div>
           
-            <div style={{
-              position: "absolute",
-              marginTop: "20px",
-              marginLeft: "250px",
-              fontWeight: "bold",
-            }}>
-              {sleep.Wake_up_hour}
-            <br/>
-              Wake up hour
-          </div>
   
           <div style={{
             position: "absolute",
-            marginTop: "100px",
-            marginLeft: "250px",
+            marginTop: "25%",
+            marginLeft: "65%",
           }}>
           <div style={{fontWeight: "bold"}}>
             {food.Category[0]} <br/>
@@ -101,8 +91,8 @@ const HomeContainer: React.FC<Props> = ({
           
           <div style={{
             position: "absolute",
-            marginTop: "100px",
-            marginLeft: "20px",
+            marginTop: "25%",
+            marginLeft: "5%",
           }}>
           <div style={{fontWeight: "bold"}}>
             {DinnerTime}<br/>
@@ -114,15 +104,15 @@ const HomeContainer: React.FC<Props> = ({
 
           <div style={{
               position: "relative",
-              marginTop: "200px",
+              marginTop: "50%",
             }}>
               <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
             </div>
             
             <div style={{
               position: "absolute",
-              marginTop: "50px",
-              marginLeft: "250px",
+              marginTop: "10%",
+              marginLeft: "65%",
             }}>
             <div style={{fontWeight: "bold"}}>
 
@@ -135,8 +125,8 @@ const HomeContainer: React.FC<Props> = ({
           
           <div style={{
             position: "absolute",
-            marginTop: "50px",
-            marginLeft: "20px",
+            marginTop: "10%",
+            marginLeft: "5%",
           }}>  <div style={{fontWeight: "bold"}}>
             
             {sleep.Movements_per_hour}
@@ -147,8 +137,8 @@ const HomeContainer: React.FC<Props> = ({
         
             <div style={{
               position: "absolute",
-              marginTop: "125px",
-              marginLeft: "20px",
+              marginTop: "30%",
+              marginLeft: "5%",
             }}>
             <div style={{fontWeight: "bold"}}>
                 {sleep.Regularity}
@@ -159,8 +149,8 @@ const HomeContainer: React.FC<Props> = ({
       
           <div style={{
             position: "absolute",
-            marginTop: "125px",
-            marginLeft: "250px",
+            marginTop: "30%",
+            marginLeft: "65%",
           }}>
           <div style={{fontWeight: "bold"}}>
             {sleep.Time_in_bed}
@@ -172,8 +162,8 @@ const HomeContainer: React.FC<Props> = ({
     
         <div style={{
           position: "absolute",
-          marginTop: "190px",
-          marginLeft: "130px",
+          marginTop: "55%",
+          marginLeft: "35%",
         }}>
           <IonButton href="/my/food">Add Food</IonButton>
       </div>
