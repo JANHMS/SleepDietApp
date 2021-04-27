@@ -7,14 +7,20 @@ import {
     useIonToast,
     IonLabel,
     IonSegment,
-    IonSegmentButton
+    IonSegmentButton, IonIcon
 } from "@ionic/react";
 import React, {useEffect, useState} from "react";
-import FoodDetailsComponent from "./details/FoodDetailsComponent";
+import FoodDetailsComponent from "./dinnerDetails/FoodDetailsComponent";
 import {NotesComponent} from "./notes/NotesComponent";
 import moment from "moment/moment";
 import {firestore} from "../../firebase";
 import {Constant} from "../../consts";
+import {helpCircleOutline, home} from "ionicons/icons";
+import ModalExample from "./experiment/ModalExample";
+import CustomDivider from "./divider/CustomDivider";
+import CategoryPopup from "./popup/categories/CategoryPopup";
+import DinnerDetailsPopup from "./popup/dinnerDetails/DinnerDetailsPopup";
+import NotesPopup from "./popup/notes/NotesPopup";
 
 interface ContainerProps {
     name: string;
@@ -203,12 +209,12 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 setSelectedDate(date.split(" ")[0])
                 setSelectedTime(date.split(" ")[1])
             }} defaultValue={selectedDate + " " + selectedTime}/>
-            <IonItemDivider color="tertiary">Dinner</IonItemDivider>
             {!experiment ? (
                 <div>
+                    <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
                     <FoodCategoriesComponent updateParent={categories => setSelectedCategories(categories)}
                                              defaultValue={selectedCategories}/>
-                    <IonItemDivider color="tertiary">Dinner details</IonItemDivider>
+                    <CustomDivider label="Dinner details" content={DinnerDetailsPopup} cssClass="detailsHint"/>
                     <FoodDetailsComponent
                         updateWellness={value => setWellness(value.toString())}
                         updateFullness={value => setFullness(value.toString())}
@@ -221,6 +227,11 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                 </div>
             ) : (
                 <div>
+                    {activeSegment === "category" ? (
+                        <CustomDivider label="Dinner" content={CategoryPopup} cssClass="categoryHint"/>
+                    ) : (
+                        <CustomDivider label="Dinner details" content={DinnerDetailsPopup} cssClass="detailsHint"/>
+                    )}
                     <IonSegment onIonChange={e => setActiveSegment(e.detail.value!)} value={activeSegment}>
                         <IonSegmentButton value="category">
                             <IonLabel>Category</IonLabel>
@@ -245,7 +256,7 @@ const AddFoodContainer: React.FC<ContainerProps> = ({name}) => {
                     )}
                 </div>
             )}
-            <IonItemDivider color="tertiary">Notes</IonItemDivider>
+            <CustomDivider label="Notes" content={NotesPopup} cssClass="notesHint"/>
             <NotesComponent updateParent={notes => setNotes(notes)} defaultValue={notes}/>
             <IonButton
                 className="save"

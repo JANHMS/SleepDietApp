@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
-    IonInput,
     IonItem,
+    IonTextarea,
 } from '@ionic/react';
 import "./NotesComponent.css";
 
@@ -24,7 +24,7 @@ export const NotesComponent: React.FC<NotesProps> = ({updateParent, defaultValue
 
     return (
         <IonItem>
-            <IonInput
+            <IonTextarea
                 placeholder="Add your notes here..."
                 value={text}
                 onIonChange={e => setText(e.detail.value!)}

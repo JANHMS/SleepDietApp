@@ -1,0 +1,9 @@
+.detailsHint .modal-wrapper {
+    width: 84%;
+    height: 30%;
+    border-radius: 8px;
+}
+
+ion-text p {
+    margin: 8px 20px;
+}

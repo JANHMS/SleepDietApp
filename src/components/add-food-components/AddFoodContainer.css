@@ -8,3 +8,7 @@
 ion-button.save {
     margin: 12px;
 }
+
+ion-icon.divider {
+    margin: 3px 4px;
+}

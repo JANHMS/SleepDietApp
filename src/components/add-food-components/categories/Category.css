@@ -2,7 +2,7 @@ ion-card-title {
     font-size: small;
 }
 
-ion-card {
+ion-card.categoryCard {
     width: 56px;
     height: 56px;
     margin: 8px -2px 8px 8px;

@@ -1,5 +1,5 @@
 export enum CategoryType {
-    Fruit = "Fruit",
+    Fruits = "Fruits",
     Vegetables = "Vegetables",
     Grains = "Grains",
     Dairy = "Dairy",
