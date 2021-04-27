@@ -41,7 +41,7 @@ const HomeContainer: React.FC<Props> = ({
           </IonText>
           <div style={{
             position: "absolute",
-            marginTop: "5%",
+            marginTop: "2%",
             fontWeight: "bold",
             marginLeft: "5%",
           }}>
@@ -52,7 +52,7 @@ const HomeContainer: React.FC<Props> = ({
 
           <div style={{
             position: "absolute",
-            marginTop: "5%",
+            marginTop: "2%",
             marginLeft: "65%",
             fontWeight: "bold",
           }}>
@@ -64,7 +64,7 @@ const HomeContainer: React.FC<Props> = ({
         
           <div style={{
             position: "absolute",
-            marginTop: "10%",
+            marginTop: "5%",
             marginLeft: "39%",
             textAlign: "center",
             textOverflow: "ellipsis",
@@ -78,7 +78,7 @@ const HomeContainer: React.FC<Props> = ({
   
           <div style={{
             position: "absolute",
-            marginTop: "25%",
+            marginTop: "20%",
             marginLeft: "65%",
           }}>
           <div style={{fontWeight: "bold"}}>
@@ -91,7 +91,7 @@ const HomeContainer: React.FC<Props> = ({
           
           <div style={{
             position: "absolute",
-            marginTop: "25%",
+            marginTop: "20%",
             marginLeft: "5%",
           }}>
           <div style={{fontWeight: "bold"}}>
@@ -104,14 +104,14 @@ const HomeContainer: React.FC<Props> = ({
 
           <div style={{
               position: "relative",
-              marginTop: "50%",
+              marginTop: "35%",
             }}>
               <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
             </div>
             
             <div style={{
               position: "absolute",
-              marginTop: "10%",
+              marginTop: "0%",
               marginLeft: "65%",
             }}>
             <div style={{fontWeight: "bold"}}>
@@ -125,7 +125,7 @@ const HomeContainer: React.FC<Props> = ({
           
           <div style={{
             position: "absolute",
-            marginTop: "10%",
+            marginTop: "0%",
             marginLeft: "5%",
           }}>  <div style={{fontWeight: "bold"}}>
             
@@ -137,7 +137,7 @@ const HomeContainer: React.FC<Props> = ({
         
             <div style={{
               position: "absolute",
-              marginTop: "30%",
+              marginTop: "22%",
               marginLeft: "5%",
             }}>
             <div style={{fontWeight: "bold"}}>
@@ -149,7 +149,7 @@ const HomeContainer: React.FC<Props> = ({
       
           <div style={{
             position: "absolute",
-            marginTop: "30%",
+            marginTop: "22%",
             marginLeft: "65%",
           }}>
           <div style={{fontWeight: "bold"}}>
@@ -162,7 +162,7 @@ const HomeContainer: React.FC<Props> = ({
     
         <div style={{
           position: "absolute",
-          marginTop: "55%",
+          marginTop: "40%",
           marginLeft: "35%",
         }}>
           <IonButton href="/my/food">Add Food</IonButton>

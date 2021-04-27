@@ -48,8 +48,7 @@ const DonoutChartContainer = ({
         <div  style={{
           marginLeft: "-25%",
           color: "white",
-          fontSize:"17px",
-
+          fontSize:"70%",
         }}>
         Sleep Quality
         </div>
