@@ -2,8 +2,6 @@
 import './AnalyticsContainer.css';
 import CreateSleepBarCharts from "../charts/CreateSleepBarCharts";
 import CreateFoodCharts from "../charts/CreateFoodCharts";
-import ToggleBar from './ToggleBar';
-import { IonContent,IonPage  } from "@ionic/react";
 
 interface ContainerProps {
     name: string;

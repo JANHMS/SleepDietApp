@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Redirect} from 'react-router';
-import {useAuth} from '../auth';
+import {useAuthInit} from '../auth';
 import LoginForm from '../components/login-flow/LoginForm';
 import {auth} from '../firebase';
 import {useHistory} from "react-router-dom";
 import {useIonToast} from "@ionic/react";
 
 const LoginPage: React.FC = () => {
-    const {loggedIn} = useAuth();
+    const authObj = useAuthInit();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [status, setStatus] = useState({loading: false, error: false});
@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
             const credential = await auth.signInWithEmailAndPassword(email, password);
             console.log('credential:', credential);
             // toast("Logged in")
-            history.push("/my/home")
+            history.push("/home")
             setStatus({loading: false, error: false});
         } catch (error) {
             setStatus({loading: false, error: true});
@@ -33,8 +33,8 @@ const LoginPage: React.FC = () => {
         }
     };
 
-    if (loggedIn) {
-        return <Redirect to="/my/home"/>;
+    if (authObj.auth?.loggedIn) {
+        return <Redirect to="/home"/>;
     }
     return (
         <LoginForm

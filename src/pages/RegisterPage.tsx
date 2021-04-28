@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
-import {Redirect, useHistory} from 'react-router';
-import {useAuth} from '../auth';
+import {useHistory} from 'react-router';
 import RegisterForm from '../components/login-flow/RegisterForm';
-import {toast} from '../toast';
 import {register} from "../api/auth";
 import {useIonToast} from "@ionic/react";
 
 const RegisterPage: React.FC = () => {
     const history = useHistory();
-    const {loggedIn} = useAuth();
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const [avatar, setAvatar] = useState('');
@@ -24,7 +21,7 @@ const RegisterPage: React.FC = () => {
                 setStatus({loading: true, error: false});
                 register({email, password, fullName, avatar})
                     .then(
-                        () => history.push('/my/home'),
+                        () => history.push('/home'),
                         () => present({
                             buttons: [{text: 'OK', handler: () => dismiss()}],
                             message: 'Registration failed',
@@ -53,9 +50,6 @@ const RegisterPage: React.FC = () => {
         setStatus({loading: false, error: false})
     };
 
-    if (loggedIn) {
-        return <Redirect to="/my/home"/>;
-    }
     return (
         <RegisterForm
             email={email}

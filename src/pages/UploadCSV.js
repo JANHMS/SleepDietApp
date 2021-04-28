@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { IonContent, IonPage } from "@ionic/react"
 import Dropzone from 'react-dropzone';
-import { firestore, storage } from '../firebase'
+import { firestore } from '../firebase'
 import { toast } from "../toast"
 import csv from 'csv';
-import ToggleBar from "../components/ToggleBar";
 
 const userId = "1"
 
@@ -102,7 +101,7 @@ class UploadCSV extends Component {
     return (
       <IonPage>
         <IonContent>
-      <div align="center" oncontextmenu="return false">
+      <div align="center" onContextMenu={() => false}>
         <br /><br /><br />
         <div className="dropzone">
           <Dropzone accept=".csv" onDropAccepted={this.onDrop.bind(this)}>            
@@ -112,7 +111,6 @@ class UploadCSV extends Component {
         <h2>Upload or drop your <font size={fontSize} color="#00A4FF">CSV</font><br /> file here.</h2>
       </div>
     </IonContent>
-    <ToggleBar />
   </IonPage>
     )
   }

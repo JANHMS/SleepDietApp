@@ -1,9 +1,7 @@
-import { IonContent, IonLoading, IonInput, IonIcon, IonButton, IonHeader, IonPage, IonTitle, IonToolbar, IonFooter, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonFab, IonFabButton, IonText } from '@ionic/react';
+import { IonButton, IonText } from '@ionic/react';
 import React from 'react';
 import './HomeContainer.css';
-import ToggleBar from '../ToggleBar';
 import DonoutChartContainer from '../../charts/DonoutChartContainer';
-import HeaderBar from "./HeaderImage";
 import cat from '../../images/cat.png';
 
 interface Props {
@@ -154,10 +152,8 @@ const HomeContainer: React.FC<Props> = ({
           marginTop: "40%",
           marginLeft: "35%",
         }}>
-          <IonButton href="/my/food">Add Food</IonButton>
+          <IonButton href="/food">Add Food</IonButton>
       </div>
-    
-      <ToggleBar/>
     </div>
   );
 };
