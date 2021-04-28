@@ -1,6 +1,6 @@
-import { IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {IonButton, IonContent, IonHeader, IonLoading, IonPage, IonTitle, IonToolbar} from '@ionic/react';
 import './HomeTab.css';
-import HomeContainer from "../components/HomeContainer";
+import HomeContainer from "../components/login-flow/HomeContainer";
 import ToggleBar from '../components/ToggleBar';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../auth';
@@ -8,6 +8,7 @@ import { firestore } from '../firebase';
 import { auth } from '../firebase';
 import { useHistory } from "react-router";
 import { toast } from '../toast';
+import AnalyticsContainer from "../components/AnalyticsContainer";
 
 
 const HomeTab: React.FC = () => {
@@ -31,7 +32,7 @@ useEffect(() => {
       const userData = doc.data()
       await setUser(userData)
     })
-    
+
   const sleepPromise = new Promise((resolve, reject) => {
     resolve(
       firestore.collection("users").doc(userId).collection('sleep')
@@ -50,7 +51,7 @@ useEffect(() => {
           // console.log("This is sleep", sleep)
           // console.log("This is food", food)
           })
-        })  
+        })
       )
     }
   )
@@ -74,7 +75,7 @@ useEffect(() => {
 
   async function logout() {
   history.push('/')
-  
+
   setLoadingLogout(true)
   toast("Logged out")
   setLoadingLogout(false)
@@ -82,10 +83,36 @@ useEffect(() => {
 }
 
 
-  return (
-    sleep && !loading && food && DinnerTime ? 
-    <HomeContainer logout={logout} sleep={sleep} food={food} DinnerTime={DinnerTime}/>
-    : <IonLoading isOpen={loading}/>
+  return (sleep && !loading && food && DinnerTime ?
+          (
+              <IonPage>
+                  <IonHeader>
+                      <IonToolbar>
+                          <IonTitle>Home</IonTitle>
+                      </IonToolbar>
+                  </IonHeader>
+                  <IonContent fullscreen>
+                      <IonHeader collapse="condense">
+                          <IonToolbar>
+                              <IonTitle size="large">Home</IonTitle>
+                              <IonButton
+                                  style={{
+                                      marginTop:"-15%",
+                                      marginLeft:"70%"
+                                  }}
+                                  onClick={logout}
+                              >Logout</IonButton>
+                          </IonToolbar>
+                      </IonHeader>
+                      <HomeContainer sleep={sleep} food={food} DinnerTime={DinnerTime}/>
+                  </IonContent>
+                  <ToggleBar/>
+              </IonPage>
+          )
+            :
+          (
+              <IonLoading isOpen={loading}/>
+          )
   );
 };
 

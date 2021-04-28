@@ -1,15 +1,9 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
-  IonIcon,
-  IonLabel,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import {analyticsSharp, ellipse, home, moonSharp, pizzaSharp, square, triangle} from 'ionicons/icons';
 import HomeTab from './pages/HomeTab';
 import AddFoodTab from './pages/AddFoodTab';
 import AnalyticsTab from './pages/AnalyticsTab';
@@ -34,7 +28,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Homescreen from './components/HomeScreen';
+import IntroPage from './components/login-flow/IntroPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
@@ -42,7 +36,7 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/screen" component={Homescreen} exact/>
+        <Route path="/intro" component={IntroPage} exact/>
         <Route path="/login" component={LoginPage} exact/>
         <Route path="/register" component={RegisterPage} exact/>
         <Route exact path="/my/home">
@@ -61,7 +55,7 @@ const App: React.FC = () => (
           <MySleepDataTab />
         </Route>
         <Route exact path="/">
-          <Redirect to="/screen" />
+          <Redirect to="/intro" />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

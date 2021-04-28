@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import { useAuth } from '../auth';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/login-flow/LoginForm';
 import { auth } from '../firebase';
 import { toast } from '../toast';
 import { useHistory } from "react-router-dom";

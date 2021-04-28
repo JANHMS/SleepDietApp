@@ -1,13 +1,13 @@
 import { IonContent, IonLoading, IonInput, IonIcon, IonButton, IonHeader, IonPage, IonTitle, IonToolbar, IonFooter, IonList, IonItem, IonThumbnail, IonImg, IonLabel, IonFab, IonFabButton, IonText } from '@ionic/react';
 import React from 'react';
 import './HomeContainer.css';
-import ToggleBar from './ToggleBar';
-import DonoutChartContainer from '../charts/DonoutChartContainer';
+import ToggleBar from '../ToggleBar';
+import DonoutChartContainer from '../../charts/DonoutChartContainer';
 import HeaderBar from "./HeaderImage";
-import cat from'../images/cat.png';
+import cat from '../../images/cat.png';
 
 interface Props {
-  logout: any;
+  // logout: any;
   // loadingLogout: boolean;
   // user: any;
   sleep: any;
@@ -16,7 +16,6 @@ interface Props {
 }
 
 const HomeContainer: React.FC<Props> = ({ 
-  logout,
   // loadingLogout,
   // user,
   food,
@@ -24,27 +23,8 @@ const HomeContainer: React.FC<Props> = ({
   DinnerTime
  }) => {
     return (
-      <IonPage>
-        <IonHeader>
-          <IonToolbar color="light">
-            <IonTitle size="large">
-              <div style={{ 
-                marginTop:"5%",
-               }}>
-                Home
-              </div>
-            </IonTitle>
-            <IonButton
-              style={{
-                marginTop:"-15%",
-                marginLeft:"70%"
-              }}
-              onClick={logout}
-            >Logout</IonButton>
-          </IonToolbar>
-        </IonHeader>
-          <IonContent fullscreen color="dark"> 
-          <IonText 
+      <div className="container">
+          <IonText
             style={{fontSize: "10px", color: "white", postion: "absolue", marginLeft: "2%" }}
             > Hi user here is your data. 
           </IonText>
@@ -177,9 +157,8 @@ const HomeContainer: React.FC<Props> = ({
           <IonButton href="/my/food">Add Food</IonButton>
       </div>
     
-      </IonContent>
       <ToggleBar/>
-    </IonPage>     
+    </div>
   );
 };
 

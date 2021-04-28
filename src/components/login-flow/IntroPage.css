@@ -1,0 +1,72 @@
+ion-button.btnSignIn {
+    width: 80px;
+    margin: 24px 0;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.introPage {
+    background-color: white;
+}
+
+ion-content.pageContent::part(background) {
+    background-color: white;
+}
+
+ion-text.subtitle, ion-title.title {
+    color: #3A71FF;
+}
+
+ion-list.outcomesList {
+    background-color: white;
+    margin-top: 32px;
+}
+
+ion-list ion-item, ion-list ion-icon {
+    color: #003585;
+}
+
+ion-item::part(native) {
+    background-color: white;
+}
+
+ion-item.listElement {
+    font-weight: 600;
+    margin-left: 36px;
+}
+
+ion-icon.listItem {
+    margin-right: 12px;
+}
+
+.title, .subtitle {
+    font-family: "Annie Use Your Telescope", sans-serif;
+}
+
+.title {
+    font-size: 48px;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+ion-text.wantToImproveText {
+    color: black;
+    font-size: 14px;
+}
+
+.wantToImproveText p {
+    margin: 8px;
+}
+
+.signUpContainer {
+    display: flex;
+    margin-top: 32px;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect,useHistory } from 'react-router';
 import { useAuth } from '../auth';
-import RegisterForm from '../components/RegisterForm';
+import RegisterForm from '../components/login-flow/RegisterForm';
 import { toast } from '../toast';
 import { register } from "../api/auth";
 
