@@ -42,7 +42,7 @@ const MySleepDataTab: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
                 <MySleepDataContainer 
-                  name="My sleep data page"           
+                  name="Import sleep data"
                   handleAddDataClick={handleAddDataClick}/>
             </IonContent>
         </IonPage>
