@@ -3,6 +3,21 @@ import { Pie } from 'react-chartjs-2';
 
 const PieChart = (props) => {
 
+    const getValues = (dictionary ) => { 
+        var count = []
+        if (dictionary !== undefined && dictionary !== null){
+            var keys = Object.keys(dictionary);
+            keys.forEach(function(key){
+                count.push(dictionary[key]);
+            });
+            var total = count.reduce((a, b) => a + b, 0)
+            return count.map(x => x * 100/total);
+        }
+        else{
+            return count
+        }
+    } 
+    
     return (
         <div>
           <Pie data={
@@ -10,7 +25,7 @@ const PieChart = (props) => {
                 labels: props.labels,
                 datasets: [{
                     label: 'Food categories',
-                    data: props.data,
+                    data: getValues(props.data[props.index]),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(255, 159, 64, 0.2)',
