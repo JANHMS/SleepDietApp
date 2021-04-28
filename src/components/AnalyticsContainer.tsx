@@ -24,6 +24,13 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
     const [loading_sleep, setSleepLoading] = useState(true);
     const [loading_food, setFoodLoading] = useState(true);
 
+    const reestructure_sleep = (d,arra) => {
+        return arra.push( { Time_asleep_seconds: d.Time_asleep_seconds,
+                            End: moment(d.End).subtract(1, "days").format('YYYY-MM-DD'),
+                            Sleep_quality: d.Sleep_quality.slice(0, d.Sleep_quality.indexOf('%')),
+                            Weekday: d.Weekday } );
+    };
+
     const fetchSleepData = () => {
         firestore.collection('users')
             .doc(userId)
@@ -31,6 +38,8 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
             .get()
             .then(snapshot => {
                 const sleepData = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+                // If the format is different then convert it to YYYY-MM-DD HH:mm:ss
+                // TO DO
                 if (sleepData) {
                     setAllSleepData(sleepData)
                     setSleepLoading(false); 

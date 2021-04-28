@@ -1,10 +1,10 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import RadarChart from "../charts/RadarChart";
+import RadarChart from "./RadarChart";
 import { IonGrid, IonRow, IonTitle } from '@ionic/react';
 import { IonButton } from '@ionic/react';
 import * as moment from "moment";
-import PieChart from "../charts/PieChart";
+import PieChart from "./PieChart";
 import { IonItem, IonLabel, IonSelect, IonSelectOption } from '@ionic/react';
 import DataFrame from 'dataframe-js';
 
@@ -29,7 +29,7 @@ const CreateFoodCharts = (props) => {
 
     const reestructure_sleep = (d,arra) => {
         return arra.push( { Time_asleep_seconds: d.Time_asleep_seconds,
-                            End: moment(d.End).format('YYYY-MM-DD'),
+                            End: moment(d.End).subtract(1, "days").format('YYYY-MM-DD'),
                             Sleep_quality: d.Sleep_quality.slice(0, d.Sleep_quality.indexOf('%')),
                             Weekday: d.Weekday } );
     };
@@ -132,12 +132,17 @@ const CreateFoodCharts = (props) => {
 
     const getValues = (dictionary ) => { 
         var count = []
-        var keys = Object.keys(dictionary);
-        keys.forEach(function(key){
-            count.push(dictionary[key]);
-        });
-        var total = count.reduce((a, b) => a + b, 0)
-        return count.map(x => x * 100/total);
+        if(dictionary !== undefined || dictionary !== null){
+            var keys = Object.keys(dictionary);
+            keys.forEach(function(key){
+                count.push(dictionary[key]);
+            });
+            var total = count.reduce((a, b) => a + b, 0)
+            return count.map(x => x * 100/total);
+        }
+        else{
+            return count
+        }
     }    
 
     

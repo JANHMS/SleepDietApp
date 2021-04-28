@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import WeekdayChart from "../charts/WeekdayChart";
-import MonthChart from "../charts/MonthChart";
-import DayChart from "../charts/DayChart";
+import WeekdayChart from "./WeekdayChart";
+import MonthChart from "./MonthChart";
+import DayChart from "./DayChart";
 import DataFrame from 'dataframe-js';
 import { IonButton } from '@ionic/react';
 import { IonGrid, IonRow } from '@ionic/react';

@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import CategoriesCountChart from "../charts/CategoriesCountChart";
+import CategoriesCountChart from "./CategoriesCountChart";
 
 // To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
@@ -30,7 +30,6 @@ const CreateFoodCharts = (props) => {
         }
         var categoryLabels = Object.keys( categoryCount )
         data.map( item => {
-            console.log(item)
             if(item['Category'] !== undefined){
                 var db_categories = item['Category']
                 for (var i = 0; i < categoryLabels.length; i++) {
