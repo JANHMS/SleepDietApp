@@ -4,7 +4,6 @@ import CategoriesCountChart from "../charts/CategoriesCountChart";
 
 // To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
-
     // To store count data
     const [categoriesCount, setCategoriesCount] = useState([]);
 
@@ -30,13 +29,15 @@ const CreateFoodCharts = (props) => {
             "Vegetables": 0,
         }
         var categoryLabels = Object.keys( categoryCount )
-
         data.map( item => {
-            var db_categories = item['Category']
-            for (var i = 0; i < categoryLabels.length; i++) {
-                var category = categoryLabels[i]
-                if( db_categories.includes(category) ){
-                    categoryCount[category] = categoryCount[category] + 1
+            console.log(item)
+            if(item['Category'] !== undefined){
+                var db_categories = item['Category']
+                for (var i = 0; i < categoryLabels.length; i++) {
+                    var category = categoryLabels[i]
+                    if( db_categories.includes(category) ){
+                        categoryCount[category] = categoryCount[category] + 1
+                    }
                 }
             }
         } );
