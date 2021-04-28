@@ -6,6 +6,7 @@ import DayChart from "./DayChart";
 import DataFrame from 'dataframe-js';
 import { IonButton } from '@ionic/react';
 import { IonGrid, IonRow } from '@ionic/react';
+import * as moment from "moment";
 
 const CreateSleepBarCharts = (props) => {
     // To store data reestructured for the graphs
@@ -39,9 +40,9 @@ const CreateSleepBarCharts = (props) => {
     // Function to reestructure the original data if needed
     const reestructure = (d,arra) => {
       return arra.push( { Time_asleep_seconds: d.Time_asleep_seconds,
-                          End: d.End,
+                          End: moment(d.End).format('YYYY-MM-DD'),
                           Weekday: d.Weekday,
-                          Month: d.Month } );  //Start: splitted.toString().replace(/\s/g, '')
+                          Month: d.Month } );
     };
 
     // Function to get the average sleep over the column_to_groupby variable
