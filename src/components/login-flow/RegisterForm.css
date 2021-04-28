@@ -6,8 +6,9 @@ ion-content.pageContent::part(background) {
     background-color: white;
 }
 
-.title, .subtitle {
-    font-family: "Annie Use Your Telescope", sans-serif;
+ion-list.inputList {
+    background-color: white;
+    margin: 0 32px;
 }
 
 .title {
@@ -20,28 +21,23 @@ ion-content.pageContent::part(background) {
     text-align: center;
 }
 
-ion-list.inputList {
-    background-color: white;
-    margin: 0 32px;
-}
-
-ion-text.doNotHaveAccountText {
+ion-text.alreadyHaveAccountText {
     color: black;
     font-size: 14px;
 }
 
-.doNotHaveAccountText p {
+.alreadyHaveAccountText p {
     margin: 8px;
 }
 
 .signUpContainer {
     display: flex;
-    margin-top: 32px;
+    margin-top: 4px;
 }
 
-ion-button.btnLogin {
-    width: 80px;
-    margin: 24px 0;
+ion-button.btnRegister {
+    /*width: 80px;*/
+    margin: 16px 0;
 }
 
 .buttonContainer {
