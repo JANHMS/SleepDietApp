@@ -1,0 +1,55 @@
+.introPage {
+    background-color: white;
+}
+
+ion-content.pageContent::part(background) {
+    background-color: white;
+}
+
+.title, .subtitle {
+    font-family: "Annie Use Your Telescope", sans-serif;
+}
+
+.title {
+    font-size: 48px;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+ion-list.inputList {
+    background-color: white;
+    margin: 0 32px;
+}
+
+ion-text.errorText {
+    margin: 32px;
+}
+
+ion-text.doNotHaveAccountText {
+    color: black;
+    font-size: 14px;
+}
+
+.doNotHaveAccountText p {
+    margin: 8px;
+}
+
+.signUpContainer {
+    display: flex;
+    margin-top: 32px;
+}
+
+ion-button.btnLogin {
+    width: 80px;
+    margin: 24px 0;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
