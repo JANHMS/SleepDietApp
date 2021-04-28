@@ -25,16 +25,25 @@ const HomeContainer: React.FC<Props> = ({
  }) => {
     return (
       <IonPage>
-        <IonContent fullscreen color="dark">
-          <IonHeader collapse="condense">
-            <IonToolbar color="light">
-              <IonTitle size="large">Home</IonTitle>
-              <IonButton
-                style={{ marginLeft:"65%"}}
-                onClick={logout}
-              >Logout</IonButton>
-            </IonToolbar>
-          </IonHeader>
+        <IonHeader>
+          <IonToolbar color="light">
+            <IonTitle size="large">
+              <div style={{ 
+                marginTop:"5%",
+               }}>
+                Home
+              </div>
+            </IonTitle>
+            <IonButton
+              style={{
+                marginTop:"-15%",
+                marginLeft:"70%"
+              }}
+              onClick={logout}
+            >Logout</IonButton>
+          </IonToolbar>
+        </IonHeader>
+          <IonContent fullscreen color="dark"> 
           <IonText 
             style={{fontSize: "10px", color: "white", postion: "absolue", marginLeft: "2%" }}
             > Hi user here is your data. 
