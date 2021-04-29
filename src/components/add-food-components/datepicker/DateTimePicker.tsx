@@ -25,7 +25,7 @@ export const DateTimePicker: React.FC<DateTimeProps> = ({updateParent, defaultVa
     return (
         <div>
             <IonItem>
-                <IonLabel>Date of dinner</IonLabel>
+                <IonLabel className="smallLabel">Date of dinner</IonLabel>
                 <IonDatetime displayFormat={Constant.dateFormatDisplay} min="2015" max="2021" value={selectedDate}
                              onIonChange={e => {
                                  setSelectedDate(e.detail.value!);
@@ -34,7 +34,7 @@ export const DateTimePicker: React.FC<DateTimeProps> = ({updateParent, defaultVa
                              }}/>
             </IonItem>
             <IonItem>
-                <IonLabel>Time of dinner</IonLabel>
+                <IonLabel className="smallLabel">Time of dinner</IonLabel>
                 <IonDatetime displayFormat={Constant.timeFormatDisplay} value={selectedDate}
                              onIonChange={e => setSelectedDate(e.detail.value!)}/>
             </IonItem>

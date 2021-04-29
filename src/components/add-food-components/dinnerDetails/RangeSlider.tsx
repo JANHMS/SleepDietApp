@@ -27,7 +27,7 @@ export const RangeSlider: React.FC<RangeSliderProps> = ({title, labels, onChange
 
     return (
         <IonItem>
-            <IonLabel position="floating">{title}</IonLabel> <br/>
+            <IonLabel className="smallLabel" position="floating">{title}</IonLabel> <br/>
             <IonRange
                 // pin={true}
                 min={1}
