@@ -132,7 +132,7 @@ const CreateFoodCharts = (props) => {
 
     const getValues = (dictionary ) => { 
         var count = []
-        if(dictionary !== undefined || dictionary !== null){
+        if(dictionary !== undefined && dictionary !== null){
             var keys = Object.keys(dictionary);
             keys.forEach(function(key){
                 count.push(dictionary[key]);
