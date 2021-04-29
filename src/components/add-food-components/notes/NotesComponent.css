@@ -1,0 +1,7 @@
+ion-textarea.customInput {
+    font-size: small;
+}
+
+ion-item {
+    --highlight-color-focused: none;
+}

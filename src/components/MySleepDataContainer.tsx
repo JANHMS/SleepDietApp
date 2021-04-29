@@ -14,8 +14,8 @@ const MySleepDataContainer: React.FC<ContainerProps> = ({
     return (
         <div className="container">
             <strong>{name}</strong>
-            <p>My Sleep Data Container</p>
-            <IonButton onClick={handleAddDataClick}>Add Data</IonButton>
+            <br/>
+            <IonButton onClick={handleAddDataClick}>Choose CSV</IonButton>
         </div>
     );
 };

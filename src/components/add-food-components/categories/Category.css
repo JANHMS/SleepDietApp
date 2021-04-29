@@ -1,0 +1,47 @@
+ion-card-title {
+    font-size: small;
+}
+
+ion-card.categoryCard {
+    width: 56px;
+    height: 56px;
+    margin: 8px -2px 8px 8px;
+    background-size: cover;
+}
+
+ion-card.selected {
+    border: #50c8ff 3px solid;
+}
+
+.fruit {
+    background-image: url('../../../images/fruits.jpg');
+}
+
+.veg {
+    background-image: url('../../../images/vegetables.jpg');
+}
+
+.grains {
+    background-image: url('../../../images/grains.jpg');
+}
+
+.dairy {
+    background-image: url('../../../images/dairy.jpg');
+}
+
+.protein {
+    background-image: url('../../../images/protein_food.jpg');
+}
+
+.snacks {
+    background-image: url('../../../images/snacks.jpg');
+}
+
+.coffee {
+    background-image: url('../../../images/caffeinated_drinks.jpg');
+}
+
+.softDrinks {
+    background-image: url('../../../images/soft_drinks.jpg');
+}
+

@@ -1,0 +1,9 @@
+.notesHint .modal-wrapper {
+    width: 84%;
+    height: 36%;
+    border-radius: 8px;
+}
+
+ion-text p {
+    margin: 8px 20px;
+}

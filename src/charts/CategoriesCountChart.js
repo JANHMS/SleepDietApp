@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const CategoriesCountChart = (props) => {
+
     const getLabels = (labels) => { 
         var reLabels = [];
         labels.forEach(function(key){
@@ -12,7 +13,6 @@ const CategoriesCountChart = (props) => {
             }
             reLabels.push( separated );
         });
-        // console.log(reLabels)
         return reLabels;
     }
 
@@ -26,7 +26,6 @@ const CategoriesCountChart = (props) => {
         return count.map(x => x * 100/total);
     }
 
-    // set data
     const [barData, setBarData] = useState({
         labels: getLabels(props.labels),
         datasets: [
@@ -39,6 +38,28 @@ const CategoriesCountChart = (props) => {
             },
         ],
         });
+
+    // set data
+    useEffect(() => {
+        if (props.data) {
+            setBarData(
+                {
+                    labels: getLabels(props.labels),
+                    datasets: [
+                        {
+                        label: props.name,
+                        data: getValues(props.data),
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 0.6)',
+                        borderWidth: 1,
+                        },
+                    ],
+                }                
+            )             
+        } else {
+            console.log("no foodData")
+        }
+    }, []);            
 
     return (
         <div>
@@ -65,23 +86,32 @@ const CategoriesCountChart = (props) => {
                             },                            
                             label: function(tooltipItem, data) {
                                 var value = data.datasets[0].data[tooltipItem.index];
-                                return value + "%";
+                                return value.toFixed(0) + "%";
                             }
                         }
                     },
                      title: {
-                         display: true,
+                         display: false,
                          text: 'Type of food eaten',
                          fontSize: 20
                      },
-                     plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: 'rgb(255, 99, 132)'
-                            }
+                    legend: {
+                        display: true,
+                        align: 'end',
+                        labels: {
+                            boxWidth: 20,
+                            padding: 10
+                        },
+                        onClick: (e) => e.stopPropagation()
+                    },  
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
                         }
-                    }
+                    }                                      
                  }
                } />
         </div>

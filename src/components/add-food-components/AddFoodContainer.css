@@ -1,0 +1,14 @@
+.foodContainer {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+ion-button.save {
+    margin: 12px;
+}
+
+ion-icon.divider {
+    margin: 3px 4px;
+}

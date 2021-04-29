@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import DataFrame from 'dataframe-js';
 import * as moment from "moment";
@@ -38,14 +38,38 @@ const DayChart = (props) => {
         if(longerFormat) {
           hour_minutes = hours + "h y " + minutes + "min"
         } else{
+          if(minutes>=0 && minutes<10 ){
+            minutes = '0' + minutes
+          }       
+          hour_minutes =  hours + ":" + minutes    
           if(hours == 0){
             hour_minutes = 0
-          } else{
-            hour_minutes =  hours + ":" + minutes
-          }
+          } 
         }
-        return hour_minutes + "h";
+        return hour_minutes;
     };
+
+    // set data
+    useEffect(() => {
+      if(!props.loading) {
+          setBarData(
+            {
+              labels: getxy(props.data)['End'],
+              datasets: [
+                {
+                  label: props.name,
+                  data: getxy(props.data)['Time_asleep_seconds'],
+                  backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                  borderColor: 'rgba(54, 162, 235, 0.6)',
+                  borderWidth: 1,
+                },
+              ],
+            }          
+          )             
+      } else {
+          console.log("no foodData")
+      }
+    }, []);     
 
     return (
         <div>
@@ -73,7 +97,7 @@ const DayChart = (props) => {
                                 ticks: {
                                     beginAtZero: true,
                                     callback: function(data, index, datasets) {
-                                      return formatTime(data, false);
+                                      return formatTime(data, false) + "h";
                                     }
                                 }
                             }
@@ -92,10 +116,27 @@ const DayChart = (props) => {
                			  }
                			 },
                      title: {
-                         display: true,
+                         display: false,
                          text: 'Sleeping time by day',
                          fontSize: 20
-                     }
+                     },
+                     legend: {
+                      display: true,
+                      align: 'end',
+                      labels: {
+                          boxWidth: 20,
+                          padding: 10
+                      },
+                      onClick: (e) => e.stopPropagation()
+                    },  
+                    layout: {
+                        padding: {
+                            left: 0,
+                            right: 0,
+                            top: 0,
+                            bottom: 0
+                        }
+                    }                      
                  }
                } />
         </div>
