@@ -71,7 +71,7 @@ const HomeTab: React.FC = () => {
     async function logout() {
         setLoadingLogout(true)
         await auth.signOut()
-        toast("Logged out")
+        // toast("Logged out")
         setLoadingLogout(false)
         history.push('/')
     }
@@ -79,24 +79,8 @@ const HomeTab: React.FC = () => {
     return (sleep && !loading && food && DinnerTime ?
             (
                 <IonPage>
-                    <IonHeader>
-                        <IonToolbar>
-                            <IonTitle>Home</IonTitle>
-                        </IonToolbar>
-                    </IonHeader>
-                    <IonContent fullscreen>
-                        <IonHeader collapse="condense">
-                            <IonToolbar>
-                                <IonTitle size="large">Home</IonTitle>
-                                <IonButton
-                                    onClick={logout}
-                                >Logout</IonButton>
-                            </IonToolbar>
-                        </IonHeader>
-                        <IonButton
-                            onClick={logout}
-                        >Logout</IonButton>
-                        <HomeContainer sleep={sleep} food={food} DinnerTime={DinnerTime}/>
+                    <IonContent overflow-scroll="false" className="homeTabContent">
+                        <HomeContainer logout={logout} sleep={sleep} food={food} DinnerTime={DinnerTime}/>
                     </IonContent>
                 </IonPage>
             )

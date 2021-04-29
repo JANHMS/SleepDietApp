@@ -1,161 +1,112 @@
-import { IonButton, IonText } from '@ionic/react';
+import {IonButton, IonTitle, IonText, IonIcon} from '@ionic/react';
 import React from 'react';
 import './HomeContainer.css';
-import DonoutChartContainer from '../../charts/DonoutChartContainer';
+import DonutChartContainer from '../../charts/DonutChartContainer';
 import cat from '../../images/cat.png';
+import moment from "moment/moment";
+import {logOutOutline} from "ionicons/icons";
 
 interface Props {
-  // logout: any;
-  // loadingLogout: boolean;
-  // user: any;
-  sleep: any;
-  food: any;
-  DinnerTime: string;
+    logout: () => void,
+    sleep: any;
+    food: any;
+    DinnerTime: string;
 }
 
-const HomeContainer: React.FC<Props> = ({ 
-  // loadingLogout,
-  // user,
-  food,
-  sleep,
-  DinnerTime
- }) => {
+const HomeContainer: React.FC<Props> = ({
+                                            logout,
+                                            food,
+                                            sleep,
+                                            DinnerTime
+                                        }) => {
     return (
-      <div className="container">
-          <IonText
-            style={{fontSize: "10px", color: "white", postion: "absolue", marginLeft: "2%" }}
-            > Hi user here is your data. 
-          </IonText>
-          <div style={{
-            position: "absolute",
-            marginTop: "2%",
-            fontWeight: "bold",
-            marginLeft: "5%",
-          }}>
-            {sleep.Start.split(' ')[1]}
-          <br/>
-            Sleep Started
-          </div>
-
-          <div style={{
-            position: "absolute",
-            marginTop: "2%",
-            marginLeft: "65%",
-            fontWeight: "bold",
-          }}>
-            {sleep.Wake_up_hour}
-          <br/>
-            Wake up hour
-          </div>
-        
-        
-          <div style={{
-            position: "absolute",
-            marginTop: "5%",
-            marginLeft: "39%",
-            textAlign: "center",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            width: "80px"
-          }}>
-            <img src={cat}/>
+        <div className="homeContainer">
+            <div className="headerContainer">
+                <IonIcon icon={logOutOutline} onClick={logout} className="logoutIcon"/>
+                <IonTitle>{moment().format('dddd, MMMM Do')}</IonTitle>
             </div>
-          
-  
-          <div style={{
-            position: "absolute",
-            marginTop: "20%",
-            marginLeft: "65%",
-          }}>
-          <div style={{fontWeight: "bold"}}>
-            {food.Category[0]} <br/>
-            {food.Category[1]}
-          </div>
-          <br/>
-            Food Category
-        </div>
-          
-          <div style={{
-            position: "absolute",
-            marginTop: "20%",
-            marginLeft: "5%",
-          }}>
-          <div style={{fontWeight: "bold"}}>
-            {DinnerTime}<br/>
-          </div>
-          <br/>
-          <br/>
-            Dinner Time
-        </div>
-
-          <div style={{
-              position: "relative",
-              marginTop: "35%",
-            }}>
-              <DonoutChartContainer score={parseInt(sleep.Sleep_quality)}/>
+            <div className="sleepTimeContainer">
+                <IonText className="text">
+                    {moment(sleep.Start.split(' ')[1], 'HH:mm:ss').format('HH:mm')}
+                    <br/>
+                    <b>Sleep started</b>
+                </IonText>
+                <IonText className="text">
+                    {moment(sleep.End.split(' ')[1], 'HH:mm:ss').format('HH:mm')}
+                    <br/>
+                    <b>Woke up at</b>
+                </IonText>
+                <IonText className="text">
+                    {moment(DinnerTime, 'HH:mm:ss').format('HH:mm')}
+                    <br/>
+                    <b>Dinner time</b>
+                </IonText>
             </div>
-            
-            <div style={{
-              position: "absolute",
-              marginTop: "0%",
-              marginLeft: "65%",
-            }}>
-            <div style={{fontWeight: "bold"}}>
-
-              {sleep.Time_asleep}
+            <div className="foodDetailsContainer">
+                <div className="right">
+                    {food.Category.map((category: string, index: number) => (
+                        <IonText key={category} className="categoryListElement text">
+                            {category}{index !== food.Category.length - 1 ? ", " : ""}
+                        </IonText>
+                    ))}
+                    <br/>
+                    <IonText className="text"><b>Categories</b></IonText>
+                </div>
             </div>
-            <br/>
-              Sleep Duration
-          </div>
-          
-          
-          <div style={{
-            position: "absolute",
-            marginTop: "0%",
-            marginLeft: "5%",
-          }}>  <div style={{fontWeight: "bold"}}>
-            
-            {sleep.Movements_per_hour}
-          </div>
-          <br/>
-            Movements per hour
+
+            <div>
+                <DonutChartContainer score={parseInt(sleep.Sleep_quality)}/>
+            </div>
+
+            <div className="asleepMovementContainer">
+                <IonText className="left text">
+                    <IonText>
+                        {moment(sleep.Time_asleep, 'HH:mm:ss').format('HH:mm')}
+                    </IonText>
+                    <br/>
+                    <b>Sleep duration</b>
+                </IonText>
+                <IonText className="right text">
+                    <IonText>
+                        {sleep.Movements_per_hour}
+                    </IonText>
+                    <br/>
+                    <b>Movements / hour</b>
+                </IonText>
+            </div>
+
+            <div className="regTimeInBedContainer">
+                <IonText>
+                    <IonText className="left text">
+                        {sleep.Regularity}
+                    </IonText>
+                    <br/>
+                    <IonText className="text"><b>Regularity</b></IonText>
+                </IonText>
+                <IonText className="right text">
+                    <IonText>
+                        {moment(sleep.Time_in_bed, 'HH:mm:ss').format('HH:mm')}
+                    </IonText>
+                    <br/>
+                    <b>Time in bed</b>
+                </IonText>
+            </div>
+            <IonButton href="/food" size="small" className="btnAddFood">Add Food</IonButton>
+
+            {/*<div style={{*/}
+            {/*    position: "absolute",*/}
+            {/*    marginTop: "5%",*/}
+            {/*    marginLeft: "39%",*/}
+            {/*    textAlign: "center",*/}
+            {/*    textOverflow: "ellipsis",*/}
+            {/*    whiteSpace: "nowrap",*/}
+            {/*    overflow: "hidden",*/}
+            {/*    width: "80px"*/}
+            {/*}}>*/}
+            {/*    <img src={cat}/>*/}
+            {/*</div>*/}
         </div>
-        
-            <div style={{
-              position: "absolute",
-              marginTop: "22%",
-              marginLeft: "5%",
-            }}>
-            <div style={{fontWeight: "bold"}}>
-                {sleep.Regularity}
-              </div>
-            <br/>
-              Regularity
-          </div>
-      
-          <div style={{
-            position: "absolute",
-            marginTop: "22%",
-            marginLeft: "65%",
-          }}>
-          <div style={{fontWeight: "bold"}}>
-            {sleep.Time_in_bed}
-          </div>
-          
-          <br/>
-            Time in bed
-        </div>
-    
-        <div style={{
-          position: "absolute",
-          marginTop: "40%",
-          marginLeft: "35%",
-        }}>
-          <IonButton href="/food">Add Food</IonButton>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default HomeContainer;
