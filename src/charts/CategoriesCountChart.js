@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const CategoriesCountChart = (props) => {
-
     const getLabels = (labels) => { 
         var reLabels = [];
         labels.forEach(function(key){
@@ -26,23 +25,9 @@ const CategoriesCountChart = (props) => {
         return count.map(x => x * 100/total);
     }
 
-    const [barData, setBarData] = useState({
-        labels: getLabels(props.labels),
-        datasets: [
-            {
-            label: props.name,
-            data: getValues(props.data),
-            backgroundColor: 'rgba(54, 162, 235, 0.6)',
-            borderColor: 'rgba(54, 162, 235, 0.6)',
-            borderWidth: 1,
-            },
-        ],
-        });
-
-    // set data
-    useEffect(() => {
-        if (props.data) {
-            setBarData(
+    return (
+        <div>
+          <Bar data={
                 {
                     labels: getLabels(props.labels),
                     datasets: [
@@ -54,16 +39,8 @@ const CategoriesCountChart = (props) => {
                         borderWidth: 1,
                         },
                     ],
-                }                
-            )             
-        } else {
-            console.log("no foodData")
-        }
-    }, []);            
-
-    return (
-        <div>
-          <Bar data={barData}
+                }              
+          }
                options={
                  {
                      scales: {
