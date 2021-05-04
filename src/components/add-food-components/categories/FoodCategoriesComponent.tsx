@@ -31,24 +31,48 @@ export const FoodCategoriesComponent: React.FC<FoodCategoriesProps> = ({updatePa
         <div>
             <IonGrid>
                 <IonRow>
-                    <IonCol><Category name={CategoryType.Fruits} onSelect={updateSelectedCategories}
-                                      cssClassName="fruit" selected={selectedCategories.has(CategoryType.Fruits)}/></IonCol>
-                    <IonCol><Category name={CategoryType.Vegetables} onSelect={updateSelectedCategories}
-                                      cssClassName="veg" selected={selectedCategories.has(CategoryType.Vegetables)}/></IonCol>
-                    <IonCol><Category name={CategoryType.Grains} onSelect={updateSelectedCategories}
-                                      cssClassName="grains" selected={selectedCategories.has(CategoryType.Grains)}/></IonCol>
-                    <IonCol><Category name={CategoryType.Dairy} onSelect={updateSelectedCategories}
-                                      cssClassName="dairy" selected={selectedCategories.has(CategoryType.Dairy)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.Fruits}
+                                      label={CategoryType.Fruits}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="fruit"
+                                      selected={selectedCategories.has(CategoryType.Fruits)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.Vegetables}
+                                      label={CategoryType.Vegetables}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="veg"
+                                      selected={selectedCategories.has(CategoryType.Vegetables)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.Grains}
+                                      label={CategoryType.Grains}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="grains"
+                                      selected={selectedCategories.has(CategoryType.Grains)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.Dairy}
+                                      label={CategoryType.Dairy}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="dairy"
+                                      selected={selectedCategories.has(CategoryType.Dairy)}/></IonCol>
                 </IonRow>
                 <IonRow>
-                    <IonCol><Category name={CategoryType.ProteinFood} onSelect={updateSelectedCategories}
-                                      cssClassName="protein" selected={selectedCategories.has(CategoryType.ProteinFood)}/></IonCol>
-                    <IonCol><Category name={CategoryType.Snacks} onSelect={updateSelectedCategories}
-                                      cssClassName="snacks" selected={selectedCategories.has(CategoryType.Snacks)}/></IonCol>
-                    <IonCol><Category name={CategoryType.CaffeinatedDrinks} onSelect={updateSelectedCategories}
-                                      cssClassName="coffee" selected={selectedCategories.has(CategoryType.CaffeinatedDrinks)}/></IonCol>
-                    <IonCol><Category name={CategoryType.SoftDrinks} onSelect={updateSelectedCategories}
-                                      cssClassName="softDrinks" selected={selectedCategories.has(CategoryType.SoftDrinks)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.ProteinFood}
+                                      label={CategoryType.ProteinFood}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="protein"
+                                      selected={selectedCategories.has(CategoryType.ProteinFood)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.Snacks}
+                                      label={CategoryType.Snacks}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="snacks"
+                                      selected={selectedCategories.has(CategoryType.Snacks)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.CaffeinatedDrinks}
+                                      label={CategoryType.CaffeinatedDrinks + " / Alcohol"}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="coffee"
+                                      selected={selectedCategories.has(CategoryType.CaffeinatedDrinks)}/></IonCol>
+                    <IonCol><Category categoryName={CategoryType.SoftDrinks}
+                                      label={CategoryType.SoftDrinks}
+                                      onSelect={updateSelectedCategories}
+                                      cssClassName="softDrinks"
+                                      selected={selectedCategories.has(CategoryType.SoftDrinks)}/></IonCol>
                 </IonRow>
             </IonGrid>
         </div>
