@@ -2,20 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import CategoriesCountChart from "./CategoriesCountChart";
 
-// To change the csv path so as to get it from firebase/json
 const CreateFoodCharts = (props) => {
-    // To store count data
-    const [categoriesCount, setCategoriesCount] = useState([]);
-
-    const [show_count, setShowCountChart] = React.useState(true);
 
     const shortLabels = ["Caff. drink", "Dai.", "Fru.", "Gra.", "Prot. food", "Sna.", "Soft drink", "Veg."]
-
-    // Control button colors
-    const [colorCountButton, setColorCountButton] = React.useState("primary");        
-    
-    // State the loading variable for the graph, necessary to show the first graph
-    const [loading, setLoading] = useState(true);    
 
     const getCount = (data) => {
         var categoryCount = {
@@ -43,26 +32,9 @@ const CreateFoodCharts = (props) => {
         return categoryCount;
       };    
 
-    useEffect(() => {
-        if(!props.loading_food) {
-            setCategoriesCount(getCount(props.foodData))        
-            setLoading(false)   
-        } else {
-            console.log("no foodData")
-        }
-    }, []);
-
-    // const buttonClickSetGraph = (name) => {
-    //   if(name == x_labels[0]) {
-    //     setShowCountChart(true)
-    //     setColorCountButton("primary")
-    //   }
-    // }    
-
     return (
       <div>
-          {loading && <div>Drawing graph...</div>}
-          {!loading && show_count && <CategoriesCountChart labels={shortLabels} data={categoriesCount} name="Overall category count in %"/>}
+          <CategoriesCountChart labels={shortLabels} data={getCount(props.foodData)} name="Overall category count in %"/>
       </div>
     );
 }
