@@ -1,4 +1,4 @@
-ion-label .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+ion-label.smallLabel .item.sc-ion-label-md-h, .item .smallLabel.sc-ion-label-md-h{
     font-size: small;
 }
 

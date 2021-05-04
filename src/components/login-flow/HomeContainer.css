@@ -1,0 +1,75 @@
+.homeContainer {
+    color: #001d4a;
+    text-align: center;
+    margin: 16px;
+}
+ion-icon.logoutIcon {
+    width: 24px;
+    height: 24px;
+    align-self: flex-end;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.sleepTimeContainer, .asleepMovementContainer, .regTimeInBedContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+}
+
+.foodDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.asleepMovementContainer {
+    margin-top: -36px;
+}
+
+.regTimeInBedContainer {
+    margin-top: 18px;
+}
+
+.sleepTimeContainer ion-text {
+    margin: 0 8px;
+}
+
+.regTimeInBedContainer ion-text {
+    margin: 0 18px;
+}
+
+.asleepMovementContainer ion-text.left {
+    margin: 0 44px 0 0;
+}
+
+.asleepMovementContainer ion-text.right {
+    margin: 0 0 0 92px;
+}
+
+.sleepTimeContainer {
+    margin-bottom: 12px;
+}
+
+.headerContainer ion-title {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.categoryListElement {
+    font-size: small;
+}
+
+ion-text.text {
+    font-size: 14px;
+}
+
+.btnAddFood {
+    margin-top: 24px;
+}

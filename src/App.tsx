@@ -1,15 +1,15 @@
-import { Redirect, Route } from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {
-  IonApp,
-  IonIcon,
-  IonLabel,
-  IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
+    IonApp,
+    IonRouterOutlet,
+    IonTabs,
+    IonTabBar,
+    IonLabel,
+    IonIcon,
+    IonTabButton,
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import {analyticsSharp, ellipse, home, moonSharp, pizzaSharp, square, triangle} from 'ionicons/icons';
+import {analyticsSharp, home, moonSharp, pizzaSharp} from "ionicons/icons"
+import {IonReactRouter} from '@ionic/react-router';
 import HomeTab from './pages/HomeTab';
 import AddFoodTab from './pages/AddFoodTab';
 import AnalyticsTab from './pages/AnalyticsTab';
@@ -34,52 +34,85 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import IntroPage from './components/login-flow/IntroPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import {useAuthInit} from "./auth";
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/home">
-            <HomeTab />
-          </Route>
-          <Route exact path="/sleep/upload">
-            <UploadCSV />
-          </Route>
-          <Route exact path="/food">
-            <AddFoodTab />
-          </Route>
-          <Route path="/analytics">
-            <AnalyticsTab />
-          </Route>
-          <Route path="/my_sleep_data">
-            <MySleepDataTab />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="food" href="/food">
-            <IonIcon icon={pizzaSharp} />
-            <IonLabel>Add food</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="analytics" href="/analytics">
-            <IonIcon icon={analyticsSharp} />
-            <IonLabel>Analytics</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="my_sleep_data" href="/my_sleep_data">
-            <IonIcon icon={moonSharp} />
-            <IonLabel>My sleep data</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+interface Props {
+    redirectPath: string,
+    loggedIn: boolean;
+}
+
+const AppRouterOutlet = ({redirectPath, loggedIn}: Props) => {
+    return <>
+        <Route path="/intro" component={IntroPage} exact/>
+        <Route path="/login" component={LoginPage} exact/>
+        <Route path="/register" component={RegisterPage} exact/>
+        <Route exact path="/home">
+            <HomeTab/>
+        </Route>
+        <Route exact path="/sleep/upload">
+            <UploadCSV/>
+        </Route>
+        <Route exact path="/food">
+            <AddFoodTab/>
+        </Route>
+        <Route path="/analytics">
+            <AnalyticsTab/>
+        </Route>
+        <Route path="/my_sleep_data">
+            <MySleepDataTab/>
+        </Route>
+        <Route exact path="/">
+            <Redirect to={redirectPath}/>
+        </Route>
+        {loggedIn && (
+            <Route exact path="/intro">
+                <Redirect to="/home"/>
+            </Route>
+        )}
+    </>;
+}
+
+const App: React.FC = () => {
+    const auth = useAuthInit();
+    return (
+        <IonApp>
+            <IonReactRouter>
+                {!auth.loading && auth.auth?.loggedIn && (
+                    <IonTabs>
+                        <IonRouterOutlet>
+                            <AppRouterOutlet redirectPath='/home' loggedIn={auth.auth?.loggedIn}/>
+                        </IonRouterOutlet>
+                        <IonTabBar slot="bottom">
+                            <IonTabButton tab="home" href="/home">
+                                <IonIcon icon={home}/>
+                                <IonLabel>Home</IonLabel>
+                            </IonTabButton>
+                            <IonTabButton tab="food" href="/food">
+                                <IonIcon icon={pizzaSharp}/>
+                                <IonLabel>Add food</IonLabel>
+                            </IonTabButton>
+                            <IonTabButton tab="analytics" href="/analytics">
+                                <IonIcon icon={analyticsSharp}/>
+                                <IonLabel>Analytics</IonLabel>
+                            </IonTabButton>
+                            <IonTabButton tab="my_sleep_data" href="/my_sleep_data">
+                                <IonIcon icon={moonSharp}/>
+                                <IonLabel>My sleep data</IonLabel>
+                            </IonTabButton>
+                        </IonTabBar>
+                    </IonTabs>
+                )}
+                {auth.auth?.loggedIn === false && (
+                    <IonRouterOutlet>
+                        <AppRouterOutlet redirectPath="/intro" loggedIn={auth.auth?.loggedIn}/>
+                    </IonRouterOutlet>
+                )}
+            </IonReactRouter>
+        </IonApp>
+    )
+};
 
 export default App;

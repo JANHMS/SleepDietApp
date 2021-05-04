@@ -21,7 +21,7 @@ const CreateFoodCharts = (props) => {
         const df = new DataFrame(data_all, Object.keys(data_all[0]));
         const groupedDF = df.groupBy(column_to_groupby).aggregate(group => group.stat.mean(column_to_mean)).rename('aggregation', nameMeanCol).sortBy(column_to_groupby);
         return groupedDF.filter(row => !(row.get("Weekday") === null)).toDict();
-      };             
+      };
 
     const getWeekdayMeanData = (data, groupbyColumn) => {
         var sleep_mean = getMeanCol(data, groupbyColumn, 'Sleep_quality', 'QualityMean')
@@ -41,7 +41,7 @@ const CreateFoodCharts = (props) => {
             result.push( dayData );
         });
         return result;
-    };     
+    };
 
     // For pie chart
     // Function to group by the key string
@@ -103,12 +103,12 @@ const CreateFoodCharts = (props) => {
         var keys = Object.keys(countByWeekday);
         keys.forEach(function(key){
             countByWeekday[key] = getCountFromArray(categories[key]);
-        });     
+        });      
         return countByWeekday;
-    };            
+    };
     
     const [index, setIndex] = useState([]);
-    const labelsPie = ["Caffeinated drinks", "Dairy", "Fruits", "Grains", "Protein food", "Snacks", "Soft drinks", "Vegetables"] 
+    const labelsPie = ["Caffeinated drinks", "Dairy", "Fruits", "Grains", "Protein food", "Snacks", "Soft drinks", "Vegetables"]
 
     return (
       <div>

@@ -7,13 +7,14 @@ import "./Category.css"
 import clsx from "clsx";
 
 interface CategoryProps {
-    name: string,
+    categoryName: string,
+    label: string,
     cssClassName: string,
     onSelect: (name: string) => void,
     selected: boolean,
 }
 
-export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect, selected}) => {
+export const Category: React.FC<CategoryProps> = ({categoryName, label, cssClassName, onSelect, selected}) => {
     // Too early to set default state, at this point "selected" hasn't arrived yet
     const [isSelected, setSelected] = useState<boolean>(selected);
 
@@ -27,9 +28,9 @@ export const Category: React.FC<CategoryProps> = ({name, cssClassName, onSelect,
             <IonCard button type="button" className={clsx(isSelected && "selected", cssClassName, "categoryCard")}
                      onClick={e => {
                          setSelected(!isSelected)
-                         onSelect(name);
+                         onSelect(categoryName);
                      }}/>
-            <IonCardTitle>{name}</IonCardTitle>
+            <IonCardTitle>{label}</IonCardTitle>
         </div>
     );
 };

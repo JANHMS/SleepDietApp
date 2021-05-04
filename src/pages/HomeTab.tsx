@@ -1,25 +1,16 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import {IonContent, IonPage} from '@ionic/react';
 import './HomeTab.css';
-import HomeContainer from "../components/HomeContainer";
+import HomeContainer from "../components/login-flow/HomeContainer";
+import React from 'react';
 
 const HomeTab: React.FC = () => {
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Home</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Home</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <HomeContainer name="Home page" />
-      </IonContent>
-    </IonPage>
-  );
+    return (
+        <IonPage>
+            <IonContent overflow-scroll="false" className="homeTabContent">
+                <HomeContainer/>
+            </IonContent>
+        </IonPage>
+    )
 };
 
 export default HomeTab;

@@ -24,7 +24,7 @@ const CategoryPopup: React.FC<{
             <CategoryPopupElement name={CategoryType.Dairy} description={Constant.dairyExamples} cssClassName="dairy"/>
             <CategoryPopupElement name={CategoryType.ProteinFood} description={Constant.proteinExamples} cssClassName="protein"/>
             <CategoryPopupElement name={CategoryType.Snacks} description={Constant.snacksExamples} cssClassName="snacks"/>
-            <CategoryPopupElement name={CategoryType.CaffeinatedDrinks} description={Constant.caffeinatedExamples} cssClassName="coffee"/>
+            <CategoryPopupElement name={CategoryType.CaffeinatedDrinks + " / Alcohol"} description={Constant.caffeinatedExamples} cssClassName="coffee"/>
             <CategoryPopupElement name={CategoryType.SoftDrinks} description={Constant.softDrinkExamples} cssClassName="softDrinks"/>
         </IonList>
 

@@ -1,4 +1,4 @@
-import image from'../images/sleepimg.png';
+import image from '../../images/sleepimg.png';
 
 const HeaderImage = () => { 
   return(

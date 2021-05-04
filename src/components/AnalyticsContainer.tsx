@@ -13,15 +13,15 @@ interface ContainerProps {
 }
 
 const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
-    // We getch the data here to not do it inside each family type of graphs
+    // We fetch the data here to no do it inside each family type of graphs
     // userId to get the data in firebase
     const userId = "1"    
 
     // To store sleep and food data from the user in the database
     const [allSleepData, setAllSleepData] = useState([]); 
     const [allFoodData, setAllFoodData] = useState([]); 
-    const [joinedData, setJoinedData] = useState([]); 
-    
+    const [joinedData, setJoinedData] = useState([]);
+
     // To control the graphs are shown when reloading the page
     const [loading_sleep, setSleepLoading] = useState(true);
     const [loading_food, setFoodLoading] = useState(true);
@@ -42,7 +42,7 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
                             Hungry_Overate: d.Hungry_Overate * 100/10,
                             NonFatty_Fatty: d.NonFatty_Fatty * 100/10,
                             Unwell_Well: d.Unwell_Well * 100/10 });
-    };      
+    };
 
     const join = (lookupTable, mainTable, lookupKey, mainKey, select) => {
         var l = lookupTable.length,
@@ -59,7 +59,7 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
             output.push(select(y, x)); // select only the columns you need
         }
         return output;
-    };     
+    };
 
     const getJoinedData= (sleepD,foodD) => {
         const restr_sleep = []
@@ -78,7 +78,7 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
                 Wellness: food.Unwell_Well
             };
         });
-        return result;           
+        return result;
     }
 
     // Functions to fetch the data
@@ -124,13 +124,13 @@ const AnalyticsContainer: React.FC<ContainerProps> = ({ name }) => {
     useEffect(() => {
         fetchSleepData();
         fetchFoodData();
-    }, []);    
-    
+    }, []);
+
     // Set joined data
     useEffect(() => {
         setJoinedData(getJoinedData(allSleepData, allFoodData));
         setJoinedLoading(false)
-    }, [allSleepData, allFoodData]);    
+    }, [allSleepData, allFoodData]);
 
     return (
         <div className="analyticsContainer">
